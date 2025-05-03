@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,14 +16,11 @@ public class CombateTurnos : MonoBehaviour
     public Button botonLanzarDados;
     public Button botonAtacar;
 
-    public Image imagenJugador;   // ESTOS SE CAMBIAN POR SPRITERENDERER
-    public Image imagenEnemigo;   // SI SE USA UN SPRITE EN EL FUTURO
+    public GameObject jugadorGO;
+    public GameObject enemigoGO;
 
-    public Sprite spriteJugadorNormal;
-    public Sprite spriteJugadorGolpe;
-
-    public Sprite spriteEnemigoNormal;
-    public Sprite spriteEnemigoGolpe;
+    private Animator animatorJugador;
+    private Animator animatorEnemigo;
 
     public Slider barraVidaJugador;
     public Slider barraVidaEnemigo;
@@ -40,6 +36,9 @@ public class CombateTurnos : MonoBehaviour
         barraVidaEnemigo.maxValue = vidaEnemigo;
         barraVidaEnemigo.value = vidaEnemigo;
 
+        animatorJugador = jugadorGO.GetComponent<Animator>();
+        animatorEnemigo = enemigoGO.GetComponent<Animator>();
+
         ReiniciarTurnoJugador();
     }
 
@@ -50,7 +49,7 @@ public class CombateTurnos : MonoBehaviour
         controlDados.LanzarDados();
         lanzamientosRestantes--;
 
-        mensajeCombate.text = "Lanzamientos restantes: " + lanzamientosRestantes.ToString();
+        mensajeCombate.text = "Lanzamientos restantes: " + lanzamientosRestantes;
 
         if (lanzamientosRestantes == 0)
         {
@@ -66,11 +65,11 @@ public class CombateTurnos : MonoBehaviour
         int daño = controlDados.CalcularDaño(resultado);
 
         vidaEnemigo -= daño;
-        mensajeCombate.text = $"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}"; //debug
+        mensajeCombate.text = $"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}";
         barraVidaEnemigo.value = vidaEnemigo;
 
-
-        StartCoroutine(MostrarGolpe(imagenEnemigo, spriteEnemigoGolpe, spriteEnemigoNormal)); //piña jugador, cambia sprite enemigo
+        animatorJugador.SetTrigger("jugadorAtaque");       
+        
 
         turnoJugador = false;
         botonLanzarDados.interactable = false;
@@ -79,12 +78,12 @@ public class CombateTurnos : MonoBehaviour
         if (vidaEnemigo <= 0)
         {
             mensajeCombate.text += "\n¡Ganaste!";
+            
             return;
         }
 
         Invoke(nameof(TurnoEnemigo), 2f);
     }
-
 
     void TurnoEnemigo()
     {
@@ -92,15 +91,15 @@ public class CombateTurnos : MonoBehaviour
         vidaJugador -= daño;
         barraVidaJugador.value = vidaJugador;
 
-        Debug.Log(vidaEnemigo);
-        StartCoroutine(MostrarGolpe(imagenJugador, spriteJugadorGolpe, spriteJugadorNormal)); // piña del enemigo, le cambia el sprite al jugador
+        animatorEnemigo.SetTrigger("cardAttack");      
+         
 
         if (vidaJugador <= 0)
         {
-            mensajeCombate.text = $"¡Perdiste!";
+            mensajeCombate.text = "¡Perdiste!";
+        ; 
             return;
         }
-
 
         ReiniciarTurnoJugador();
     }
@@ -115,17 +114,5 @@ public class CombateTurnos : MonoBehaviour
         botonAtacar.interactable = true;
 
         mensajeCombate.text = "Tu turno. Lanza los dados.";
-    }
-
-    System.Collections.IEnumerator MostrarGolpe(Image imagen, Sprite spriteGolpe, Sprite spriteNormal)
-    {
-        Color colorOriginal;
-        colorOriginal = imagen.color;
-
-        imagen.sprite = spriteGolpe;
-        imagen.color = Color.red;
-        yield return new WaitForSeconds(0.4f);
-        imagen.color = colorOriginal;
-        imagen.sprite = spriteNormal;
     }
 }

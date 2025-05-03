@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      esqueletoherido_0: -7287929769739970049
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
