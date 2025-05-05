@@ -68,7 +68,8 @@ public class CombateTurnos : MonoBehaviour
         mensajeCombate.text = $"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}";
         barraVidaEnemigo.value = vidaEnemigo;
 
-        animatorJugador.SetTrigger("jugadorAtaque");       
+        animatorJugador.SetTrigger("playerAttack");
+        animatorEnemigo.SetTrigger("cardDamage");
         
 
         turnoJugador = false;
@@ -77,6 +78,7 @@ public class CombateTurnos : MonoBehaviour
 
         if (vidaEnemigo <= 0)
         {
+            animatorEnemigo.SetTrigger("cardDeath");
             mensajeCombate.text += "\n¡Ganaste!";
             
             return;
@@ -91,11 +93,13 @@ public class CombateTurnos : MonoBehaviour
         vidaJugador -= daño;
         barraVidaJugador.value = vidaJugador;
 
-        animatorEnemigo.SetTrigger("cardAttack");      
+        animatorEnemigo.SetTrigger("cardAttack");
+        animatorJugador.SetTrigger("playerDamage");
          
 
         if (vidaJugador <= 0)
         {
+            animatorJugador.SetTrigger("playerDeath");
             mensajeCombate.text = "¡Perdiste!";
         ; 
             return;
