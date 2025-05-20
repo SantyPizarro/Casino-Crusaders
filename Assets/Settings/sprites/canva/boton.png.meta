@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 308b27d2c2d34b24ba9341a6973cbf0d
+guid: d359dcb2b30a1304489c94a9b8166044
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -941200337793254205
-    second: JugadorAttack_0
-  - first:
-      213: -5114483628034368156
-    second: JugadorAttack_1
-  - first:
-      213: -7447302417282329735
-    second: JugadorAttack_2
+      213: -3427443288308981933
+    second: boton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JugadorAttack_0
+      name: boton_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 18
-        height: 23
+        x: 0
+        y: 11
+        width: 32
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ccfa5b874f20f2f0800000000000000
-      internalID: -941200337793254205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JugadorAttack_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 4
-        width: 20
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 46dd57dec34b509b0800000000000000
-      internalID: -5114483628034368156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JugadorAttack_2
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 4
-        width: 18
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9739af2b8edd5a890800000000000000
-      internalID: -7447302417282329735
+      spriteID: 35fdb881d764f60d0800000000000000
+      internalID: -3427443288308981933
       vertices: []
       indices: 
       edges: []
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JugadorAttack_0: -941200337793254205
-      JugadorAttack_1: -5114483628034368156
-      JugadorAttack_2: -7447302417282329735
+      boton_0: -3427443288308981933
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

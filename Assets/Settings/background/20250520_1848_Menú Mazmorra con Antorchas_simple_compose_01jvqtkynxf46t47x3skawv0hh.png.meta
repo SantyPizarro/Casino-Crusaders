@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 86a4a983e32334442b899b743144c5e3
+guid: 82189fa46f384a9489bc906660cdbfda
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3075502812728799786
-    second: esqueletosano_0
+      213: 6534637745574497878
+    second: "20250520_1848_Men\xFA Mazmorra con Antorchas_simple_compose_01jvqtkynxf46t47x3skawv0hh_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: esqueletosano_0
+      name: "20250520_1848_Men\xFA Mazmorra con Antorchas_simple_compose_01jvqtkynxf46t47x3skawv0hh_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1080
-        height: 1920
+        width: 1536
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ddc59d8c7e9155d0800000000000000
-      internalID: -3075502812728799786
+      spriteID: 65ec3d85862bfaa50800000000000000
+      internalID: 6534637745574497878
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      esqueletosano_0: -3075502812728799786
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
