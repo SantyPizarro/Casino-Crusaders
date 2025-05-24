@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\GIT\\pw3\\Casino-Crusaders\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionResponsive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\PosicionResponsive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionFija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\PosicionFija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +27,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PosicionResponsive.cs",
+              "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionResponsive.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\PosicionResponsive.cs",
+              "ToolTip": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionResponsive.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\PosicionResponsive.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T16:30:20.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PosicionFija.cs",
+              "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionFija.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\PosicionFija.cs",
+              "ToolTip": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionFija.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\PosicionFija.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T16:22:43.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ControlDados.cs",
               "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs",
               "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\ControlDados.cs",
@@ -26,8 +58,7 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\ControlDados.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAWwGcAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T23:21:46.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T23:21:46.349Z"
             }
           ]
         }
