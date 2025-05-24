@@ -84,6 +84,7 @@ public class CombateTurnos : MonoBehaviour
             return;
         }
 
+
         Invoke(nameof(TurnoEnemigo), 2f);
     }
 
@@ -101,7 +102,8 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorJugador.SetTrigger("playerDeath");
             mensajeCombate.text = "¡Perdiste!";
-        ; 
+        ;
+            Invoke(nameof(FinCombateJugadorGana), 1.5f);
             return;
         }
 
@@ -118,5 +120,13 @@ public class CombateTurnos : MonoBehaviour
         botonAtacar.interactable = true;
 
         mensajeCombate.text = "Tu turno. Lanza los dados.";
+    }
+    void FinCombateJugadorGana()
+    {
+        
+        botonLanzarDados.interactable = false;
+        botonAtacar.interactable = false;
+
+     
     }
 }

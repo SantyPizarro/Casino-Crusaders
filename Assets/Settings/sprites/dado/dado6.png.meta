@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 17c76e933b1bca143a08d76046248941
+guid: 4cb7859e2b1e57745bd5f0a77ffbb76f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8105276663429295657
-    second: side-2_0
+      213: -2307884431035961996
+    second: dado6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: side-2_0
+      name: dado6_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 29
-        height: 29
+        x: 7
+        y: 6
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92e67f98e2abb7070800000000000000
-      internalID: 8105276663429295657
+      spriteID: 47d6271765fb8ffd0800000000000000
+      internalID: -2307884431035961996
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      side-2_0: 8105276663429295657
+      dado6_0: -2307884431035961996
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

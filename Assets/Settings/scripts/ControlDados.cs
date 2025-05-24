@@ -9,14 +9,35 @@ public class ControlDados : MonoBehaviour
     public Image[] imagenesDados;
     public Sprite[] carasDados;
     public Text resultadoTexto;
+    public Sprite caraVacia;
 
     private bool[] dadosGuardados;
+    private Vector2[] posicionesOriginales;
 
     private void Start()
     {
         resultadoTexto.text = "Juego iniciado";
         valoresDados = new int[imagenesDados.Length];
         dadosGuardados = new bool[imagenesDados.Length];
+
+        posicionesOriginales = new Vector2[imagenesDados.Length];
+        for (int i = 0; i < imagenesDados.Length; i++)
+        {
+            if (imagenesDados[i] == null)
+            {
+                Debug.LogError($"imagenesDados[{i}] no está asignado en Inspector.");
+                continue;
+            }
+            RectTransform rt = imagenesDados[i].GetComponent<RectTransform>();
+            if (rt == null)
+            {
+                Debug.LogError($"imagenesDados[{i}] no tiene RectTransform.");
+                continue;
+            }
+            posicionesOriginales[i] = rt.anchoredPosition;
+            imagenesDados[i].sprite = caraVacia;
+            imagenesDados[i].gameObject.SetActive(true);
+        }
     }
 
     public void LanzarDados()
@@ -39,6 +60,11 @@ public class ControlDados : MonoBehaviour
 
     public void AlternarDado(int indice)
     {
+        if (imagenesDados[indice].sprite == caraVacia)
+        {
+            
+            return;
+        }
         dadosGuardados[indice] = !dadosGuardados[indice];
 
         RectTransform rectTransform = imagenesDados[indice].GetComponent<RectTransform>();
@@ -101,21 +127,34 @@ public class ControlDados : MonoBehaviour
 
     public void ResetearDados()
     {
+        if (posicionesOriginales == null || posicionesOriginales.Length == 0)
+        {
+            Debug.LogWarning("ResetearDados llamado antes de inicializar posicionesOriginales");
+            return;
+        }
+
         for (int i = 0; i < dadosGuardados.Length; i++)
         {
             dadosGuardados[i] = false;
             valoresDados[i] = 0;
 
-            if (imagenesDados[i] != null)
+            if (imagenesDados == null || imagenesDados.Length <= i || imagenesDados[i] == null)
+                continue;
+
+            imagenesDados[i].sprite = caraVacia;
+            imagenesDados[i].gameObject.SetActive(true);
+
+            RectTransform rectTransform = imagenesDados[i].GetComponent<RectTransform>();
+            if (rectTransform != null)
             {
-                imagenesDados[i].gameObject.SetActive(false);
+                rectTransform.anchoredPosition = posicionesOriginales[i];
             }
         }
 
         if (resultadoTexto != null)
             resultadoTexto.text = "";
     }
-    
+
     //TOCAR ACÁ PARA AÑADIR MEJORAS DE DAÑO
     public int CalcularDaño(ResultadoCombinacion resultado)
     {
