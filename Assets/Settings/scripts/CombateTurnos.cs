@@ -26,6 +26,8 @@ public class CombateTurnos : MonoBehaviour
     public Slider barraVidaJugador;
     public Slider barraVidaEnemigo;
 
+    private string prefijoAnimacionEnemigo;
+
     void Start()
     {
         botonLanzarDados.onClick.AddListener(LanzarDados);
@@ -39,6 +41,17 @@ public class CombateTurnos : MonoBehaviour
 
         animatorJugador = jugadorGO.GetComponent<Animator>();
         animatorEnemigo = enemigoGO.GetComponent<Animator>();
+
+        // Obtener prefijo de animación del enemigo
+        EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
+        if (info != null)
+        {
+            prefijoAnimacionEnemigo = info.tipoEnemigo;
+        }
+        else
+        {
+            prefijoAnimacionEnemigo = "card"; // Valor por defecto si no se encuentra
+        }
 
         ReiniciarTurnoJugador();
     }
@@ -72,8 +85,7 @@ public class CombateTurnos : MonoBehaviour
         animatorJugador.SetTrigger("playerAttack");
         StartCoroutine(MoverJugadorDuranteAtaque());
 
-        animatorEnemigo.SetTrigger("cardDamage");
-        
+        animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Damage");
 
         turnoJugador = false;
         botonLanzarDados.interactable = false;
@@ -81,12 +93,10 @@ public class CombateTurnos : MonoBehaviour
 
         if (vidaEnemigo <= 0)
         {
-            animatorEnemigo.SetTrigger("cardDeath");
+            animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
             mensajeCombate.text += "\n¡Ganaste!";
-            
             return;
         }
-
 
         Invoke(nameof(TurnoEnemigo), 2f);
     }
@@ -94,12 +104,11 @@ public class CombateTurnos : MonoBehaviour
     IEnumerator MoverJugadorDuranteAtaque()
     {
         Vector3 posicionOriginal = jugadorGO.transform.position;
-        Vector3 posicionAtaque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0); 
+        Vector3 posicionAtaque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0);
 
         float duracion = 0.3f;
         float t = 0;
 
-       
         while (t < duracion)
         {
             jugadorGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
@@ -111,7 +120,6 @@ public class CombateTurnos : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        
         t = 0;
         while (t < duracion)
         {
@@ -129,17 +137,19 @@ public class CombateTurnos : MonoBehaviour
         vidaJugador -= daño;
         barraVidaJugador.value = vidaJugador;
 
-        animatorEnemigo.SetTrigger("cardAttack");
-        StartCoroutine(MoverEnemigoDuranteAtaque());
+        animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Attack");
+        EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
+        if (info != null && info.moverDuranteAtaque)
+        {
+            StartCoroutine(MoverEnemigoDuranteAtaque());
+        }
+
         animatorJugador.SetTrigger("playerDamage");
-         
 
         if (vidaJugador <= 0)
         {
             animatorJugador.SetTrigger("playerDeath");
             mensajeCombate.text = "¡Perdiste!";
-        ;
-           
             return;
         }
 
@@ -149,12 +159,11 @@ public class CombateTurnos : MonoBehaviour
     IEnumerator MoverEnemigoDuranteAtaque()
     {
         Vector3 posicionOriginal = enemigoGO.transform.position;
-        Vector3 posicionAtaque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0); 
+        Vector3 posicionAtaque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0);
 
         float duracion = 0.3f;
         float t = 0;
 
-      
         while (t < duracion)
         {
             enemigoGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
@@ -166,7 +175,6 @@ public class CombateTurnos : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        
         t = 0;
         while (t < duracion)
         {
@@ -189,14 +197,10 @@ public class CombateTurnos : MonoBehaviour
 
         mensajeCombate.text = "Tu turno. Lanza los dados.";
     }
+
     void FinCombateJugadorGana()
     {
-        
         botonLanzarDados.interactable = false;
         botonAtacar.interactable = false;
-
-     
     }
-
-   
 }

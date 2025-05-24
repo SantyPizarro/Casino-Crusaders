@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: e42c2da4d0283754381389ddac8c78f3
+guid: 1bb64240b468b7148b309a6508a68cea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8724871397803345523
-    second: fichaDamage_0
-  - first:
-      213: 124148997975626951
-    second: fichaDamage_1
+      213: -6072825369307907086
+    second: 20250524_1223_Mazmorra Casino Pixelada_simple_compose_01jw1e65bxfrp9rgr4bkrpm3vn_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fichaDamage_0
+      name: 20250524_1223_Mazmorra Casino Pixelada_simple_compose_01jw1e65bxfrp9rgr4bkrpm3vn_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 6
-        width: 22
-        height: 21
+        x: 0
+        y: 0
+        width: 1536
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 376c8095f48f41970800000000000000
-      internalID: 8724871397803345523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fichaDamage_1
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 6
-        width: 25
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c4de8b1bd019b100800000000000000
-      internalID: 124148997975626951
+      spriteID: 2fbfb67708df8bba0800000000000000
+      internalID: -6072825369307907086
       vertices: []
       indices: 
       edges: []
@@ -172,9 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      fichaDamage_0: 8724871397803345523
-      fichaDamage_1: 124148997975626951
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

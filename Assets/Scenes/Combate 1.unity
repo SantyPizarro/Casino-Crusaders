@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 453294267}
   - component: {fileID: 453294269}
   m_Layer: 0
-  m_Name: CartaStand_0
+  m_Name: FichaStand_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,7 +648,7 @@ Animator:
   m_GameObject: {fileID: 453294265}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2f9f0f653fd19aa48b6864c320d74f41, type: 2}
+  m_Controller: {fileID: 9100000, guid: a68308f9444d756449e757424c6afa0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -704,12 +704,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3122451803917086680, guid: 92aa09427989cad4fb3f01818a55f70c, type: 3}
+  m_Sprite: {fileID: -6477619121950815913, guid: 70e90b170c83c5449ad4c6459fccb7e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.24, y: 0.26}
+  m_Size: {x: 0.6875, y: 0.625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -727,7 +727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199eca51f88275945b4df28e212463a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoEnemigo: card
+  tipoEnemigo: ficha
+  moverDuranteAtaque: 0
 --- !u!1 &504111683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,7 +2379,7 @@ SpriteRenderer:
   m_SortingLayerID: -1437473881
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6072825369307907086, guid: 1bb64240b468b7148b309a6508a68cea, type: 3}
+  m_Sprite: {fileID: -1963090928679891248, guid: 0308b6628f345b84fa7a9d38346a0b1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
