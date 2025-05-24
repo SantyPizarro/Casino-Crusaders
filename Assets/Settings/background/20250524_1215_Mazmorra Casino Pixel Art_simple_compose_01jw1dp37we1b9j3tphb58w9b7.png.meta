@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 82189fa46f384a9489bc906660cdbfda
+guid: 0308b6628f345b84fa7a9d38346a0b1f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6534637745574497878
-    second: "20250520_1848_Men\xFA Mazmorra con Antorchas_simple_compose_01jvqtkynxf46t47x3skawv0hh_0"
+      213: -1963090928679891248
+    second: 20250524_1215_Mazmorra Casino Pixel Art_simple_compose_01jw1dp37we1b9j3tphb58w9b7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "20250520_1848_Men\xFA Mazmorra con Antorchas_simple_compose_01jvqtkynxf46t47x3skawv0hh_0"
+      name: 20250524_1215_Mazmorra Casino Pixel Art_simple_compose_01jw1dp37we1b9j3tphb58w9b7_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 65ec3d85862bfaa50800000000000000
-      internalID: 6534637745574497878
+      spriteID: 0de4e368333b1c4e0800000000000000
+      internalID: -1963090928679891248
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "20250520_1848_Men\xFA Mazmorra con Antorchas_simple_compose_01jvqtkynxf46t47x3skawv0hh_0": 6534637745574497878
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
