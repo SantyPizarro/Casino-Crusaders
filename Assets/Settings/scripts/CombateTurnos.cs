@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CombateTurnos : MonoBehaviour
 {
@@ -69,6 +70,8 @@ public class CombateTurnos : MonoBehaviour
         barraVidaEnemigo.value = vidaEnemigo;
 
         animatorJugador.SetTrigger("playerAttack");
+        StartCoroutine(MoverJugadorDuranteAtaque());
+
         animatorEnemigo.SetTrigger("cardDamage");
         
 
@@ -88,6 +91,38 @@ public class CombateTurnos : MonoBehaviour
         Invoke(nameof(TurnoEnemigo), 2f);
     }
 
+    IEnumerator MoverJugadorDuranteAtaque()
+    {
+        Vector3 posicionOriginal = jugadorGO.transform.position;
+        Vector3 posicionAtaque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0); 
+
+        float duracion = 0.3f;
+        float t = 0;
+
+       
+        while (t < duracion)
+        {
+            jugadorGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        jugadorGO.transform.position = posicionAtaque;
+
+        yield return new WaitForSeconds(0.2f);
+
+        
+        t = 0;
+        while (t < duracion)
+        {
+            jugadorGO.transform.position = Vector3.Lerp(posicionAtaque, posicionOriginal, t / duracion);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        jugadorGO.transform.position = posicionOriginal;
+    }
+
     void TurnoEnemigo()
     {
         int daño = Random.Range(10, 21);
@@ -95,6 +130,7 @@ public class CombateTurnos : MonoBehaviour
         barraVidaJugador.value = vidaJugador;
 
         animatorEnemigo.SetTrigger("cardAttack");
+        StartCoroutine(MoverEnemigoDuranteAtaque());
         animatorJugador.SetTrigger("playerDamage");
          
 
@@ -103,11 +139,43 @@ public class CombateTurnos : MonoBehaviour
             animatorJugador.SetTrigger("playerDeath");
             mensajeCombate.text = "¡Perdiste!";
         ;
-            Invoke(nameof(FinCombateJugadorGana), 1.5f);
+           
             return;
         }
 
         ReiniciarTurnoJugador();
+    }
+
+    IEnumerator MoverEnemigoDuranteAtaque()
+    {
+        Vector3 posicionOriginal = enemigoGO.transform.position;
+        Vector3 posicionAtaque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0); 
+
+        float duracion = 0.3f;
+        float t = 0;
+
+      
+        while (t < duracion)
+        {
+            enemigoGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        enemigoGO.transform.position = posicionAtaque;
+
+        yield return new WaitForSeconds(0.2f);
+
+        
+        t = 0;
+        while (t < duracion)
+        {
+            enemigoGO.transform.position = Vector3.Lerp(posicionAtaque, posicionOriginal, t / duracion);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        enemigoGO.transform.position = posicionOriginal;
     }
 
     void ReiniciarTurnoJugador()
@@ -129,4 +197,6 @@ public class CombateTurnos : MonoBehaviour
 
      
     }
+
+   
 }
