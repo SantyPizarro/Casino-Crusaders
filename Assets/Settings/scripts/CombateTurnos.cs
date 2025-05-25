@@ -144,7 +144,13 @@ public class CombateTurnos : MonoBehaviour
             StartCoroutine(MoverEnemigoDuranteAtaque());
         }
 
+
+
+
+
+        StartCoroutine(MostrarEfecto(jugadorGO, info, 0.5f));
         animatorJugador.SetTrigger("playerDamage");
+
 
         if (vidaJugador <= 0)
         {
@@ -154,6 +160,17 @@ public class CombateTurnos : MonoBehaviour
         }
 
         ReiniciarTurnoJugador();
+    }
+
+    private IEnumerator MostrarEfecto(GameObject jugadorGO, EnemigoInfo info, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Vector3 offset = new Vector3(-0.1f, -0.15f, -0.1f);
+        Vector3 posicion = jugadorGO.transform.position + offset;
+
+        GameObject efecto = Instantiate(info.efectoAtaque, posicion, Quaternion.identity);
+        Destroy(efecto, 1f);
     }
 
     IEnumerator MoverEnemigoDuranteAtaque()
