@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 60730
+  controlID: 69714
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 60731
+  controlID: 69715
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 60732
+  controlID: 69716
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 60733
+  controlID: 69717
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -791,9 +791,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -230.65881, y: 399.92868, z: 1.7581495}
+    m_Target: {x: -132.48122, y: 403.96866, z: 3.8100893}
     speed: 2
-    m_Value: {x: -230.65881, y: 399.92868, z: 1.7581495}
+    m_Value: {x: -132.48122, y: 403.96866, z: 3.8100893}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -843,9 +843,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 349.55725
+    m_Target: 144.36334
     speed: 2
-    m_Value: 349.55725
+    m_Value: 144.36334
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 60811
+  controlID: 69795
   draggingID: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -1231,7 +1231,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Settings/sprites/fonts
+    - Assets/Settings/sprites/canva
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1241,15 +1241,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Settings/sprites/fonts
+  - Assets/Settings/sprites/canva
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GIT\pw3\Casino-Crusaders
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 75}
-    m_SelectedIDs: d4b20000
-    m_LastClickedID: 45780
+    m_SelectedIDs: ceb20000
+    m_LastClickedID: 45774
     m_ExpandedIDs: 00000000bcb00000beb00000c0b00000c2b0000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1429,8 +1429,8 @@ MonoBehaviour:
     y: 0
     width: 792
     height: 359
-  m_MinSize: {x: 50, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 52, y: 76}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -1494,8 +1494,8 @@ MonoBehaviour:
     y: 0
     width: 328
     height: 981
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
