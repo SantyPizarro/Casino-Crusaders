@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SlotStand_0: 6697392862243995269
+      SlotStand_1: -4040195242295260627
+      SlotStand_2: 3476893447979663548
+      SlotStand_3: 1775118834092613861
+      SlotStand_4: 4854165977544834566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
