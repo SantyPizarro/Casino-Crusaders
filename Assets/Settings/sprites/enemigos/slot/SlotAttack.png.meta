@@ -472,7 +472,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SlotAttack_0: -6771098300964693436
+      SlotAttack_1: -5496744833056304193
+      SlotAttack_10: -3467905286694989542
+      SlotAttack_11: 5489985899382219572
+      SlotAttack_12: 3433331158309283870
+      SlotAttack_13: 7600494674020185798
+      SlotAttack_2: 864666474732481527
+      SlotAttack_3: 526883810432164417
+      SlotAttack_4: -4948699063270898570
+      SlotAttack_5: 2996386525047271957
+      SlotAttack_6: -5921283676422365121
+      SlotAttack_7: 5030673438340834486
+      SlotAttack_8: 8621551155772005946
+      SlotAttack_9: 7571350263179314569
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
