@@ -63,7 +63,7 @@ public class CombateTurnos : MonoBehaviour
             yaLanzasteUnaVez = true;
         }
 
-        mensajeCombate.text = "Lanzamientos restantes: " + lanzamientosRestantes;
+        StartCoroutine(MostrarTextoAnimado("Lanzamientos restantes: " + lanzamientosRestantes));
 
         if (lanzamientosRestantes == 0)
         {
@@ -79,8 +79,8 @@ public class CombateTurnos : MonoBehaviour
         int daño = controlDados.CalcularDaño(resultado);
 
         vidaEnemigo -= daño;
-        mensajeCombate.text = $"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}";
-        barraVidaEnemigo.value = vidaEnemigo;
+        StartCoroutine(MostrarTextoAnimado($"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}"));
+        StartCoroutine(AnimarBarraVida(barraVidaEnemigo, vidaEnemigo));
 
         animatorJugador.SetTrigger("playerAttack");
         StartCoroutine(MoverJugadorDuranteAtaque());
@@ -95,7 +95,7 @@ public class CombateTurnos : MonoBehaviour
         if (vidaEnemigo <= 0)
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
-            mensajeCombate.text += "\n¡Ganaste!";
+            StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
             return;
         }
 
@@ -136,7 +136,7 @@ public class CombateTurnos : MonoBehaviour
     {
         int daño = Random.Range(10, 21);
         vidaJugador -= daño;
-        barraVidaJugador.value = vidaJugador;
+        StartCoroutine(AnimarBarraVida(barraVidaJugador, vidaJugador));
 
         animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Attack");
 
@@ -154,7 +154,7 @@ public class CombateTurnos : MonoBehaviour
         if (vidaJugador <= 0)
         {
             animatorJugador.SetTrigger("playerDeath");
-            mensajeCombate.text = "¡Perdiste!";
+            StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
             return;
         }
 
@@ -212,7 +212,7 @@ public class CombateTurnos : MonoBehaviour
         botonLanzarDados.interactable = true;
         botonAtacar.interactable = true;
 
-        mensajeCombate.text = "Tu turno. Lanza los dados.";
+        StartCoroutine(MostrarTextoAnimado("Tu turno. Lanza los dados."));
     }
 
     IEnumerator TemblorConDelay()
@@ -270,5 +270,33 @@ public class CombateTurnos : MonoBehaviour
     {
         botonLanzarDados.interactable = false;
         botonAtacar.interactable = false;
+    }
+
+    // NUEVA CORRUTINA para animar texto letra por letra
+    IEnumerator MostrarTextoAnimado(string mensaje)
+    {
+        mensajeCombate.text = "";
+        foreach (char c in mensaje)
+        {
+            mensajeCombate.text += c;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    // NUEVA CORRUTINA para animar la barra de vida suavemente
+    IEnumerator AnimarBarraVida(Slider barra, int nuevaVida)
+    {
+        float duracion = 0.8f;
+        float tiempo = 0f;
+        float vidaInicial = barra.value;
+
+        while (tiempo < duracion)
+        {
+            barra.value = Mathf.Lerp(vidaInicial, nuevaVida, tiempo / duracion);
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        barra.value = nuevaVida;
     }
 }
