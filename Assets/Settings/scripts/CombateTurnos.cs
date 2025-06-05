@@ -1,23 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using Assets.Settings.scripts;
-using System.Collections.Generic;
 
 public class CombateTurnos : MonoBehaviour
 {
     public ControlDados controlDados;
     public Text mensajeCombate;
-
-    private List<Enemigo> listaEnemigos;
-    private int indiceEnemigoActual = 0;
+    public Text nombreEnemigoTexto;
 
     private Enemigo enemigoActual;
     private Personaje personajeJugador;
 
-
-    public int vidaJugador = 100; //datos hardcodeados
+    public int vidaJugador = 100;
     public int vidaEnemigo = 100;
 
     private bool turnoJugador = true;
@@ -38,11 +33,18 @@ public class CombateTurnos : MonoBehaviour
     private string prefijoAnimacionEnemigo;
 
     void Start()
-    {
-        InicializarEnemigos();
-        InicializarPersonaje();
 
-        enemigoActual = listaEnemigos[indiceEnemigoActual];
+
+    {
+        var controlJuego = ControlJuego.Instance;
+
+        if (controlJuego.listaEnemigos == null || controlJuego.listaEnemigos.Count == 0)
+        {
+            controlJuego.Inicializar();
+        }
+
+        enemigoActual = controlJuego.ObtenerEnemigoActual();
+        personajeJugador = controlJuego.personajeJugador;
 
         vidaJugador = personajeJugador.vida_actual;
         vidaEnemigo = enemigoActual.vida;
@@ -53,16 +55,18 @@ public class CombateTurnos : MonoBehaviour
         animatorJugador = jugadorGO.GetComponent<Animator>();
         animatorEnemigo = enemigoGO.GetComponent<Animator>();
 
+        // Inicializar barras de vida
+        barraVidaJugador.maxValue = personajeJugador.vida_maxima;
+        barraVidaJugador.value = vidaJugador;
+
+        barraVidaEnemigo.maxValue = vidaEnemigo;
+        barraVidaEnemigo.value = vidaEnemigo;
+
+        nombreEnemigoTexto.text = enemigoActual.nombre;
+
         // Obtener prefijo de animación del enemigo
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
-        if (info != null)
-        {
-            prefijoAnimacionEnemigo = info.tipoEnemigo;
-        }
-        else
-        {
-            prefijoAnimacionEnemigo = "card"; // Valor por defecto si no se encuentra
-        }
+        prefijoAnimacionEnemigo = info != null ? info.tipoEnemigo : "card";
 
         ReiniciarTurnoJugador();
     }
@@ -87,7 +91,6 @@ public class CombateTurnos : MonoBehaviour
         if (!turnoJugador) return;
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-
         int daño = controlDados.CalcularDaño(resultado) + personajeJugador.daño_ataque - enemigoActual.defensa;
         daño = Mathf.Max(0, daño);
         vidaEnemigo -= daño;
@@ -108,41 +111,43 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
             mensajeCombate.text += "\n¡Ganaste!";
-
-            // espera 2s
             Invoke(nameof(SiguienteEscena), 2f);
             return;
         }
+
+        Invoke(nameof(TurnoEnemigo), 2f);
     }
 
     IEnumerator MoverJugadorDuranteAtaque()
     {
-        Vector3 posicionOriginal = jugadorGO.transform.position;
-        Vector3 posicionAtaque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0);
+        Vector3 original = jugadorGO.transform.position;
+        Vector3 ataque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0);
 
-        float duracion = 0.3f;
-        float t = 0;
-
-        while (t < duracion)
-        {
-            jugadorGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        jugadorGO.transform.position = posicionAtaque;
-
+        yield return MoverDeA_A(jugadorGO, original, ataque, 0.3f);
         yield return new WaitForSeconds(0.2f);
+        yield return MoverDeA_A(jugadorGO, ataque, original, 0.3f);
+    }
 
-        t = 0;
+    IEnumerator MoverEnemigoDuranteAtaque()
+    {
+        Vector3 original = enemigoGO.transform.position;
+        Vector3 ataque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0);
+
+        yield return MoverDeA_A(enemigoGO, original, ataque, 0.3f);
+        yield return new WaitForSeconds(0.2f);
+        yield return MoverDeA_A(enemigoGO, ataque, original, 0.3f);
+    }
+
+    IEnumerator MoverDeA_A(GameObject obj, Vector3 desde, Vector3 hasta, float duracion)
+    {
+        float t = 0;
         while (t < duracion)
         {
-            jugadorGO.transform.position = Vector3.Lerp(posicionAtaque, posicionOriginal, t / duracion);
+            obj.transform.position = Vector3.Lerp(desde, hasta, t / duracion);
             t += Time.deltaTime;
             yield return null;
         }
-
-        jugadorGO.transform.position = posicionOriginal;
+        obj.transform.position = hasta;
     }
 
     void TurnoEnemigo()
@@ -159,13 +164,8 @@ public class CombateTurnos : MonoBehaviour
             StartCoroutine(MoverEnemigoDuranteAtaque());
         }
 
-
-
-
-
         StartCoroutine(MostrarEfecto(jugadorGO, info, 0.5f));
         animatorJugador.SetTrigger("playerDamage");
-
 
         if (vidaJugador <= 0)
         {
@@ -177,45 +177,15 @@ public class CombateTurnos : MonoBehaviour
         ReiniciarTurnoJugador();
     }
 
-    private IEnumerator MostrarEfecto(GameObject jugadorGO, EnemigoInfo info, float delay)
+    IEnumerator MostrarEfecto(GameObject objetivo, EnemigoInfo info, float delay)
     {
         yield return new WaitForSeconds(delay);
 
         Vector3 offset = new Vector3(-0.1f, -0.15f, -0.1f);
-        Vector3 posicion = jugadorGO.transform.position + offset;
+        Vector3 pos = objetivo.transform.position + offset;
 
-        GameObject efecto = Instantiate(info.efectoAtaque, posicion, Quaternion.identity);
+        GameObject efecto = Instantiate(info.efectoAtaque, pos, Quaternion.identity);
         Destroy(efecto, 1f);
-    }
-
-    IEnumerator MoverEnemigoDuranteAtaque()
-    {
-        Vector3 posicionOriginal = enemigoGO.transform.position;
-        Vector3 posicionAtaque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0);
-
-        float duracion = 0.3f;
-        float t = 0;
-
-        while (t < duracion)
-        {
-            enemigoGO.transform.position = Vector3.Lerp(posicionOriginal, posicionAtaque, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        enemigoGO.transform.position = posicionAtaque;
-
-        yield return new WaitForSeconds(0.2f);
-
-        t = 0;
-        while (t < duracion)
-        {
-            enemigoGO.transform.position = Vector3.Lerp(posicionAtaque, posicionOriginal, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        enemigoGO.transform.position = posicionOriginal;
     }
 
     void ReiniciarTurnoJugador()
@@ -230,56 +200,29 @@ public class CombateTurnos : MonoBehaviour
         mensajeCombate.text = "Tu turno. Lanza los dados.";
     }
 
-    void FinCombateJugadorGana()
-    {
-        botonLanzarDados.interactable = false;
-        botonAtacar.interactable = false;
-    }
-
-    //datos hardcodeados hasta linkear base de datos)
-
-    void InicializarEnemigos()
-    {
-        listaEnemigos = new List<Enemigo>()
-    {
-        new Enemigo(1, "As 1", 60, 12, 3),
-        new Enemigo(2, "As 2", 70, 14, 4),
-        new Enemigo(3, "As 3", 80, 16, 5),
-        new Enemigo(4, "As 4", 90, 18, 6),
-        new Enemigo(5, "As 5", 100, 20, 7)
-    };
-    }
-
-    void InicializarPersonaje()
-    {
-        personajeJugador = new Personaje(1, 100, 100, 15, 5);
-    }
-
     void SiguienteEscena()
     {
-        indiceEnemigoActual++;
+        var controlJuego = ControlJuego.Instance;
+        controlJuego.AvanzarAlSiguienteEnemigo();
 
-        if (indiceEnemigoActual >= listaEnemigos.Count)
+        if (controlJuego.JuegoCompletado())
         {
             mensajeCombate.text = "¡Has ganado!";
             botonAtacar.interactable = false;
             botonLanzarDados.interactable = false;
-            //ACA TERMINA EL JUEGO, PODRIA PASAR A UNA ESCENA DE VICTORIA
+
+            controlJuego.ReiniciarJuego();
             return;
         }
 
-        else
-        {
-            // SceneManager.LoadScene("Mejoras");
-            // SceneManager.LoadScene("Mapa");
+        enemigoActual = controlJuego.ObtenerEnemigoActual();
+        vidaEnemigo = enemigoActual.vida;
+        barraVidaEnemigo.maxValue = vidaEnemigo;
+        barraVidaEnemigo.value = vidaEnemigo;
 
-            enemigoActual = listaEnemigos[indiceEnemigoActual];
-            vidaEnemigo = enemigoActual.vida;
-            barraVidaEnemigo.maxValue = enemigoActual.vida;
-            barraVidaEnemigo.value = vidaEnemigo;
+        nombreEnemigoTexto.text = enemigoActual.nombre;
+        mensajeCombate.text = $"Enfrentas a: {enemigoActual.nombre}";
 
-            mensajeCombate.text = $"Enfrentas a: {enemigoActual.nombre}";
-            ReiniciarTurnoJugador();
-        }
+        ReiniciarTurnoJugador();
     }
 }
