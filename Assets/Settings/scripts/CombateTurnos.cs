@@ -1,14 +1,23 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Settings.scripts;
+using System.Collections.Generic;
 
 public class CombateTurnos : MonoBehaviour
 {
     public ControlDados controlDados;
     public Text mensajeCombate;
 
-    public int vidaJugador = 100;
+    private List<Enemigo> listaEnemigos;
+    private int indiceEnemigoActual = 0;
+
+    private Enemigo enemigoActual;
+    private Personaje personajeJugador;
+
+
+    public int vidaJugador = 100; //datos hardcodeados
     public int vidaEnemigo = 100;
 
     private bool turnoJugador = true;
@@ -30,19 +39,21 @@ public class CombateTurnos : MonoBehaviour
 
     void Start()
     {
+        InicializarEnemigos();
+        InicializarPersonaje();
+
+        enemigoActual = listaEnemigos[indiceEnemigoActual];
+
+        vidaJugador = personajeJugador.vida_actual;
+        vidaEnemigo = enemigoActual.vida;
+
         botonLanzarDados.onClick.AddListener(LanzarDados);
         botonAtacar.onClick.AddListener(Atacar);
-
-        barraVidaJugador.maxValue = vidaJugador;
-        barraVidaJugador.value = vidaJugador;
-
-        barraVidaEnemigo.maxValue = vidaEnemigo;
-        barraVidaEnemigo.value = vidaEnemigo;
 
         animatorJugador = jugadorGO.GetComponent<Animator>();
         animatorEnemigo = enemigoGO.GetComponent<Animator>();
 
-        // Obtener prefijo de animaciÛn del enemigo
+        // Obtener prefijo de animaci√≥n del enemigo
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
         if (info != null)
         {
@@ -76,10 +87,12 @@ public class CombateTurnos : MonoBehaviour
         if (!turnoJugador) return;
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-        int daÒo = controlDados.CalcularDaÒo(resultado);
 
-        vidaEnemigo -= daÒo;
-        mensajeCombate.text = $"CombinaciÛn: {resultado.nombre}\nDaÒo: {daÒo}\nVida enemigo: {vidaEnemigo}";
+        int da√±o = controlDados.CalcularDa√±o(resultado) + personajeJugador.da√±o_ataque - enemigoActual.defensa;
+        da√±o = Mathf.Max(0, da√±o);
+        vidaEnemigo -= da√±o;
+
+        mensajeCombate.text = $"Combinaci√≥n: {resultado.nombre}\nDa√±o: {da√±o}\nVida enemigo: {vidaEnemigo}";
         barraVidaEnemigo.value = vidaEnemigo;
 
         animatorJugador.SetTrigger("playerAttack");
@@ -94,11 +107,12 @@ public class CombateTurnos : MonoBehaviour
         if (vidaEnemigo <= 0)
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
-            mensajeCombate.text += "\n°Ganaste!";
+            mensajeCombate.text += "\n¬°Ganaste!";
+
+            // espera 2s
+            Invoke(nameof(SiguienteEscena), 2f);
             return;
         }
-
-        Invoke(nameof(TurnoEnemigo), 2f);
     }
 
     IEnumerator MoverJugadorDuranteAtaque()
@@ -133,8 +147,9 @@ public class CombateTurnos : MonoBehaviour
 
     void TurnoEnemigo()
     {
-        int daÒo = Random.Range(10, 21);
-        vidaJugador -= daÒo;
+        int da√±o = enemigoActual.ataque - personajeJugador.defensa;
+        da√±o = Mathf.Max(0, da√±o);
+        vidaJugador -= da√±o;
         barraVidaJugador.value = vidaJugador;
 
         animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Attack");
@@ -155,7 +170,7 @@ public class CombateTurnos : MonoBehaviour
         if (vidaJugador <= 0)
         {
             animatorJugador.SetTrigger("playerDeath");
-            mensajeCombate.text = "°Perdiste!";
+            mensajeCombate.text = "¬°Perdiste!";
             return;
         }
 
@@ -219,5 +234,52 @@ public class CombateTurnos : MonoBehaviour
     {
         botonLanzarDados.interactable = false;
         botonAtacar.interactable = false;
+    }
+
+    //datos hardcodeados hasta linkear base de datos)
+
+    void InicializarEnemigos()
+    {
+        listaEnemigos = new List<Enemigo>()
+    {
+        new Enemigo(1, "As 1", 60, 12, 3),
+        new Enemigo(2, "As 2", 70, 14, 4),
+        new Enemigo(3, "As 3", 80, 16, 5),
+        new Enemigo(4, "As 4", 90, 18, 6),
+        new Enemigo(5, "As 5", 100, 20, 7)
+    };
+    }
+
+    void InicializarPersonaje()
+    {
+        personajeJugador = new Personaje(1, 100, 100, 15, 5);
+    }
+
+    void SiguienteEscena()
+    {
+        indiceEnemigoActual++;
+
+        if (indiceEnemigoActual >= listaEnemigos.Count)
+        {
+            mensajeCombate.text = "¬°Has ganado!";
+            botonAtacar.interactable = false;
+            botonLanzarDados.interactable = false;
+            //ACA TERMINA EL JUEGO, PODRIA PASAR A UNA ESCENA DE VICTORIA
+            return;
+        }
+
+        else
+        {
+            // SceneManager.LoadScene("Mejoras");
+            // SceneManager.LoadScene("Mapa");
+
+            enemigoActual = listaEnemigos[indiceEnemigoActual];
+            vidaEnemigo = enemigoActual.vida;
+            barraVidaEnemigo.maxValue = enemigoActual.vida;
+            barraVidaEnemigo.value = vidaEnemigo;
+
+            mensajeCombate.text = $"Enfrentas a: {enemigoActual.nombre}";
+            ReiniciarTurnoJugador();
+        }
     }
 }
