@@ -1636,6 +1636,7 @@ MonoBehaviour:
   enemigoGO: {fileID: 453294265}
   barraVidaJugador: {fileID: 196308323}
   barraVidaEnemigo: {fileID: 167216028}
+  camaraCombate: {fileID: 519420031}
 --- !u!4 &894411284
 Transform:
   m_ObjectHideFlags: 0
