@@ -1,18 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\GIT\\pw3\\Casino-Crusaders\\",
+  "WorkspaceRootPath": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\CombateTurnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\EnemigoInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\variablesmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\variablesmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\mapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\mapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\controltitulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\controltitulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:Assets\\Settings\\scripts\\EnemigoInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:Assets\\Settings\\scripts\\ControlDados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\posicionclick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\settings\\scripts\\posicionclick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,15 +42,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ControlTitulo.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlTitulo.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\ControlTitulo.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlTitulo.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\ControlTitulo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T21:12:05.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PosicionClick.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionClick.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\PosicionClick.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\PosicionClick.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\PosicionClick.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T19:05:49.066Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "VariablesMapa.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T22:33:54.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MapaController.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\MapaController.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\MapaController.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\MapaController.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\MapaController.cs",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAuwLEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T22:27:23.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Sprite-Lit-Default.shader",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@39bda2df468a\\Shaders\\2D\\Sprite-Lit-Default.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-06-19T21:47:18.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "EnemigoInfo.cs",
-              "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs",
               "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\EnemigoInfo.cs",
-              "ToolTip": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\EnemigoInfo.cs",
               "RelativeToolTip": "Assets\\Settings\\scripts\\EnemigoInfo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -40,22 +124,22 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "CombateTurnos.cs",
-              "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
               "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\CombateTurnos.cs",
-              "ToolTip": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
               "RelativeToolTip": "Assets\\Settings\\scripts\\CombateTurnos.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAAAQwBEBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAANMAAAAAAAAAAAAgwBEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-24T16:57:49.809Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "ControlDados.cs",
-              "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs",
               "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\ControlDados.cs",
-              "ToolTip": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlDados.cs",
               "RelativeToolTip": "Assets\\Settings\\scripts\\ControlDados.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

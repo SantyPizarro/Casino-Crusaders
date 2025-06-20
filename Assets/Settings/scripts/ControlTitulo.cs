@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class ControlTitulo : MonoBehaviour {
     public void Jugar()
     {
-        SceneManager.LoadScene("Combate");
+        SceneManager.LoadScene("Mapa");
     }
     public void Salir()
     {
