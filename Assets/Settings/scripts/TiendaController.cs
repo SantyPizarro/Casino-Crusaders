@@ -1,5 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TiendaController : MonoBehaviour
 {
@@ -17,11 +20,38 @@ public class TiendaController : MonoBehaviour
 
     private const int COSTO = 5;
 
+    // URL de la API (puedes cambiar el ID si lo necesitas)
+    public string apiUrlGet = "https://localhost:7000/api/PersonajeApi?idPersonaje=1";
+    public string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
+
     void Start()
     {
         Debug.Log("TextoMonedas es null? " + (TextoMonedas == null));
         Debug.Log("TextoVida es null? " + (TextoVida == null));
-        ActualizarUI();
+        StartCoroutine(ObtenerDatosPersonaje());
+    }
+
+    IEnumerator ObtenerDatosPersonaje()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(apiUrlGet);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = request.downloadHandler.text;
+            Personaje personaje = JsonUtility.FromJson<Personaje>(json);
+
+            vidaActual = personaje.vidaActual;
+            vidaMaxima = personaje.vidaMaxima;
+            dano = personaje.dañoAtaque;
+            armadura = personaje.defensa;
+
+            ActualizarUI();
+        }
+        else
+        {
+            Debug.LogError("Error al obtener personaje: " + request.error);
+        }
     }
 
     public void ComprarArmadura()
@@ -70,8 +100,48 @@ public class TiendaController : MonoBehaviour
     {
         TextoMonedas.text = "Monedas: " + monedas;
         TextoVida.text = "Vida: " + vidaActual;
-        TextoVidaMax.text = "Vida M�x: " + vidaMaxima;
+        TextoVidaMax.text = "Vida Máx: " + vidaMaxima;
         TextoArmadura.text = "Armadura: " + armadura;
-        TextoDano.text = "Da�o: " + dano;
+        TextoDano.text = "Daño: " + dano;
+    }
+
+    public void GuardarPersonaje()
+    {
+        StartCoroutine(PutPersonaje());
+    }
+
+    public IEnumerator PutPersonaje()
+    {
+        // Armamos el objeto personaje con los valores actuales de la tienda
+        Personaje personaje = new Personaje()
+        {
+            idPersonaje = 1, // O el ID que corresponda (también podrías usar ControlJuego.Instance.personajeJugador.idPersonaje)
+            vidaActual = vidaActual,
+            vidaMaxima = vidaMaxima,
+            defensa = armadura,
+            dañoAtaque = dano
+        };
+
+        string json = JsonUtility.ToJson(personaje);
+
+        UnityWebRequest request = new UnityWebRequest(apiUrlPut, "PUT");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Personaje actualizado correctamente");
+            SceneManager.LoadScene("Titulo"); 
+        }
+        else
+        {
+            Debug.LogError("Error al actualizar personaje: " + request.error);
+            SceneManager.LoadScene("Titulo");
+        }
     }
 }
+

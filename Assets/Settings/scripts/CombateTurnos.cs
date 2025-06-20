@@ -46,7 +46,7 @@ public class CombateTurnos : MonoBehaviour
         enemigoActual = controlJuego.ObtenerEnemigoActual();
         personajeJugador = controlJuego.personajeJugador;
 
-        vidaJugador = personajeJugador.vida_actual;
+        vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
 
         botonLanzarDados.onClick.AddListener(LanzarDados);
@@ -55,7 +55,7 @@ public class CombateTurnos : MonoBehaviour
         animatorJugador = jugadorGO.GetComponent<Animator>();
         animatorEnemigo = enemigoGO.GetComponent<Animator>();
 
-        barraVidaJugador.maxValue = personajeJugador.vida_maxima;
+        barraVidaJugador.maxValue = personajeJugador.vidaMaxima;
         barraVidaJugador.value = vidaJugador;
 
         barraVidaEnemigo.maxValue = vidaEnemigo;
@@ -90,7 +90,7 @@ public class CombateTurnos : MonoBehaviour
         if (!turnoJugador) return;
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-        int daño = controlDados.CalcularDaño(resultado) + personajeJugador.daño_ataque - enemigoActual.defensa;
+        int daño = controlDados.CalcularDaño(resultado) + personajeJugador.dañoAtaque - enemigoActual.defensa;
         daño = Mathf.Max(0, daño);
         vidaEnemigo -= daño;
 
