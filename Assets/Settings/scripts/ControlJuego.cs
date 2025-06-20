@@ -7,6 +7,7 @@ public class ControlJuego : MonoBehaviour
     public static ControlJuego Instance { get; private set; }
 
     public int indiceEnemigoActual = 0;
+    public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
 
@@ -23,15 +24,18 @@ public class ControlJuego : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void SetPersonaje(Personaje personaje)
+    {
+        personajeJugador = personaje;
+    }
+
+    public void SetUsuario(Usuario usuario)
+    {
+        this.usuario = usuario;
+    }
+
     public void Inicializar()
     {
-        personajeJugador = new Personaje();
-        personajeJugador.idPersonaje = 1; // Asignar un ID al personaje
-        personajeJugador.vidaMaxima = 100;
-        personajeJugador.vidaActual = 100;
-        personajeJugador.dañoAtaque = 20;
-        personajeJugador.defensa = 5;
-
         listaEnemigos = new List<Enemigo>()
         {
             new Enemigo(1, "As 1", 60, 12, 3),
