@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\LoginManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\LoginController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\TiendaController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\TiendaController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\Models\\Usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\Models\\Usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +39,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LoginManager.cs",
+              "DocumentMoniker": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\LoginManager.cs",
+              "ToolTip": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginManager.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\LoginManager.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T22:56:22.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginController.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\LoginController.cs",
+              "ToolTip": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\LoginController.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:44:35.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TiendaController.cs",
               "DocumentMoniker": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\TiendaController.cs",
               "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\TiendaController.cs",
               "ToolTip": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\TiendaController.cs",
               "RelativeToolTip": "Assets\\Settings\\scripts\\TiendaController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T17:47:36.568Z",
+              "WhenOpened": "2025-06-19T20:44:26.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\Models\\Usuario.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\Models\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:41:18.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\lucas\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:35:44.105Z",
               "EditorCaption": ""
             }
           ]
