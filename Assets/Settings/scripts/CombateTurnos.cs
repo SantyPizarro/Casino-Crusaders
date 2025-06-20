@@ -1,12 +1,17 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Settings.scripts;
+using UnityEngine.SceneManagement;
 
 public class CombateTurnos : MonoBehaviour
 {
     public ControlDados controlDados;
     public Text mensajeCombate;
+    public Text nombreEnemigoTexto;
+
+    private Enemigo enemigoActual;
+    private Personaje personajeJugador;
 
     public int vidaJugador = 100;
     public int vidaEnemigo = 100;
@@ -33,17 +38,30 @@ public class CombateTurnos : MonoBehaviour
 
     void Start()
     {
+        var controlJuego = ControlJuego.Instance;
+
+        if (controlJuego.listaEnemigos == null || controlJuego.listaEnemigos.Count == 0)
+            controlJuego.Inicializar();
+
+        enemigoActual = controlJuego.ObtenerEnemigoActual();
+        personajeJugador = controlJuego.personajeJugador;
+
+        vidaJugador = personajeJugador.vida_actual;
+        vidaEnemigo = enemigoActual.vida;
+
         botonLanzarDados.onClick.AddListener(LanzarDados);
         botonAtacar.onClick.AddListener(Atacar);
 
-        barraVidaJugador.maxValue = vidaJugador;
+        animatorJugador = jugadorGO.GetComponent<Animator>();
+        animatorEnemigo = enemigoGO.GetComponent<Animator>();
+
+        barraVidaJugador.maxValue = personajeJugador.vida_maxima;
         barraVidaJugador.value = vidaJugador;
 
         barraVidaEnemigo.maxValue = vidaEnemigo;
         barraVidaEnemigo.value = vidaEnemigo;
 
-        animatorJugador = jugadorGO.GetComponent<Animator>();
-        animatorEnemigo = enemigoGO.GetComponent<Animator>();
+        nombreEnemigoTexto.text = enemigoActual.nombre;
 
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
         prefijoAnimacionEnemigo = info != null ? info.tipoEnemigo : "card";
@@ -59,16 +77,12 @@ public class CombateTurnos : MonoBehaviour
         lanzamientosRestantes--;
 
         if (!yaLanzasteUnaVez)
-        {
             yaLanzasteUnaVez = true;
-        }
 
         StartCoroutine(MostrarTextoAnimado("Lanzamientos restantes: " + lanzamientosRestantes));
 
         if (lanzamientosRestantes == 0)
-        {
             botonLanzarDados.interactable = false;
-        }
     }
 
     void Atacar()
@@ -76,10 +90,11 @@ public class CombateTurnos : MonoBehaviour
         if (!turnoJugador) return;
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-        int daÒo = controlDados.CalcularDaÒo(resultado);
+        int da√±o = controlDados.CalcularDa√±o(resultado) + personajeJugador.da√±o_ataque - enemigoActual.defensa;
+        da√±o = Mathf.Max(0, da√±o);
+        vidaEnemigo -= da√±o;
 
-        vidaEnemigo -= daÒo;
-        StartCoroutine(MostrarTextoAnimado($"CombinaciÛn: {resultado.nombre}\nDaÒo: {daÒo}\nVida enemigo: {vidaEnemigo}"));
+        StartCoroutine(MostrarTextoAnimado($"Combinaci√≥n: {resultado.nombre}\nDa√±o: {da√±o}\nVida enemigo: {vidaEnemigo}"));
         StartCoroutine(AnimarBarraVida(barraVidaEnemigo, vidaEnemigo));
 
         animatorJugador.SetTrigger("playerAttack");
@@ -95,7 +110,8 @@ public class CombateTurnos : MonoBehaviour
         if (vidaEnemigo <= 0)
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
-            StartCoroutine(MostrarTextoAnimado("°Ganaste!"));
+            StartCoroutine(MostrarTextoAnimado("¬°Ganaste!"));
+            Invoke(nameof(SiguienteEscena), 2f);
             return;
         }
 
@@ -106,45 +122,44 @@ public class CombateTurnos : MonoBehaviour
     {
         Vector3 original = jugadorGO.transform.position;
         Vector3 ataque = enemigoGO.transform.position + new Vector3(-2.0f, 0, 0);
-
-        float duracion = 0.3f;
-        float t = 0;
-
-        while (t < duracion)
-        {
-            jugadorGO.transform.position = Vector3.Lerp(original, ataque, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        jugadorGO.transform.position = ataque;
-
+        yield return MoverDeA_A(jugadorGO, original, ataque, 0.3f);
         yield return new WaitForSeconds(0.2f);
+        yield return MoverDeA_A(jugadorGO, ataque, original, 0.3f);
+    }
 
-        t = 0;
+    IEnumerator MoverEnemigoDuranteAtaque()
+    {
+        Vector3 original = enemigoGO.transform.position;
+        Vector3 ataque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0);
+        yield return MoverDeA_A(enemigoGO, original, ataque, 0.3f);
+        yield return new WaitForSeconds(0.2f);
+        yield return MoverDeA_A(enemigoGO, ataque, original, 0.3f);
+    }
+
+    IEnumerator MoverDeA_A(GameObject obj, Vector3 desde, Vector3 hasta, float duracion)
+    {
+        float t = 0;
         while (t < duracion)
         {
-            jugadorGO.transform.position = Vector3.Lerp(ataque, original, t / duracion);
+            obj.transform.position = Vector3.Lerp(desde, hasta, t / duracion);
             t += Time.deltaTime;
             yield return null;
         }
-
-        jugadorGO.transform.position = original;
+        obj.transform.position = hasta;
     }
 
     void TurnoEnemigo()
     {
-        int daÒo = Random.Range(10, 21);
-        vidaJugador -= daÒo;
+        int da√±o = enemigoActual.ataque - personajeJugador.defensa;
+        da√±o = Mathf.Max(0, da√±o);
+        vidaJugador -= da√±o;
         StartCoroutine(AnimarBarraVida(barraVidaJugador, vidaJugador));
 
         animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Attack");
 
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
         if (info != null && info.moverDuranteAtaque)
-        {
             StartCoroutine(MoverEnemigoDuranteAtaque());
-        }
 
         StartCoroutine(MostrarEfecto(jugadorGO, info, 0.5f));
         animatorJugador.SetTrigger("playerDamage");
@@ -154,52 +169,20 @@ public class CombateTurnos : MonoBehaviour
         if (vidaJugador <= 0)
         {
             animatorJugador.SetTrigger("playerDeath");
-            StartCoroutine(MostrarTextoAnimado("°Perdiste!"));
+            StartCoroutine(MostrarTextoAnimado("¬°Perdiste!"));
             return;
         }
 
         ReiniciarTurnoJugador();
     }
 
-    IEnumerator MostrarEfecto(GameObject jugadorGO, EnemigoInfo info, float delay)
+    IEnumerator MostrarEfecto(GameObject objetivo, EnemigoInfo info, float delay)
     {
         yield return new WaitForSeconds(delay);
-
         Vector3 offset = new Vector3(-0.1f, -0.15f, -0.1f);
-        Vector3 posicion = jugadorGO.transform.position + offset;
-
-        GameObject efecto = Instantiate(info.efectoAtaque, posicion, Quaternion.identity);
+        Vector3 pos = objetivo.transform.position + offset;
+        GameObject efecto = Instantiate(info.efectoAtaque, pos, Quaternion.identity);
         Destroy(efecto, 1f);
-    }
-
-    IEnumerator MoverEnemigoDuranteAtaque()
-    {
-        Vector3 original = enemigoGO.transform.position;
-        Vector3 ataque = jugadorGO.transform.position + new Vector3(2.0f, 0, 0);
-
-        float duracion = 0.3f;
-        float t = 0;
-
-        while (t < duracion)
-        {
-            enemigoGO.transform.position = Vector3.Lerp(original, ataque, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        enemigoGO.transform.position = ataque;
-
-        yield return new WaitForSeconds(0.2f);
-
-        t = 0;
-        while (t < duracion)
-        {
-            enemigoGO.transform.position = Vector3.Lerp(ataque, original, t / duracion);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        enemigoGO.transform.position = original;
     }
 
     void ReiniciarTurnoJugador()
@@ -236,7 +219,6 @@ public class CombateTurnos : MonoBehaviour
         {
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
-
             camaraCombate.transform.position = original + new Vector3(x, y, 0);
 
             elapsed += Time.deltaTime;
@@ -266,13 +248,26 @@ public class CombateTurnos : MonoBehaviour
         obj.transform.position = original;
     }
 
-    void FinCombateJugadorGana()
+    void SiguienteEscena()
     {
-        botonLanzarDados.interactable = false;
-        botonAtacar.interactable = false;
+        var controlJuego = ControlJuego.Instance;
+        controlJuego.AvanzarAlSiguienteEnemigo();
+
+        if (controlJuego.JuegoCompletado())
+        {
+            mensajeCombate.text = "¬°Has ganado!";
+            botonAtacar.interactable = false;
+            botonLanzarDados.interactable = false;
+
+            controlJuego.ReiniciarJuego();
+            return;
+        }
+
+        // √°ca irian las otras escenas
+        string siguienteEscena = $"Combate{controlJuego.indiceEnemigoActual + 1}";
+        SceneManager.LoadScene(siguienteEscena);
     }
 
-    // NUEVA CORRUTINA para animar texto letra por letra
     IEnumerator MostrarTextoAnimado(string mensaje)
     {
         mensajeCombate.text = "";
@@ -283,7 +278,6 @@ public class CombateTurnos : MonoBehaviour
         }
     }
 
-    // NUEVA CORRUTINA para animar la barra de vida suavemente
     IEnumerator AnimarBarraVida(Slider barra, int nuevaVida)
     {
         float duracion = 0.8f;
