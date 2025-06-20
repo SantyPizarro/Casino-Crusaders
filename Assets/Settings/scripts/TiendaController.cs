@@ -21,7 +21,7 @@ public class TiendaController : MonoBehaviour
     private const int COSTO = 5;
 
     // URL de la API (puedes cambiar el ID si lo necesitas)
-    public string apiUrl = "https://localhost:7000/api/PersonajeApi?idPersonaje=1";
+    public string apiUrlGet = "https://localhost:7000/api/PersonajeApi?idPersonaje=1";
     public string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
 
     void Start()
@@ -33,7 +33,7 @@ public class TiendaController : MonoBehaviour
 
     IEnumerator ObtenerDatosPersonaje()
     {
-        UnityWebRequest request = UnityWebRequest.Get(apiUrl);
+        UnityWebRequest request = UnityWebRequest.Get(apiUrlGet);
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
@@ -115,7 +115,7 @@ public class TiendaController : MonoBehaviour
         // Armamos el objeto personaje con los valores actuales de la tienda
         Personaje personaje = new Personaje()
         {
-            idPersonaje = 1, // O el ID que corresponda (también podrías usar GameManager.Instance.UsuarioActual.idPersonaje)
+            idPersonaje = 1, // O el ID que corresponda (también podrías usar ControlJuego.Instance.personajeJugador.idPersonaje)
             vidaActual = vidaActual,
             vidaMaxima = vidaMaxima,
             defensa = armadura,
@@ -135,7 +135,7 @@ public class TiendaController : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Personaje actualizado correctamente");
-            SceneManager.LoadScene("Titulo"); // Cambiá por el nombre real de tu escena
+            SceneManager.LoadScene("Titulo"); 
         }
         else
         {
