@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 275
     height: 933
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 87
+  controlID: 59
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 36
+  controlID: 60
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -219,8 +219,8 @@ MonoBehaviour:
     y: 0
     width: 330
     height: 933
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 274
     height: 907
   m_SerializedDataModeController:
@@ -292,9 +292,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 003b0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: dccdfeff90d1feff54d2feffeed6feffa4d7feff62d8feff04d9feffa6d9feffa0dafeff4adefeff6202ffff2e03ffff820bffff700cffffa63effffaa3fffff8c41ffff72e0ffff3ee1ffff80e8ffff52e9fffff4e9ffffa8eaffff0cfbffffdeae000088b90000f6bb0000bccb00005acc0000d6e00000
+      m_ExpandedIDs: 6036ffff2239ffffb051ffff3853ffff6c9effff6e9effffe2c8ffffe4c8ffff66cdffff68cdffff6acdffffcad8ffffccd8ffff94e7ffffa0e7ffff30eeffff5aefffff3ef0ffff4ef4ffff4ef5ffff28f7ffff0cfbfffff8b500006cbc0000b2bc0000dabc0000f8bc00000cbd000048bd000056c00000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -340,8 +340,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1590
-    y: 79
+    x: 1591
+    y: 24
     width: 329
     height: 907
   m_SerializedDataModeController:
@@ -389,8 +389,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 275
-    y: 708
+    x: 1
+    y: 653
     width: 1313
     height: 278
   m_SerializedDataModeController:
@@ -415,7 +415,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Settings/scripts
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -426,14 +426,14 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\nicol\Documents\GitHub\Casino-Crusaders
+  m_LastProjectPath: C:\Users\lucas\Documents\GitHub\Casino-Crusaders
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: b0230000
     m_LastClickedID: 9136
-    m_ExpandedIDs: 000000002aaf00002caf00002eaf000030af000032af000034af000036af000038af0000
+    m_ExpandedIDs: 0000000052af000034b1000036b1000038b100003ab100003cb100003eb1000040b1000042b10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -459,10 +459,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 180}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000faae00002aaf00002caf000032af000034af000038af00003eb100004ab1000058be000098be00009abe00009cbe0000ffffff7f
+    m_ExpandedIDs: 0000000052af000034b1000036b1000038b100003ab100003cb100003eb1000040b1000042b10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -642,8 +642,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 275
-    y: 79
+    x: 1
+    y: 24
     width: 1313
     height: 603
   m_SerializedDataModeController:
@@ -1088,9 +1088,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -1.3677548, y: 0.1856074, z: 5.914439}
+    m_Target: {x: 665.3751, y: 295.50272, z: -3.8164644}
     speed: 2
-    m_Value: {x: -1.3677548, y: 0.1856074, z: 5.914439}
+    m_Value: {x: 499.48212, y: 258.31873, z: -3.378383}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1140,9 +1140,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.603152
+    m_Target: 391.64395
     speed: 2
-    m_Value: 5.603152
+    m_Value: 347.83783
   m_Ortho:
     m_Target: 1
     speed: 2
