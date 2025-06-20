@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using Assets.Settings.scripts;
+using UnityEngine.SceneManagement;
+
 
 public class CombateTurnos : MonoBehaviour
 {
@@ -215,14 +217,8 @@ public class CombateTurnos : MonoBehaviour
             return;
         }
 
-        enemigoActual = controlJuego.ObtenerEnemigoActual();
-        vidaEnemigo = enemigoActual.vida;
-        barraVidaEnemigo.maxValue = vidaEnemigo;
-        barraVidaEnemigo.value = vidaEnemigo;
-
-        nombreEnemigoTexto.text = enemigoActual.nombre;
-        mensajeCombate.text = $"Enfrentas a: {enemigoActual.nombre}";
-
-        ReiniciarTurnoJugador();
+        // aca se añadirían las otras escenas
+        string siguienteEscena = $"Combate{controlJuego.indiceEnemigoActual + 1}";
+        SceneManager.LoadScene(siguienteEscena);
     }
 }
