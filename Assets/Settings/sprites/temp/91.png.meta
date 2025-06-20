@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 95dbd2bc98fa23f4badf5363074128e2
+guid: 44d41471022254d42ba722ecbe19e0dd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2095002837086087146
-    second: 20250608_1619_Mazmorra Casino Pixel Art_simple_compose_01jx8fhdxee6wvq56wtr7yt09s_0
+      213: -7833240276873349136
+    second: 91_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 20250608_1619_Mazmorra Casino Pixel Art_simple_compose_01jx8fhdxee6wvq56wtr7yt09s_0
+      name: 91_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1536
-        height: 1024
+        width: 370
+        height: 466
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6185c0cf40e0de2e0800000000000000
-      internalID: -2095002837086087146
+      spriteID: 0f77ea0787dba4390800000000000000
+      internalID: -7833240276873349136
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      20250608_1619_Mazmorra Casino Pixel Art_simple_compose_01jx8fhdxee6wvq56wtr7yt09s_0: -2095002837086087146
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
