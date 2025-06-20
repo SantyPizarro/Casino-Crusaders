@@ -19,19 +19,44 @@ public class JuegoDeVasos : MonoBehaviour
     private int indiceCorrecto;
     private bool puedeElegir = false;
 
+    private int statElegida = -1;
+
+    public Vector3 posicionCentro;
+    public float duracionMovimiento = 1f;
+
     void Start()
     {
         botonComenzar.onClick.AddListener(ComenzarJuego);
         mensaje.text = "Pulsa comenzar para mezclar los vasos.";
+
+        imagenRecompensa.rectTransform.position = vasos[1].transform.position;
+        imagenRecompensa.enabled = false; // ocultar al inicio
+        recompensa.SetActive(true);
     }
 
     void ComenzarJuego()
     {
         botonComenzar.interactable = false;
         mensaje.text = "Observa bien...";
-        indiceCorrecto = Random.Range(0, vasos.Length);
-        recompensa.transform.position = vasos[indiceCorrecto].transform.position;
+
         recompensa.SetActive(false);
+        imagenRecompensa.enabled = true;
+
+        indiceCorrecto = Random.Range(0, vasos.Length);
+
+        statElegida = Random.Range(0, 3);
+        switch (statElegida)
+        {
+            case 0: imagenRecompensa.sprite = spriteVida; break;
+            case 1: imagenRecompensa.sprite = spriteAtaque; break;
+            case 2: imagenRecompensa.sprite = spriteDefensa; break;
+        }
+
+        foreach (var vaso in vasos)
+        {
+            vaso.transform.position += new Vector3(0, 50, 0);
+        }
+
         StartCoroutine(MezclarVasos());
     }
 
@@ -47,7 +72,6 @@ public class JuegoDeVasos : MonoBehaviour
                 b = Random.Range(0, vasos.Length);
             } while (a == b);
 
-            // animacion inicial
             Vector3 posA = vasos[a].transform.position;
             vasos[a].transform.position = vasos[b].transform.position;
             vasos[b].transform.position = posA;
@@ -65,43 +89,80 @@ public class JuegoDeVasos : MonoBehaviour
 
         puedeElegir = false;
         recompensa.SetActive(true);
+        botonComenzar.gameObject.SetActive(false);
+
+        var personaje = ControlJuego.Instance.personajeJugador;
 
         if (indiceElegido == indiceCorrecto)
         {
-
-            int statElegida = Random.Range(0, 3); // 0 = vida, 1 = ataque, 2 = defensa
             string mensajeRecompensa = statElegida == 0 ? "vida" : statElegida == 1 ? "ataque" : "defensa";
-            var personaje = ControlJuego.Instance.personajeJugador;
-
             mensaje.text = "¡Correcto! tu recompensa es..." + mensajeRecompensa;
 
             switch (statElegida)
             {
                 case 0:
                     personaje.vida_maxima += 5;
-                    personaje.vida_actual += 5; // para que lo cure
-                    imagenRecompensa.sprite = spriteVida;
-                    Debug.Log(personaje.vida_actual);
+                    personaje.vida_actual += 5;
                     break;
                 case 1:
                     personaje.daño_ataque += 5;
-                    imagenRecompensa.sprite = spriteAtaque;
-                    Debug.Log(personaje.daño_ataque);
-
                     break;
                 case 2:
                     personaje.defensa += 5;
-                    imagenRecompensa.sprite = spriteDefensa;
-                    Debug.Log(personaje.defensa);
                     break;
             }
-        }
-        else
-        {
-            mensaje.text = "¡Fallaste!";
-            imagenRecompensa.sprite = null;
+
+            imagenRecompensa.enabled = true;
+
+            StartCoroutine(terminarJuego(true));
         }
 
+
         botonComenzar.interactable = true;
+    }
+
+    IEnumerator MoverRecompensaAlVaso(Vector3 destino)
+    {
+        Vector3 inicio = imagenRecompensa.rectTransform.position;
+        float tiempo = 0;
+
+        while (tiempo < duracionMovimiento)
+        {
+            imagenRecompensa.rectTransform.position = Vector3.Lerp(inicio, destino, tiempo / duracionMovimiento);
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        imagenRecompensa.rectTransform.position = destino;
+
+        Vector3 posOriginal = vasos[indiceCorrecto].transform.position;
+        Vector3 posLevantada = posOriginal + new Vector3(0, 30, 0);
+
+        float duracionLevantada = 0.3f;
+        tiempo = 0;
+
+        while (tiempo < duracionLevantada)
+        {
+            vasos[indiceCorrecto].transform.position = Vector3.Lerp(posOriginal, posLevantada, tiempo / duracionLevantada);
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+        vasos[indiceCorrecto].transform.position = posLevantada;
+
+        yield return new WaitForSeconds(1.2f);
+        imagenRecompensa.enabled = false;
+    }
+
+
+    IEnumerator terminarJuego(bool acerto)
+    {
+        if (acerto)
+        {
+            yield return StartCoroutine(MoverRecompensaAlVaso(vasos[indiceCorrecto].transform.position));
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        ControlJuego.Instance.AvanzarASiguienteEscena();
     }
 }

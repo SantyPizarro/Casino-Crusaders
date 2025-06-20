@@ -879,6 +879,8 @@ MonoBehaviour:
   spriteAtaque: {fileID: 7353621977714259684, guid: 90b3fdf72a0607b4cae769a8d00b25c3, type: 3}
   spriteDefensa: {fileID: -514989280871536688, guid: 1ca80c759ae2c944395835fc2c4fb5cf, type: 3}
   imagenRecompensa: {fileID: 1917422767}
+  posicionCentro: {x: 0, y: 0, z: 0}
+  duracionMovimiento: 1
 --- !u!4 &814521054
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,7 +1018,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1635,8 +1637,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 399, y: 183}
+  m_SizeDelta: {x: 40.6032, y: 33.3301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
