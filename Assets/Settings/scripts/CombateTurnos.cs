@@ -251,21 +251,7 @@ public class CombateTurnos : MonoBehaviour
     void SiguienteEscena()
     {
         var controlJuego = ControlJuego.Instance;
-        controlJuego.AvanzarAlSiguienteEnemigo();
-
-        if (controlJuego.JuegoCompletado())
-        {
-            mensajeCombate.text = "¡Has ganado!";
-            botonAtacar.interactable = false;
-            botonLanzarDados.interactable = false;
-
-            controlJuego.ReiniciarJuego();
-            return;
-        }
-
-        // áca irian las otras escenas
-        string siguienteEscena = $"Combate{controlJuego.indiceEnemigoActual + 1}";
-        SceneManager.LoadScene(siguienteEscena);
+        controlJuego.AvanzarASiguienteEscena();
     }
 
     IEnumerator MostrarTextoAnimado(string mensaje)
