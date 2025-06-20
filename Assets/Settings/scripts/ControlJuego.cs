@@ -25,7 +25,12 @@ public class ControlJuego : MonoBehaviour
 
     public void Inicializar()
     {
-        personajeJugador = new Personaje(1, 100, 100, 15, 5);
+        personajeJugador = new Personaje();
+        personajeJugador.idPersonaje = 1; // Asignar un ID al personaje
+        personajeJugador.vidaMaxima = 100;
+        personajeJugador.vidaActual = 100;
+        personajeJugador.dañoAtaque = 20;
+        personajeJugador.defensa = 5;
 
         listaEnemigos = new List<Enemigo>()
         {
