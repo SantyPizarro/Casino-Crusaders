@@ -107,7 +107,7 @@ public class ControlDados : MonoBehaviour
             if (cantidad == 4)
                 return new ResultadoCombinacion("poker", valor * 4);
             if (cantidad == 3 && contador.Values.Contains(2))
-                return new ResultadoCombinacion("full", valor * 3 + contador.First(kvp => kvp.Value == 2).Key * 2); // NO ENTIENDO UNA MIERDA
+                return new ResultadoCombinacion("full", valor * 3 + contador.First(kvp => kvp.Value == 2).Key * 2);
             if (cantidad == 3)
                 return new ResultadoCombinacion("trio", valor * 3);
             if (cantidad == 2)
