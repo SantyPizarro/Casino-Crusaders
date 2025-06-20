@@ -10,10 +10,18 @@ public class ControlJuego : MonoBehaviour
     public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
+    private List<string> flujoEscenas = new List<string>()
+    {
+        "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
+        "Evento1",
+        "Combate2",
+
+    };
+
+    private int indiceEscenaActual = 0;
 
     void Awake()
     {
-        // singleton
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -46,27 +54,33 @@ public class ControlJuego : MonoBehaviour
         };
     }
 
+    public void AvanzarASiguienteEscena()
+    {
+        indiceEscenaActual++;
+        if (indiceEscenaActual >= flujoEscenas.Count)
+        {
+            Debug.Log("no hay más escenas");
+            return;
+        }
+
+        string siguienteEscena = flujoEscenas[indiceEscenaActual];
+        Debug.Log("Cargando escena: " + siguienteEscena);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(siguienteEscena);
+    }
+
     public Enemigo ObtenerEnemigoActual()
     {
-        if (indiceEnemigoActual < listaEnemigos.Count)
-            return listaEnemigos[indiceEnemigoActual];
-
-        return null;
-    }
-
-    public void AvanzarAlSiguienteEnemigo()
-    {
-        indiceEnemigoActual++;
-    }
-
-    public bool JuegoCompletado()
-    {
-        return indiceEnemigoActual >= listaEnemigos.Count;
+        int indiceEnemigo = indiceEscenaActual / 2;
+        if (indiceEnemigo < listaEnemigos.Count)
+            return listaEnemigos[indiceEnemigo];
+        else
+            return null;
     }
 
     public void ReiniciarJuego()
     {
-        indiceEnemigoActual = 0;
+        indiceEscenaActual = 0;
         Inicializar();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(flujoEscenas[0]);
     }
 }
