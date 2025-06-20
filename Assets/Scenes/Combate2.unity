@@ -3028,6 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlDados: {fileID: 1787275690}
   mensajeCombate: {fileID: 1954457941}
+  nombreEnemigoTexto: {fileID: 0}
   vidaJugador: 100
   vidaEnemigo: 100
   botonLanzarDados: {fileID: 2156844}
@@ -5544,7 +5545,7 @@ GameObject:
   - component: {fileID: 1704556838}
   - component: {fileID: 1704556839}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CombinacionesDados
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
