@@ -20,6 +20,10 @@ public class ControlJuego : MonoBehaviour
         "Tienda",
         "Evento1",
         "Combate2",
+        "Tienda",
+        "Combate3",
+        "Evento2",
+        "Combate4",
 
     };
 

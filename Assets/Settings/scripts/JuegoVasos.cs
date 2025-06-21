@@ -1,8 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Settings.scripts;
 
 public class JuegoDeVasos : MonoBehaviour
 {
@@ -29,8 +27,6 @@ public class JuegoDeVasos : MonoBehaviour
         botonComenzar.onClick.AddListener(ComenzarJuego);
         mensaje.text = "Pulsa comenzar para mezclar los vasos.";
 
-        imagenRecompensa.rectTransform.position = vasos[1].transform.position;
-        imagenRecompensa.enabled = false; // ocultar al inicio
         recompensa.SetActive(true);
     }
 
@@ -40,7 +36,6 @@ public class JuegoDeVasos : MonoBehaviour
         mensaje.text = "Observa bien...";
 
         recompensa.SetActive(false);
-        imagenRecompensa.enabled = true;
 
         indiceCorrecto = Random.Range(0, vasos.Length);
 
@@ -52,17 +47,15 @@ public class JuegoDeVasos : MonoBehaviour
             case 2: imagenRecompensa.sprite = spriteDefensa; break;
         }
 
-        foreach (var vaso in vasos)
-        {
-            vaso.transform.position += new Vector3(0, 50, 0);
-        }
-
-        StartCoroutine(MezclarVasos());
+        StartCoroutine(DestacarVasoCorrecto());
+        StartCoroutine(EjecutarMezclaConDelay());
     }
 
     IEnumerator MezclarVasos()
     {
-        int mezclas = 5;
+        int mezclas = 10;
+        float duracionMovimiento = 0.3f;
+
         for (int i = 0; i < mezclas; i++)
         {
             int a = Random.Range(0, vasos.Length);
@@ -72,11 +65,7 @@ public class JuegoDeVasos : MonoBehaviour
                 b = Random.Range(0, vasos.Length);
             } while (a == b);
 
-            Vector3 posA = vasos[a].transform.position;
-            vasos[a].transform.position = vasos[b].transform.position;
-            vasos[b].transform.position = posA;
-
-            yield return new WaitForSeconds(0.6f);
+            yield return StartCoroutine(IntercambiarPosiciones(vasos[a], vasos[b], duracionMovimiento));
         }
 
         mensaje.text = "¡Elige un vaso!";
@@ -103,43 +92,42 @@ public class JuegoDeVasos : MonoBehaviour
                 case 0:
                     personaje.vidaMaxima += 5;
                     personaje.vidaActual += 5;
+                    Debug.Log(personaje.vidaActual);
                     break;
                 case 1:
-                    personaje.danoAtaque += 5;
+                    personaje.dañoAtaque += 5;
+                    Debug.Log(personaje.dañoAtaque);
                     break;
                 case 2:
                     personaje.defensa += 5;
+                    Debug.Log(personaje.defensa);
                     break;
             }
 
             imagenRecompensa.enabled = true;
-
             StartCoroutine(terminarJuego(true));
         }
-
+        else
+        {
+            mensaje.text = "¡Fallaste!";
+            imagenRecompensa.enabled = false;
+            StartCoroutine(terminarJuego(true));
+        }
 
         botonComenzar.interactable = true;
     }
 
+
     IEnumerator MoverRecompensaAlVaso(Vector3 destino)
     {
-        Vector3 inicio = imagenRecompensa.rectTransform.position;
-        float tiempo = 0;
-
-        while (tiempo < duracionMovimiento)
-        {
-            imagenRecompensa.rectTransform.position = Vector3.Lerp(inicio, destino, tiempo / duracionMovimiento);
-            tiempo += Time.deltaTime;
-            yield return null;
-        }
-
         imagenRecompensa.rectTransform.position = destino;
+        imagenRecompensa.enabled = true;
 
-        Vector3 posOriginal = vasos[indiceCorrecto].transform.position;
+        Vector3 posOriginal = destino;
         Vector3 posLevantada = posOriginal + new Vector3(0, 30, 0);
 
         float duracionLevantada = 0.3f;
-        tiempo = 0;
+        float tiempo = 0;
 
         while (tiempo < duracionLevantada)
         {
@@ -147,10 +135,10 @@ public class JuegoDeVasos : MonoBehaviour
             tiempo += Time.deltaTime;
             yield return null;
         }
+
         vasos[indiceCorrecto].transform.position = posLevantada;
 
         yield return new WaitForSeconds(1.2f);
-        imagenRecompensa.enabled = false;
     }
 
 
@@ -165,4 +153,52 @@ public class JuegoDeVasos : MonoBehaviour
 
         ControlJuego.Instance.AvanzarASiguienteEscena();
     }
+
+    IEnumerator IntercambiarPosiciones(GameObject vasoA, GameObject vasoB, float duracion)
+    {
+        Vector3 inicioA = vasoA.transform.position;
+        Vector3 inicioB = vasoB.transform.position;
+        float tiempo = 0f;
+
+        while (tiempo < duracion)
+        {
+            float t = tiempo / duracion;
+            vasoA.transform.position = Vector3.Lerp(inicioA, inicioB, t);
+            vasoB.transform.position = Vector3.Lerp(inicioB, inicioA, t);
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        vasoA.transform.position = inicioB;
+        vasoB.transform.position = inicioA;
+    }
+
+    IEnumerator EjecutarMezclaConDelay(float delay = 1.2f)
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(MezclarVasos());
+    }
+
+
+    //esta para image
+    IEnumerator DestacarVasoCorrecto()
+    {
+        Image imagenVaso = vasos[indiceCorrecto].GetComponent<Image>();
+        if (imagenVaso == null) yield break;
+
+        int parpadeos = 4;
+        float intervalo = 0.2f;
+
+        Color colorOriginal = imagenVaso.color;
+        Color colorDestacado = Color.yellow;
+
+        for (int i = 0; i < parpadeos; i++)
+        {
+            imagenVaso.color = colorDestacado;
+            yield return new WaitForSeconds(intervalo);
+            imagenVaso.color = colorOriginal;
+            yield return new WaitForSeconds(intervalo);
+        }
+    }
+
 }
