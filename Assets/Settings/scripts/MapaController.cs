@@ -125,7 +125,7 @@ public class MapaController : MonoBehaviour
                 if (!VariablesMapa.nivelesCompletados[1])
                 {
                     VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Combate1");
+                    CambiarEscena("Pelea2");
                 }
                 else
                 {
@@ -138,7 +138,34 @@ public class MapaController : MonoBehaviour
                 if (!VariablesMapa.nivelesCompletados[2])
                 {
                     VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Combate2");
+                    CambiarEscena("Combate5");
+                }
+                else
+                {
+                    Debug.Log("¡Este nivel ya fue completado!");
+                }
+            }
+            else if (playerPos == 3)
+            {
+                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
+                if (!VariablesMapa.nivelesCompletados[3])
+                {
+                    VariablesMapa.nivel = playerPos;
+                    CambiarEscena("Combate3");
+                }
+                else
+                {
+                    Debug.Log("¡Este nivel ya fue completado!");
+                }
+            }
+
+            else if (playerPos == 4)
+            {
+                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
+                if (!VariablesMapa.nivelesCompletados[3])
+                {
+                    VariablesMapa.nivel = playerPos;
+                    CambiarEscena("Combate1");
                 }
                 else
                 {

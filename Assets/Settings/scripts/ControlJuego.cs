@@ -82,7 +82,7 @@ public class ControlJuego : MonoBehaviour
 
     public Enemigo ObtenerEnemigoActual()
     {
-        int indiceEnemigo = indiceEscenaActual / 2;
+        int indiceEnemigo = 1;
         if (indiceEnemigo < listaEnemigos.Count)
             return listaEnemigos[indiceEnemigo];
         else
@@ -133,7 +133,7 @@ public class ControlJuego : MonoBehaviour
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);
 
             Inicializar(); // inicializa enemigos u otros datos del juego
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Combate1"); // o escena inicial
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa"); // o escena inicial
         }
         else
         {
