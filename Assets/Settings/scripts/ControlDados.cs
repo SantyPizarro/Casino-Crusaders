@@ -14,6 +14,8 @@ public class ControlDados : MonoBehaviour
     private bool[] dadosGuardados;
     private Vector2[] posicionesOriginales;
 
+    public int cantidadDadosActivos = 5;
+
     private void Start()
     {
         resultadoTexto.text = "Juego iniciado";
@@ -42,16 +44,21 @@ public class ControlDados : MonoBehaviour
 
     public void LanzarDados()
     {
-        for (int i = 0; i < imagenesDados.Length; i++)
+        for (int i = 0; i < cantidadDadosActivos; i++)
         {
             if (!dadosGuardados[i])
             {
-                int valorDado = Random.Range(1, 7); 
+                int valorDado = Random.Range(1, 7);
                 imagenesDados[i].sprite = carasDados[valorDado - 1];
                 valoresDados[i] = valorDado;
             }
 
             imagenesDados[i].gameObject.SetActive(true);
+        }
+
+        for (int i = cantidadDadosActivos; i < imagenesDados.Length; i++)
+        {
+            imagenesDados[i].gameObject.SetActive(false);
         }
 
         var resultado = DetectarCombinacion();
@@ -133,21 +140,23 @@ public class ControlDados : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < dadosGuardados.Length; i++)
+        for (int i = 0; i < imagenesDados.Length; i++)
         {
-            dadosGuardados[i] = false;
+            bool activo = i < cantidadDadosActivos;
+
+            if (imagenesDados[i] == null) continue;
+
+            imagenesDados[i].gameObject.SetActive(activo);
             valoresDados[i] = 0;
+            dadosGuardados[i] = false;
 
-            if (imagenesDados == null || imagenesDados.Length <= i || imagenesDados[i] == null)
-                continue;
-
-            imagenesDados[i].sprite = caraVacia;
-            imagenesDados[i].gameObject.SetActive(true);
-
-            RectTransform rectTransform = imagenesDados[i].GetComponent<RectTransform>();
-            if (rectTransform != null)
+            if (activo)
             {
-                rectTransform.anchoredPosition = posicionesOriginales[i];
+                imagenesDados[i].sprite = caraVacia;
+
+                RectTransform rectTransform = imagenesDados[i].GetComponent<RectTransform>();
+                if (rectTransform != null)
+                    rectTransform.anchoredPosition = posicionesOriginales[i];
             }
         }
 
