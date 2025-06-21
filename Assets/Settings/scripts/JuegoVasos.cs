@@ -26,7 +26,7 @@ public class JuegoDeVasos : MonoBehaviour
     void Start()
     {
         botonComenzar.onClick.AddListener(ComenzarJuego);
-        mensaje.text = "Pulsa comenzar para mezclar los vasos.";
+        mensaje.text = "Pulsa el botón sin vacilar,\n¡los vasos van a bailar!";
 
         recompensa.SetActive(true);
     }
@@ -34,7 +34,7 @@ public class JuegoDeVasos : MonoBehaviour
     void ComenzarJuego()
     {
         botonComenzar.interactable = false;
-        mensaje.text = "Observa bien...";
+        mensaje.text = "¡Ojo atento, que va el movimiento!";
 
         recompensa.SetActive(false);
 
@@ -69,7 +69,7 @@ public class JuegoDeVasos : MonoBehaviour
             yield return StartCoroutine(IntercambiarPosiciones(vasos[a], vasos[b], duracionMovimiento));
         }
 
-        mensaje.text = "¡Elige un vaso!";
+        mensaje.text = "¿Dónde está? ¡Adiviná ya!";
         puedeElegir = true;
     }
 
@@ -85,8 +85,8 @@ public class JuegoDeVasos : MonoBehaviour
 
         if (indiceElegido == indiceCorrecto)
         {
-            string mensajeRecompensa = statElegida == 0 ? "vida" : statElegida == 1 ? "ataque" : "defensa";
-            mensaje.text = "¡Correcto! tu recompensa es..." + mensajeRecompensa;
+            string mensajeRecompensa = statElegida == 0 ? "vida ganada" : statElegida == 1 ? "fuerza aumentada" : "defensa mejorada";
+            mensaje.text = $"¡Acierto total, mi buen rival!\nTu premio: {mensajeRecompensa}.";
 
             switch (statElegida)
             {
@@ -110,14 +110,13 @@ public class JuegoDeVasos : MonoBehaviour
         }
         else
         {
-            mensaje.text = "¡Fallaste!";
+            mensaje.text = "¡Ups! No fue la opción ideal,\nesta ronda no va al historial.";
             imagenRecompensa.enabled = false;
             StartCoroutine(terminarJuego(true));
         }
 
         botonComenzar.interactable = true;
     }
-
 
     IEnumerator MoverRecompensaAlVaso(Vector3 destino)
     {
@@ -142,7 +141,6 @@ public class JuegoDeVasos : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
     }
 
-
     IEnumerator terminarJuego(bool acerto)
     {
         if (acerto)
@@ -151,7 +149,6 @@ public class JuegoDeVasos : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.5f);
-
         ControlJuego.Instance.AvanzarASiguienteEscena();
     }
 
@@ -180,8 +177,6 @@ public class JuegoDeVasos : MonoBehaviour
         StartCoroutine(MezclarVasos());
     }
 
-
-    //esta para image
     IEnumerator DestacarVasoCorrecto()
     {
         UnityEngine.UI.Image imagenVaso = vasos[indiceCorrecto].GetComponent<UnityEngine.UI.Image>();
@@ -201,5 +196,4 @@ public class JuegoDeVasos : MonoBehaviour
             yield return new WaitForSeconds(intervalo);
         }
     }
-
 }
