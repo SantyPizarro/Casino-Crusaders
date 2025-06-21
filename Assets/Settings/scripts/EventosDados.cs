@@ -38,12 +38,12 @@ public class EventoDados : MonoBehaviour
 
         if (lanzamientosRestantes > 0)
         {
-            StartCoroutine(MostrarTextoAnimado($"Te salió un {combinacionFinal.nombre},\n¿será que podés aún mejor?"));
+            StartCoroutine(MostrarTextoAnimado($"Te salió {combinacionFinal.nombre},\n¿será que podés aún mejor?"));
             
         }
         else
         {
-            StartCoroutine(MostrarTextoAnimado($"Un {combinacionFinal.nombre} final quedó,\ntu premio ahora se reveló."));
+            StartCoroutine(MostrarTextoAnimado($"Un {combinacionFinal.nombre} al final quedó,\ntu premio ahora se reveló."));
             botonLanzarDados.interactable = false;
            
         }
@@ -57,27 +57,44 @@ public class EventoDados : MonoBehaviour
         {
             case "par":
                 // personaje.armadura += 5;
-                mensajeEvento.text = "Con un par no estás tan mal,\nun poco de escudo... nada banal.";
+                mensajeEvento.text = "Con un par no estás tan mal,\nun poco de escudo... nada banal. (Defensa +10)";
+                ControlJuego.Instance.personajeJugador.defensa += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "trio":
                 // personaje.oro += 10;
-                mensajeEvento.text = "Trío dorado, gran ocasión,\nllueven monedas sin perdón.";
+                mensajeEvento.text = "Trío dorado, gran ocasión,\nllueven monedas sin perdón. (Oro +10)";
+                ControlJuego.Instance.personajeJugador.monedas += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "full":
                 // personaje.vidaActual += 10;
-                mensajeEvento.text = "Full de fortuna, ¡qué bendición!\nRecobrás vida sin condición.";
+                mensajeEvento.text = "Full de fortuna, ¡qué bendición!\nRecobrás vida sin condición. (Vida +10)";
+                ControlJuego.Instance.personajeJugador.vidaActual += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "poker":
                 // personaje.armadura += 10;
-                mensajeEvento.text = "Un póker al fin apareció,\ntu armadura se fortaleció.";
+                mensajeEvento.text = "Un póker al fin apareció,\ntu ataque se fortaleció. (Ataque +10)";
+               ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "generala":
                 // personaje.vidaActual = personaje.vidaMaxima;
-                mensajeEvento.text = "Generala, jugada ideal,\ntu vida vuelve a su nivel total.";
+                mensajeEvento.text = "Generala, jugada ideal,\ntu subida de estadisticas es total. (Todo +10)";
+                ControlJuego.Instance.personajeJugador.vidaMaxima += 10;
+                ControlJuego.Instance.personajeJugador.vidaActual += 10;
+                ControlJuego.Instance.personajeJugador.defensa += 10;
+                ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                ControlJuego.Instance.personajeJugador.monedas += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "escalera":
                 // personaje.dañoAtaque += 2;
-                mensajeEvento.text = "Escalera que no patinó,\ntu ataque se multiplicó.";
+                mensajeEvento.text = "Escalera que no patinó,\ntu ataque se multiplicó. (Ataque y Defensa +10)";
+                ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                ControlJuego.Instance.personajeJugador.defensa += 10;
+                ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             default:
                 mensajeEvento.text = "Ni sombra de suerte, ni chispa, ni luz,\nte vas sin premio, ¡qué gran cruz!";
@@ -97,3 +114,4 @@ public class EventoDados : MonoBehaviour
         }
     }
 }
+

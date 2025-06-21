@@ -13,8 +13,8 @@ public class CombateTurnos : MonoBehaviour
     private Enemigo enemigoActual;
     private Personaje personajeJugador;
 
-    public int vidaJugador = 100;
-    public int vidaEnemigo = 100;
+    public int vidaJugador;
+    public int vidaEnemigo;
 
     private bool turnoJugador = true;
     private int lanzamientosRestantes = 3;
@@ -35,18 +35,16 @@ public class CombateTurnos : MonoBehaviour
     private string prefijoAnimacionEnemigo;
 
     public Camera camaraCombate;
-    public Button botonVolverMapa;
 
     void Start()
     {
-        botonVolverMapa.gameObject.SetActive(false);
-        var controlJuego = ControlJuego.Instance;
+       
 
-        if (controlJuego.listaEnemigos == null || controlJuego.listaEnemigos.Count == 0)
-            controlJuego.Inicializar();
+        if (ControlJuego.Instance.listaEnemigos == null || ControlJuego.Instance.listaEnemigos.Count == 0)
+            ControlJuego.Instance.Inicializar();
 
-        enemigoActual = controlJuego.ObtenerEnemigoActual();
-        personajeJugador = controlJuego.personajeJugador;
+        enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
+        personajeJugador = ControlJuego.Instance.personajeJugador;
 
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
@@ -89,21 +87,34 @@ public class CombateTurnos : MonoBehaviour
 
     void Atacar()
     {
-        if (!turnoJugador) return;
+        if (!turnoJugador || !yaLanzasteUnaVez)
+        {
+            StartCoroutine(MostrarTextoAnimado("¡Primero tenés que lanzar los dados!"));
+            return;
+        }
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-        int daño = controlDados.CalcularDaño(resultado) + personajeJugador.danoAtaque - enemigoActual.defensa;
-        daño = Mathf.Max(0, daño);
-        vidaEnemigo -= daño;
 
-        StartCoroutine(MostrarTextoAnimado($"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}"));
-        StartCoroutine(AnimarBarraVida(barraVidaEnemigo, vidaEnemigo));
+        if (resultado.nombre == "nada")
+        {
+            StartCoroutine(MostrarTextoAnimado("No formaste ninguna combinación.\n¡No hiciste daño!"));
+        }
+        else
+        {
+            int daño = controlDados.CalcularDaño(resultado) + personajeJugador.danoAtaque - enemigoActual.defensa;
+            daño = Mathf.Max(0, daño);
+            vidaEnemigo -= daño;
 
-        animatorJugador.SetTrigger("playerAttack");
-        StartCoroutine(MoverJugadorDuranteAtaque());
-        animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Damage");
+            StartCoroutine(MostrarTextoAnimado($"Combinación: {resultado.nombre}\nDaño: {daño}\nVida enemigo: {vidaEnemigo}"));
 
-        StartCoroutine(TemblorConDelay());
+            StartCoroutine(AnimarBarraVida(barraVidaEnemigo, vidaEnemigo));
+
+            animatorJugador.SetTrigger("playerAttack");
+            StartCoroutine(MoverJugadorDuranteAtaque());
+            animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Damage");
+
+            StartCoroutine(TemblorConDelay());
+        }
 
         turnoJugador = false;
         botonLanzarDados.interactable = false;
@@ -113,12 +124,7 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
             StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
-            //Personaje dar monedas
-            botonVolverMapa.gameObject.SetActive(true);
-            VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
-            Debug.Log("Nivel marcado como completado: " + VariablesMapa.nivel);
-
-
+            Invoke(nameof(SiguienteEscena), 2f);
             return;
         }
 
@@ -177,8 +183,6 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorJugador.SetTrigger("playerDeath");
             StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
-            
-            botonVolverMapa.gameObject.SetActive(true);
             return;
         }
 
@@ -260,8 +264,10 @@ public class CombateTurnos : MonoBehaviour
     void SiguienteEscena()
     {
 
-        var controlJuego = ControlJuego.Instance;
-        controlJuego.AvanzarASiguienteEscena();
+        ControlJuego.Instance.personajeJugador.vidaActual = vidaJugador;
+        ControlJuego.Instance.personajeJugador.monedas += 10;
+        ControlJuego.Instance.GuardarPersonaje(this);
+        ControlJuego.Instance.AvanzarASiguienteEscena();
     }
 
     IEnumerator MostrarTextoAnimado(string mensaje)
@@ -288,11 +294,5 @@ public class CombateTurnos : MonoBehaviour
         }
 
         barra.value = nuevaVida;
-    }
-
-    public void VolverAlMapa()
-    {
-        //VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa");
     }
 }

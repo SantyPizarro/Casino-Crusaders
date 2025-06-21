@@ -97,42 +97,47 @@ public class TiendaController : MonoBehaviour
 
     public void GuardarPersonaje()
     {
-      StartCoroutine(PutPersonaje());
+        ControlJuego.Instance.personajeJugador.vidaActual = vidaActual;
+       ControlJuego.Instance.personajeJugador.vidaMaxima = vidaMaxima  ;
+       ControlJuego.Instance.personajeJugador.danoAtaque = dano ;
+        ControlJuego.Instance.personajeJugador.defensa = armadura;
+         ControlJuego.Instance.personajeJugador.monedas = monedas;
+        ControlJuego.Instance.GuardarPersonaje(this);
     }
 
-    public IEnumerator PutPersonaje()
-    {
-        // Armamos el objeto personaje con los valores actuales de la tienda
-        Personaje personaje = new Personaje()
-        {
-            idPersonaje = 1, 
-            vidaActual = vidaActual,
-            vidaMaxima = vidaMaxima,
-            defensa = armadura,
-            danoAtaque = dano,
-            monedas = monedas
-        };
+    //public IEnumerator PutPersonaje()
+    //{
+    //    // Armamos el objeto personaje con los valores actuales de la tienda
+    //    Personaje personaje = new Personaje()
+    //    {
+    //        idPersonaje = 1, 
+    //        vidaActual = vidaActual,
+    //        vidaMaxima = vidaMaxima,
+    //        defensa = armadura,
+    //        danoAtaque = dano,
+    //        monedas = monedas
+    //    };
 
-        string json = JsonUtility.ToJson(personaje);
+    //    string json = JsonUtility.ToJson(personaje);
 
-        UnityWebRequest request = new UnityWebRequest(apiUrlPut, "PUT");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+    //    UnityWebRequest request = new UnityWebRequest(apiUrlPut, "PUT");
+    //    byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+    //    request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+    //    request.downloadHandler = new DownloadHandlerBuffer();
+    //    request.SetRequestHeader("Content-Type", "application/json");
 
-        yield return request.SendWebRequest();
+    //    yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Personaje actualizado correctamente");
-            SceneManager.LoadScene("Titulo"); 
-        }
-        else
-        {
-            Debug.LogError("Error al actualizar personaje: " + request.error);
-            SceneManager.LoadScene("Titulo");
-        }
-    }
+    //    if (request.result == UnityWebRequest.Result.Success)
+    //    {
+    //        Debug.Log("Personaje actualizado correctamente");
+    //        SceneManager.LoadScene("Titulo"); 
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Error al actualizar personaje: " + request.error);
+    //        SceneManager.LoadScene("Titulo");
+    //    }
+    //}
 }
 
