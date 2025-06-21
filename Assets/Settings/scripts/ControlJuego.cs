@@ -14,6 +14,10 @@ public class ControlJuego : MonoBehaviour
         "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
         "Evento1",
         "Combate2",
+        "Tienda",
+        "Combate3",
+        "Evento2",
+        "Combate4",
 
     };
 
