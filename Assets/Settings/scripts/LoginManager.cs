@@ -1,93 +1,75 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
-    public string apiUrlGet = "https://localhost:5001/api/PersonajeApi?idPersonaje=";
-    public string loginUrl = "https://localhost:5001/api/UsuarioApi/login";
-    public string siguienteEscena = "Titulo";
+    public InputField emailInput;
+    public InputField passwordInput;
+    public Text messageText;
 
-    void Awake()
+    private string loginUrl = "https://localhost:7000/api/UsuarioApi/login"; // Reemplazá con tu URL real
+
+    public void OnLoginButtonClicked()
     {
-        System.Net.ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
+        string email = emailInput.text;
+        string password = passwordInput.text;
+
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            messageText.text = "Ingrese todos los campos.";
+            return;
+        }
+
+        StartCoroutine(LoginCoroutine(email, password));
     }
 
-    public void IniciarSesion(string gmail, string contraseña) { 
-    
-        StartCoroutine(LoginCoroutine(gmail, contraseña));
-    }
-
-
-
-    IEnumerator LoginCoroutine(string gmail, string contraseña)
+    IEnumerator LoginCoroutine(string email, string password)
     {
-        LoginRequest datos = new LoginRequest { Gmail = gmail, Contrasena = contraseña };
-        string json = JsonUtility.ToJson(datos);
+        LoginRequestDto loginData = new LoginRequestDto
+        {
+            gmail = email,
+            contraseña = password
+        };
 
-        Debug.Log("json: " + json);
+        string jsonData = JsonUtility.ToJson(loginData);
+
         UnityWebRequest request = new UnityWebRequest(loginUrl, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
         yield return request.SendWebRequest();
 
-        Debug.Log("web: " + request.result);
-        if (request.result == UnityWebRequest.Result.Success)
+        if (request.result != UnityWebRequest.Result.Success)
         {
-            Usuario usuario = JsonUtility.FromJson<Usuario>(request.downloadHandler.text);
-            ControlJuego.Instance.SetUsuario(usuario);
-            if (usuario.idPersonaje == null)
-            {
-                Personaje personaje = new Personaje();
-                personaje.vidaMaxima = 100;
-                personaje.vidaActual = 50;
-                personaje.dañoAtaque = 10;
-                personaje.defensa = 10;
-                personaje.monedas = 100;
+            messageText.text = "Error de conexión: " + request.error;
+        }
+        else if (request.responseCode == 401)
+        {
+            messageText.text = "Credenciales inválidas.";
+        }
+        else if (request.responseCode == 200)
+        {
+            string response = request.downloadHandler.text;
+            Usuario usuario = JsonUtility.FromJson<Usuario>(response);
 
-                ControlJuego.Instance.SetPersonaje(personaje);
-            }
-            else {
-                apiUrlGet = apiUrlGet + usuario.idPersonaje;
-                StartCoroutine(ObtenerPersonaje());
-            }
-            
-            SceneManager.LoadScene("Titulo");
+            // Acá podrías guardar los datos y cargar la próxima escena
+            messageText.text = "¡Bienvenido, " + usuario.nombreUsuario + "!";
+            // SceneManager.LoadScene("MainScene");
         }
         else
         {
-            Debug.LogError("Login fallido: " + request.error);
-            Debug.Log("Código HTTP: " + request.responseCode);
-            Debug.Log("Respuesta del servidor: " + request.downloadHandler.text);
+            messageText.text = "Error: " + request.responseCode;
         }
     }
+}
 
-        IEnumerator ObtenerPersonaje()
-        {
-            UnityWebRequest request = UnityWebRequest.Get(apiUrlGet);
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                string json = request.downloadHandler.text;
-                Personaje personaje = JsonUtility.FromJson<Personaje>(json);
-                ControlJuego.Instance.SetPersonaje(personaje);
-
-            }
-            else
-            {
-                Debug.LogError("Error al obtener personaje: " + request.error);
-            }
-        }
-
-    [System.Serializable]
-    public class LoginRequest
-    {
-        public string Gmail;       // Mayúscula
-        public string Contrasena;  // Sin tilde
-    }
+[System.Serializable]
+public class LoginRequestDto
+{
+    public string gmail;
+    public string contraseña;
 }
