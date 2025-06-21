@@ -24,7 +24,7 @@ public class EventoDados : MonoBehaviour
         panelResultado.SetActive(true);
 
         mensajeEvento.text = "Tira los dados sin temor,\n¡la suerte dicta tu honor!";
-        botonAceptar.interactable = false;
+        botonAceptar.interactable = true;
     }
 
     void LanzarDados()
@@ -39,12 +39,13 @@ public class EventoDados : MonoBehaviour
         if (lanzamientosRestantes > 0)
         {
             StartCoroutine(MostrarTextoAnimado($"Te salió un {combinacionFinal.nombre},\n¿será que podés aún mejor?"));
+            
         }
         else
         {
             StartCoroutine(MostrarTextoAnimado($"Un {combinacionFinal.nombre} final quedó,\ntu premio ahora se reveló."));
             botonLanzarDados.interactable = false;
-            botonAceptar.interactable = true;
+           
         }
     }
 
