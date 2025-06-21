@@ -311,6 +311,13 @@ MonoBehaviour:
     emailVerificacionToken: 
     expiracionToken: 
     emailVerificado: 0
+  personajeJugador:
+    idPersonaje: 0
+    vidaMaxima: 0
+    vidaActual: 0
+    danoAtaque: 0
+    defensa: 0
+    monedas: 0
 --- !u!1 &392831650
 GameObject:
   m_ObjectHideFlags: 0
