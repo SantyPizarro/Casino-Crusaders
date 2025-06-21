@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tienda.unity
     guid: 4168bc1c9052f5044b86c80672927b6b
+  - enabled: 1
+    path: Assets/Scenes/EventoDados.unity
+    guid: c1c28f9dca8bf194f8f85fa610fd6c38
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
