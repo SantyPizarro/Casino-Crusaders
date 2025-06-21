@@ -1427,7 +1427,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: '
+
+'
 --- !u!222 &408883752
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2935,6 +2937,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841636388}
   m_CullTransparentMesh: 1
+--- !u!1 &848700365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848700367}
+  - component: {fileID: 848700366}
+  m_Layer: 0
+  m_Name: ControlJuego
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &848700366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848700365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a75caacbff80c45a6f4e7f6a742495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indiceEnemigoActual: 0
+  usuario:
+    idUsuario: 0
+    gmail: 
+    "contrase\xF1a": 
+    nombreUsuario: 
+    tipoUsuario: 
+    idPersonaje: 0
+    emailVerificacionToken: 
+    expiracionToken: 
+    emailVerificado: 0
+  personajeJugador:
+    idPersonaje: 0
+    vidaMaxima: 0
+    vidaActual: 0
+    danoAtaque: 0
+    defensa: 0
+    monedas: 0
+--- !u!4 &848700367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848700365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 475.73975, y: 347.73193, z: -0.81300926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864207479
 GameObject:
   m_ObjectHideFlags: 0
@@ -6523,8 +6587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000045598, y: -206}
-  m_SizeDelta: {x: 645.8907, y: 60.2572}
+  m_AnchoredPosition: {x: 0.000045598, y: -248.44}
+  m_SizeDelta: {x: 645.8907, y: 145.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1954457940
 CanvasRenderer:
@@ -6561,11 +6625,11 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 70
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Combate
 --- !u!1 &1987420636
@@ -6926,3 +6990,4 @@ SceneRoots:
   - {fileID: 894411284}
   - {fileID: 1507807153}
   - {fileID: 2124062258}
+  - {fileID: 848700367}

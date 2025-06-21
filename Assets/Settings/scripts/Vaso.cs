@@ -7,6 +7,7 @@ public class Vaso : MonoBehaviour
 
     public void Elegir() //prueba
     {
+        Debug.Log("vaso elegido");
         juego.ElegirVaso(indice);
     }
 
