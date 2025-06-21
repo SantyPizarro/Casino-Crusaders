@@ -20,6 +20,7 @@ public class ControlJuego : MonoBehaviour
 
     private int indiceEscenaActual = 0;
 
+
     void Awake()
     {
         if (Instance != null && Instance != this)
