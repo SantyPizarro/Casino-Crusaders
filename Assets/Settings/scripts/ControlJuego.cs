@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Assets.Settings.scripts;
+using System.Collections;
+using UnityEngine.Networking;
 
 public class ControlJuego : MonoBehaviour
 {
     public static ControlJuego Instance { get; private set; }
 
+    private string apiUrlBase = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
+
     public int indiceEnemigoActual = 0;
+    public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
     private List<string> flujoEscenas = new List<string>()
     {
         "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
+        "Tienda",
         "Evento1",
         "Combate2",
         "Tienda",
@@ -22,6 +28,7 @@ public class ControlJuego : MonoBehaviour
     };
 
     private int indiceEscenaActual = 0;
+
 
     void Awake()
     {
@@ -35,15 +42,18 @@ public class ControlJuego : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void SetPersonaje(Personaje personaje)
+    {
+        personajeJugador = personaje;
+    }
+
+    public void SetUsuario(Usuario usuario)
+    {
+        this.usuario = usuario;
+    }
+
     public void Inicializar()
     {
-        personajeJugador = new Personaje();
-        personajeJugador.idPersonaje = 1; // Asignar un ID al personaje
-        personajeJugador.vidaMaxima = 100;
-        personajeJugador.vidaActual = 100;
-        personajeJugador.dañoAtaque = 20;
-        personajeJugador.defensa = 5;
-
         listaEnemigos = new List<Enemigo>()
         {
             new Enemigo(1, "As 1", 60, 12, 3),
@@ -82,5 +92,50 @@ public class ControlJuego : MonoBehaviour
         indiceEscenaActual = 0;
         Inicializar();
         UnityEngine.SceneManagement.SceneManager.LoadScene(flujoEscenas[0]);
+    }
+
+    public void CargarPersonajeYEmpezarJuego(MonoBehaviour caller)
+    {
+
+        Debug.Log("id personaje" + usuario.idPersonaje);
+
+        if (usuario != null)
+        {
+            caller.StartCoroutine(DescargarPersonajeDesdeApi(usuario.idPersonaje));
+        }
+        else
+        {
+            Debug.LogError("Usuario no tiene personaje asignado");
+        }
+    }
+
+    private IEnumerator DescargarPersonajeDesdeApi(int idPersonaje)
+    {
+        string url = apiUrlBase + idPersonaje;
+        UnityWebRequest request = UnityWebRequest.Get(url);
+
+        Debug.Log("Consultando API de personaje: " + url);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = request.downloadHandler.text;
+            Personaje personaje = JsonUtility.FromJson<Personaje>(json);
+            Debug.Log("JSON: " + json);
+            Debug.Log("ID: " + personaje.idPersonaje);
+            Debug.Log("vida: " + personaje.vidaActual);
+            Debug.Log("ataque: " + personaje.danoAtaque);
+            SetPersonaje(personaje);
+
+            Debug.Log("Personaje recibido: " + personaje.idPersonaje);
+
+            Inicializar(); // inicializa enemigos u otros datos del juego
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Combate1"); // o escena inicial
+        }
+        else
+        {
+            Debug.LogError("Error al obtener personaje: " + request.error);
+        }
     }
 }

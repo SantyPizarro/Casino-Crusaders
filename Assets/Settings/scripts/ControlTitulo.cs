@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class ControlTitulo : MonoBehaviour {
+
     public void Jugar()
     {
-        SceneManager.LoadScene("Combate1");
+        ControlJuego.Instance.CargarPersonajeYEmpezarJuego(this);
     }
     public void Salir()
     {
@@ -15,4 +17,7 @@ public class ControlTitulo : MonoBehaviour {
 #endif
 
     }
+
+
+
 }

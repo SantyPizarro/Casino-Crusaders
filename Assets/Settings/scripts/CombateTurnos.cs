@@ -90,7 +90,7 @@ public class CombateTurnos : MonoBehaviour
         if (!turnoJugador) return;
 
         ResultadoCombinacion resultado = controlDados.DetectarCombinacion();
-        int daño = controlDados.CalcularDaño(resultado) + personajeJugador.dañoAtaque - enemigoActual.defensa;
+        int daño = controlDados.CalcularDaño(resultado) + personajeJugador.danoAtaque - enemigoActual.defensa;
         daño = Mathf.Max(0, daño);
         vidaEnemigo -= daño;
 
