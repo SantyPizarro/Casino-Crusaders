@@ -119,7 +119,8 @@ public class TiendaController : MonoBehaviour
             vidaActual = vidaActual,
             vidaMaxima = vidaMaxima,
             defensa = armadura,
-            dañoAtaque = dano
+            dañoAtaque = dano,
+            monedas = monedas
         };
 
         string json = JsonUtility.ToJson(personaje);

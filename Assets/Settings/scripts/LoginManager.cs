@@ -1,28 +1,10 @@
-<<<<<<< Updated upstream
-using UnityEngine;
-=======
 ﻿using UnityEngine;
 using UnityEngine.UI;
->>>>>>> Stashed changes
 using UnityEngine.Networking;
 using System.Collections;
 
 public class LoginManager : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public string loginUrl = "http://localhost:5000/api/UsuarioApi/login";
-    public string siguienteEscena = "Titulo";
-
-    public void IniciarSesion(string email, string contrasena)
-    {
-        StartCoroutine(LoginCoroutine(email, contrasena));
-    }
-
-    IEnumerator LoginCoroutine(string email, string contrasena)
-    {
-        LoginRequest datos = new LoginRequest { email = email, contrasena = contrasena };
-        string json = JsonUtility.ToJson(datos);
-=======
     public InputField emailInput;
     public InputField passwordInput;
     public Text messageText;
@@ -45,14 +27,13 @@ public class LoginManager : MonoBehaviour
 
     IEnumerator LoginCoroutine(string email, string password)
     {
-        LoginRequest loginData = new LoginRequest
+        LoginRequestDto loginData = new LoginRequestDto
         {
             gmail = email,
             contraseña = password
         };
 
         string jsonData = JsonUtility.ToJson(loginData);
->>>>>>> Stashed changes
 
         UnityWebRequest request = new UnityWebRequest(loginUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
@@ -62,17 +43,6 @@ public class LoginManager : MonoBehaviour
 
         yield return request.SendWebRequest();
 
-<<<<<<< Updated upstream
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Usuario usuario = JsonUtility.FromJson<Usuario>(request.downloadHandler.text);
-            GameManager.Instance.SetUsuario(usuario);
-            SceneManager.LoadScene(siguienteEscena);
-        }
-        else
-        {
-            Debug.LogError("Login fallido: " + request.error);
-=======
         if (request.result != UnityWebRequest.Result.Success)
         {
             messageText.text = "Error de conexión: " + request.error;
@@ -93,24 +63,13 @@ public class LoginManager : MonoBehaviour
         else
         {
             messageText.text = "Error: " + request.responseCode;
->>>>>>> Stashed changes
         }
     }
 }
 
-<<<<<<< Updated upstream
-    [System.Serializable]
-    public class LoginRequest
-    {
-        public string email;
-        public string contrasena;
-    }
-}
-=======
 [System.Serializable]
-public class LoginRequest
+public class LoginRequestDto
 {
     public string gmail;
     public string contraseña;
 }
->>>>>>> Stashed changes
