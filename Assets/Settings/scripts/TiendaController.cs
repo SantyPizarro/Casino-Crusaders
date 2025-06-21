@@ -107,6 +107,16 @@ public class TiendaController : MonoBehaviour
 
     public void GuardarPersonaje()
     {
+        Personaje personaje = new Personaje()
+        {
+            idPersonaje = 1, // O el ID que corresponda (también podrías usar ControlJuego.Instance.personajeJugador.idPersonaje)
+            vidaActual = vidaActual,
+            vidaMaxima = vidaMaxima,
+            defensa = armadura,
+            dañoAtaque = dano,
+            monedas = monedas
+        };
+
         StartCoroutine(PutPersonaje());
     }
 

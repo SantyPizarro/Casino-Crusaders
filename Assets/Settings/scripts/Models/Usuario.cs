@@ -6,7 +6,7 @@ public class Usuario
     public string contraseña;
     public string nombreUsuario;
     public string tipoUsuario;
-    public int? idPersonaje;
+    public int idPersonaje;
     public string emailVerificacionToken;
     public string expiracionToken;
     public bool emailVerificado;

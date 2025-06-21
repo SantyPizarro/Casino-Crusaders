@@ -4,7 +4,6 @@ using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-
 public class LoginManager : MonoBehaviour
 {
     public InputField emailInput;
@@ -13,7 +12,7 @@ public class LoginManager : MonoBehaviour
 
     private string loginUrl = "https://localhost:7000/api/UsuarioApi/login"; // Reemplazá con tu URL real
 
-    private string personajeUrl = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
+    // private string personajeUrl = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
 
     public void OnLoginButtonClicked()
     {
@@ -59,50 +58,18 @@ public class LoginManager : MonoBehaviour
         {
             string response = request.downloadHandler.text;
             Usuario usuario = JsonUtility.FromJson<Usuario>(response);
-            
+
+            Debug.Log("Usuario logueado: " + usuario.nombreUsuario + " | idPersonaje: " + usuario.idPersonaje);
+
             ControlJuego.Instance.SetUsuario(usuario);
-         if (usuario.idPersonaje == null)
-         {
-             Personaje personaje = new Personaje();
-             personaje.vidaMaxima = 100;
-             personaje.vidaActual = 50;
-             personaje.dañoAtaque = 10;
-             personaje.defensa = 10;
-             personaje.monedas = 100;
 
-             ControlJuego.Instance.SetPersonaje(personaje);
-         }
-         else {
-             personajeUrl = personajeUrl + usuario.idPersonaje;
-             StartCoroutine(ObtenerPersonaje());
-         }
+            messageText.text = "Login exitoso. Cargando personaje...";
 
-         SceneManager.LoadScene("Titulo");
-
-            // Acá podrías guardar los datos y cargar la próxima escena
-            // SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("Titulo");
         }
         else
         {
             messageText.text = "Error: " + request.responseCode;
-        }
-    }
-
-    IEnumerator ObtenerPersonaje()
-    {
-        UnityWebRequest request = UnityWebRequest.Get(personajeUrl);
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string json = request.downloadHandler.text;
-            Personaje personaje = JsonUtility.FromJson<Personaje>(json);
-            ControlJuego.Instance.SetPersonaje(personaje);
-
-        }
-        else
-        {
-            Debug.LogError("Error al obtener personaje: " + request.error);
         }
     }
 }
