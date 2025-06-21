@@ -265,6 +265,7 @@ public class CombateTurnos : MonoBehaviour
     {
 
         ControlJuego.Instance.personajeJugador.vidaActual = vidaJugador;
+        ControlJuego.Instance.personajeJugador.monedas += 10;
         ControlJuego.Instance.GuardarPersonaje(this);
         ControlJuego.Instance.AvanzarASiguienteEscena();
     }
