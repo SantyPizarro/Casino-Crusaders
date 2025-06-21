@@ -46,6 +46,7 @@ public class CombateTurnos : MonoBehaviour
         enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
         personajeJugador = ControlJuego.Instance.personajeJugador;
 
+
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
 
