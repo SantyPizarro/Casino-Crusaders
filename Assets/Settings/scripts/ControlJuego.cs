@@ -21,6 +21,7 @@ public class ControlJuego : MonoBehaviour
         "Combate1",
         "Combate3",
         "Combate2",
+        "Combate4",
         "Tienda",
         "EventoDados",
         "Evento1",

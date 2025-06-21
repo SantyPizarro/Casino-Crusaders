@@ -2689,68 +2689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841636388}
   m_CullTransparentMesh: 1
---- !u!1 &848700365
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 848700367}
-  - component: {fileID: 848700366}
-  m_Layer: 0
-  m_Name: ControlJuego
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &848700366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848700365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30a75caacbff80c45a6f4e7f6a742495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indiceEnemigoActual: 0
-  usuario:
-    idUsuario: 0
-    gmail: 
-    "contrase\xF1a": 
-    nombreUsuario: 
-    tipoUsuario: 
-    idPersonaje: 0
-    emailVerificacionToken: 
-    expiracionToken: 
-    emailVerificado: 0
-  personajeJugador:
-    idPersonaje: 0
-    vidaMaxima: 0
-    vidaActual: 0
-    danoAtaque: 0
-    defensa: 0
-    monedas: 0
---- !u!4 &848700367
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848700365}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 475.73975, y: 347.73193, z: -0.81300926}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864207479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,7 +4886,7 @@ SpriteRenderer:
   m_SortingLayerID: -1437473881
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1963090928679891248, guid: 0308b6628f345b84fa7a9d38346a0b1f, type: 3}
+  m_Sprite: {fileID: -6704421538268027686, guid: 546e4a9005b03ad4996b1410b53b2baa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5002,7 +4940,7 @@ Transform:
   m_GameObject: {fileID: 1545016413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67.878, y: -213.874, z: 0.38410828}
+  m_LocalPosition: {x: -67.9, y: -213.94, z: 0.38410828}
   m_LocalScale: {x: 6, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5184,7 +5122,7 @@ GameObject:
   - component: {fileID: 1585798137}
   - component: {fileID: 1585798138}
   m_Layer: 5
-  m_Name: magia
+  m_Name: fuego
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5253,7 +5191,7 @@ SpriteRenderer:
   m_SortingLayerID: -1726989123
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4601640004871380922, guid: 849c51ba75196814a8fdf4723b8979e4, type: 3}
+  m_Sprite: {fileID: -6847123348642159669, guid: dc331a775bd5bdc40827c25cb0f9e33f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5897,6 +5835,7 @@ MonoBehaviour:
   - {fileID: -2307884431035961996, guid: 4cb7859e2b1e57745bd5f0a77ffbb76f, type: 3}
   resultadoTexto: {fileID: 1124326282}
   caraVacia: {fileID: -6584121011126030642, guid: b5a71e414c123484dad8f4909f353659, type: 3}
+  cantidadDadosActivos: 5
 --- !u!4 &1787275691
 Transform:
   m_ObjectHideFlags: 0
@@ -5987,6 +5926,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792382122}
   m_CullTransparentMesh: 1
+--- !u!1 &1819865044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819865046}
+  - component: {fileID: 1819865045}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1819865045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819865044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a75caacbff80c45a6f4e7f6a742495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indiceEnemigoActual: 0
+  usuario:
+    idUsuario: 0
+    gmail: 
+    "contrase\xF1a": 
+    nombreUsuario: 
+    tipoUsuario: 
+    idPersonaje: 0
+    emailVerificacionToken: 
+    expiracionToken: 
+    emailVerificado: 0
+  personajeJugador:
+    idPersonaje: 0
+    vidaMaxima: 0
+    vidaActual: 0
+    danoAtaque: 0
+    defensa: 0
+    monedas: 0
+--- !u!4 &1819865046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819865044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.190929, y: 2.6026487, z: -1.7187536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1828613070
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,6 +6469,7 @@ GameObject:
   - component: {fileID: 2036113788}
   - component: {fileID: 2036113790}
   - component: {fileID: 2036113789}
+  - component: {fileID: 2036113791}
   m_Layer: 0
   m_Name: dragon_0
   m_TagString: Untagged
@@ -6484,8 +6486,8 @@ Transform:
   m_GameObject: {fileID: 2036113787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -56.37, y: -212.9217, z: 0.38410828}
-  m_LocalScale: {x: 8.440308, y: 9.164006, z: 1}
+  m_LocalPosition: {x: -56.37, y: -212.9, z: 0.38410828}
+  m_LocalScale: {x: 3.4253566, y: 3.7190573, z: 0.40583315}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 504111684}
@@ -6567,6 +6569,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2036113791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036113787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199eca51f88275945b4df28e212463a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoEnemigo: Dragon
+  moverDuranteAtaque: 0
+  efectoAtaque: {fileID: 1585798135}
 --- !u!1 &2087783432
 GameObject:
   m_ObjectHideFlags: 0
@@ -6771,4 +6788,4 @@ SceneRoots:
   - {fileID: 894411284}
   - {fileID: 1507807153}
   - {fileID: 2124062258}
-  - {fileID: 848700367}
+  - {fileID: 1819865046}
