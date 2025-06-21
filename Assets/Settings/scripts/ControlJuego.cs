@@ -17,7 +17,9 @@ public class ControlJuego : MonoBehaviour
     public List<Enemigo> listaEnemigos;
     private List<string> flujoEscenas = new List<string>()
     {
+        
         "Combate1",
+        "Combate3",
         "Combate2",
         "Tienda",
         "EventoDados",
