@@ -10,9 +10,8 @@ public class LoginManager : MonoBehaviour
     public InputField passwordInput;
     public Text messageText;
 
-    private string loginUrl = "https://localhost:7000/api/UsuarioApi/login"; // Reemplazá con tu URL real
+    private string loginUrl = "https://localhost:7000/api/UsuarioApi/login";
 
-    // private string personajeUrl = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
 
     public void OnLoginButtonClicked()
     {

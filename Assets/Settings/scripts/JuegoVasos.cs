@@ -105,7 +105,7 @@ public class JuegoDeVasos : MonoBehaviour
                     personaje.vidaActual += 5;
                     break;
                 case 1:
-                    personaje.dañoAtaque += 5;
+                    personaje.danoAtaque += 5;
                     break;
                 case 2:
                     personaje.defensa += 5;

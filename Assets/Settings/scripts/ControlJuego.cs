@@ -8,7 +8,7 @@ public class ControlJuego : MonoBehaviour
 {
     public static ControlJuego Instance { get; private set; }
 
-    private string apiUrlBase = "https://localhost:7000/api/PersonajeApi?idPersonaje=";
+    private string apiUrlBase = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
 
     public int indiceEnemigoActual = 0;
     public Usuario usuario;
@@ -117,7 +117,10 @@ public class ControlJuego : MonoBehaviour
         {
             string json = request.downloadHandler.text;
             Personaje personaje = JsonUtility.FromJson<Personaje>(json);
-
+            Debug.Log("JSON: " + json);
+            Debug.Log("ID: " + personaje.idPersonaje);
+            Debug.Log("vida: " + personaje.vidaActual);
+            Debug.Log("ataque: " + personaje.danoAtaque);
             SetPersonaje(personaje);
 
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);

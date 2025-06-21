@@ -25,19 +25,19 @@ public class TiendaController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ObtenerDatosPersonaje());
+        //StartCoroutine(ObtenerDatosPersonaje());
     }
 
-    IEnumerator ObtenerDatosPersonaje()
-    {
-            vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
-            vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
-            dano = ControlJuego.Instance.personajeJugador.dañoAtaque;
-            armadura = ControlJuego.Instance.personajeJugador.defensa;
-            monedas = ControlJuego.Instance.personajeJugador.monedas;
+    //IEnumerator ObtenerDatosPersonaje()
+    //{
+    //        vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
+    //        vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
+    //        dano = ControlJuego.Instance.personajeJugador.dañoAtaque;
+    //        armadura = ControlJuego.Instance.personajeJugador.defensa;
+    //        monedas = ControlJuego.Instance.personajeJugador.monedas;
 
-            ActualizarUI();
-    }
+    //        ActualizarUI();
+    //}
 
     public void ComprarArmadura()
     {
@@ -113,7 +113,7 @@ public class TiendaController : MonoBehaviour
             vidaActual = vidaActual,
             vidaMaxima = vidaMaxima,
             defensa = armadura,
-            dañoAtaque = dano,
+            danoAtaque = dano,
             monedas = monedas
         };
 
