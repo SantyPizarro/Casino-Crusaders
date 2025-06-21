@@ -14,6 +14,8 @@ public static class VariablesMapa
     public static int estadoPos6 { get; set; } // Evento2
     public static int estadoPos7 { get; set; } // Jefe
 
+    public static bool[] nivelesCompletados = new bool[10];
+
 
 
 

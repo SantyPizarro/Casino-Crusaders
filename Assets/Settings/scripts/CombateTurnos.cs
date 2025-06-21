@@ -35,9 +35,11 @@ public class CombateTurnos : MonoBehaviour
     private string prefijoAnimacionEnemigo;
 
     public Camera camaraCombate;
+    public Button botonVolverMapa;
 
     void Start()
     {
+        botonVolverMapa.gameObject.SetActive(false);
         var controlJuego = ControlJuego.Instance;
 
         if (controlJuego.listaEnemigos == null || controlJuego.listaEnemigos.Count == 0)
@@ -111,7 +113,11 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
             StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
-            Invoke(nameof(SiguienteEscena), 2f);
+            //Personaje dar monedas
+            botonVolverMapa.gameObject.SetActive(true);
+            VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true; // <-- SOLO AQUÍ
+
+            //  Invoke(nameof(SiguienteEscena), 2f);
             return;
         }
 
@@ -170,6 +176,8 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorJugador.SetTrigger("playerDeath");
             StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
+            
+            botonVolverMapa.gameObject.SetActive(true);
             return;
         }
 
@@ -250,6 +258,7 @@ public class CombateTurnos : MonoBehaviour
 
     void SiguienteEscena()
     {
+
         var controlJuego = ControlJuego.Instance;
         controlJuego.AvanzarASiguienteEscena();
     }
@@ -278,5 +287,11 @@ public class CombateTurnos : MonoBehaviour
         }
 
         barra.value = nuevaVida;
+    }
+
+    public void VolverAlMapa()
+    {
+        //VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa");
     }
 }

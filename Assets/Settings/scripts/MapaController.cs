@@ -49,6 +49,10 @@ public class MapaController : MonoBehaviour
         {
             StartCoroutine("AbreCamino", 0);
         }
+
+        AbrirCaminosPorPosicion(playerPos);
+        puedoMover = true;
+
     }
 
     IEnumerator AbreCamino(int numCamino)
@@ -89,7 +93,7 @@ public class MapaController : MonoBehaviour
         if (current == 7 && direction == 1) return 3;  // Evento2 -> N3
         return -1;
     }
-
+    //a
     void Update()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -111,26 +115,42 @@ public class MapaController : MonoBehaviour
             StartCoroutine("MoverPlayer", (int)h);
         }
 
-        AbrirCaminosPorPosicion(playerPos);
+        //  AbrirCaminosPorPosicion(playerPos);
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            // Por ejemplo, solo permitir si está en un nivel válido
             if (playerPos == 1)
             {
-                CambiarEscena("Combate");
+                if (!VariablesMapa.nivelesCompletados[1])
+                {
+                    VariablesMapa.nivel = playerPos;
+                    CambiarEscena("Combate1");
+                }
+                else
+                {
+                    Debug.Log("¡Este nivel ya fue completado!");
+                    // Aquí puedes mostrar un mensaje en UI si lo deseas
+                }
             }
-            // N2 (índice 2) -> Combate 1
             else if (playerPos == 2)
             {
-                CambiarEscena("Combate 1");
+                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
+                if (!VariablesMapa.nivelesCompletados[2])
+                {
+                    VariablesMapa.nivel = playerPos;
+                    CambiarEscena("Combate2");
+                }
+                else
+                {
+                    Debug.Log("¡Este nivel ya fue completado!");
+                }
             }
-            // Tienda (índice 6) -> Tienda
             else if (playerPos == 6)
             {
                 CambiarEscena("Tienda");
             }
         }
+
     }
 
     void AbrirCaminosPorPosicion(int posActual)

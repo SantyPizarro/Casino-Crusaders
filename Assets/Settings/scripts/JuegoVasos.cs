@@ -101,11 +101,11 @@ public class JuegoDeVasos : MonoBehaviour
             switch (statElegida)
             {
                 case 0:
-                    personaje.vida_maxima += 5;
-                    personaje.vida_actual += 5;
+                   // personaje.vida_maxima += 5;
+                    //personaje.vida_actual += 5;
                     break;
                 case 1:
-                    personaje.daño_ataque += 5;
+                    //personaje.daño_ataque += 5;
                     break;
                 case 2:
                     personaje.defensa += 5;

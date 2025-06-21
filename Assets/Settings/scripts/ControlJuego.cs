@@ -11,9 +11,9 @@ public class ControlJuego : MonoBehaviour
     public List<Enemigo> listaEnemigos;
     private List<string> flujoEscenas = new List<string>()
     {
-        "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
-        "Evento1",
-        "Combate2",
+      //  "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
+        //"Evento1",
+        //"Combate2",
 
     };
 
