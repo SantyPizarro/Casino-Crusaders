@@ -3412,12 +3412,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceEnemigoActual: 0
-  personajeJugador:
-    idPersonaje: 0
-    vidaMaxima: 0
-    vidaActual: 0
-    "da\xF1oAtaque": 0
-    defensa: 0
+  usuario:
+    idUsuario: 0
+    gmail: 
+    "contrase\xF1a": 
+    nombreUsuario: 
+    tipoUsuario: 
+    emailVerificacionToken: 
+    expiracionToken: 
+    emailVerificado: 0
 --- !u!4 &841455594
 Transform:
   m_ObjectHideFlags: 0
@@ -5962,7 +5965,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1889894814
 CanvasRenderer:
   m_ObjectHideFlags: 0

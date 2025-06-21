@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class LoginManager : MonoBehaviour
     public InputField passwordInput;
     public Text messageText;
 
-    private string loginUrl = "https://localhost:7000/api/UsuarioApi/login"; // Reemplazá con tu URL real
+    private string loginUrl = "https://localhost:7000/api/UsuarioApi/login";
+
 
     public void OnLoginButtonClicked()
     {
@@ -56,9 +58,13 @@ public class LoginManager : MonoBehaviour
             string response = request.downloadHandler.text;
             Usuario usuario = JsonUtility.FromJson<Usuario>(response);
 
-            // Acá podrías guardar los datos y cargar la próxima escena
-            messageText.text = "¡Bienvenido, " + usuario.nombreUsuario + "!";
-            // SceneManager.LoadScene("MainScene");
+            Debug.Log("Usuario logueado: " + usuario.nombreUsuario + " | idPersonaje: " + usuario.idPersonaje);
+
+            ControlJuego.Instance.SetUsuario(usuario);
+
+            messageText.text = "Login exitoso. Cargando personaje...";
+
+            SceneManager.LoadScene("Titulo");
         }
         else
         {

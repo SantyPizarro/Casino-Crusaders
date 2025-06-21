@@ -21,38 +21,23 @@ public class TiendaController : MonoBehaviour
     private const int COSTO = 5;
 
     // URL de la API (puedes cambiar el ID si lo necesitas)
-    public string apiUrlGet = "https://localhost:7000/api/PersonajeApi?idPersonaje=1";
     public string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
 
     void Start()
     {
-        Debug.Log("TextoMonedas es null? " + (TextoMonedas == null));
-        Debug.Log("TextoVida es null? " + (TextoVida == null));
-        StartCoroutine(ObtenerDatosPersonaje());
+        //StartCoroutine(ObtenerDatosPersonaje());
     }
 
-    IEnumerator ObtenerDatosPersonaje()
-    {
-        UnityWebRequest request = UnityWebRequest.Get(apiUrlGet);
-        yield return request.SendWebRequest();
+    //IEnumerator ObtenerDatosPersonaje()
+    //{
+    //        vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
+    //        vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
+    //        dano = ControlJuego.Instance.personajeJugador.dañoAtaque;
+    //        armadura = ControlJuego.Instance.personajeJugador.defensa;
+    //        monedas = ControlJuego.Instance.personajeJugador.monedas;
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string json = request.downloadHandler.text;
-            Personaje personaje = JsonUtility.FromJson<Personaje>(json);
-
-            vidaActual = personaje.vidaActual;
-            vidaMaxima = personaje.vidaMaxima;
-            dano = personaje.dañoAtaque;
-            armadura = personaje.defensa;
-
-            ActualizarUI();
-        }
-        else
-        {
-            Debug.LogError("Error al obtener personaje: " + request.error);
-        }
-    }
+    //        ActualizarUI();
+    //}
 
     public void ComprarArmadura()
     {
@@ -68,10 +53,19 @@ public class TiendaController : MonoBehaviour
     {
         if (monedas >= COSTO)
         {
-            vidaActual += 25;
-            if (vidaActual > vidaMaxima)
-                vidaActual = vidaMaxima;
-            monedas -= COSTO;
+            if (vidaActual < vidaMaxima)
+            {
+
+                vidaActual += 25;
+                if (vidaActual > vidaMaxima)
+                {
+                    vidaActual = vidaMaxima;
+                    monedas -= COSTO;
+                }
+
+
+            }
+            
             ActualizarUI();
         }
     }
@@ -107,7 +101,7 @@ public class TiendaController : MonoBehaviour
 
     public void GuardarPersonaje()
     {
-        StartCoroutine(PutPersonaje());
+      StartCoroutine(PutPersonaje());
     }
 
     public IEnumerator PutPersonaje()
@@ -115,11 +109,11 @@ public class TiendaController : MonoBehaviour
         // Armamos el objeto personaje con los valores actuales de la tienda
         Personaje personaje = new Personaje()
         {
-            idPersonaje = 1, // O el ID que corresponda (también podrías usar ControlJuego.Instance.personajeJugador.idPersonaje)
+            idPersonaje = 1, 
             vidaActual = vidaActual,
             vidaMaxima = vidaMaxima,
             defensa = armadura,
-            dañoAtaque = dano,
+            danoAtaque = dano,
             monedas = monedas
         };
 
