@@ -115,9 +115,10 @@ public class CombateTurnos : MonoBehaviour
             StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
             //Personaje dar monedas
             botonVolverMapa.gameObject.SetActive(true);
-            VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true; // <-- SOLO AQUÍ
+            VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
+            Debug.Log("Nivel marcado como completado: " + VariablesMapa.nivel);
 
-            //  Invoke(nameof(SiguienteEscena), 2f);
+
             return;
         }
 

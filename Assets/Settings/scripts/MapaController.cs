@@ -121,6 +121,8 @@ public class MapaController : MonoBehaviour
         {
             if (playerPos == 1)
             {
+                Debug.Log("Intentando entrar a Combate1. Completado: " + VariablesMapa.nivelesCompletados[1]);
+
                 if (!VariablesMapa.nivelesCompletados[1])
                 {
                     VariablesMapa.nivel = playerPos;
@@ -129,7 +131,6 @@ public class MapaController : MonoBehaviour
                 else
                 {
                     Debug.Log("¡Este nivel ya fue completado!");
-                    // Aquí puedes mostrar un mensaje en UI si lo deseas
                 }
             }
             else if (playerPos == 2)
@@ -144,6 +145,14 @@ public class MapaController : MonoBehaviour
                 {
                     Debug.Log("¡Este nivel ya fue completado!");
                 }
+            }
+            else if (playerPos == 5) // EventoDados
+            {
+                CambiarEscena("EventoDados");
+            }
+            else if (playerPos == 7) // Evento1
+            {
+                CambiarEscena("Evento1");
             }
             else if (playerPos == 6)
             {

@@ -95,8 +95,8 @@ public class JuegoDeVasos : MonoBehaviour
                     Debug.Log(personaje.vidaActual);
                     break;
                 case 1:
-                    personaje.dañoAtaque += 5;
-                    Debug.Log(personaje.dañoAtaque);
+                    personaje.danoAtaque += 5;
+                    Debug.Log(personaje.danoAtaque);
                     break;
                 case 2:
                     personaje.defensa += 5;
