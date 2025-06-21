@@ -38,13 +38,13 @@ public class CombateTurnos : MonoBehaviour
 
     void Start()
     {
-        var controlJuego = ControlJuego.Instance;
+       
 
-        if (controlJuego.listaEnemigos == null || controlJuego.listaEnemigos.Count == 0)
-            controlJuego.Inicializar();
+        if (ControlJuego.Instance.listaEnemigos == null || ControlJuego.Instance.listaEnemigos.Count == 0)
+            ControlJuego.Instance.Inicializar();
 
-        enemigoActual = controlJuego.ObtenerEnemigoActual();
-        personajeJugador = controlJuego.personajeJugador;
+        enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
+        personajeJugador = ControlJuego.Instance.personajeJugador;
 
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
