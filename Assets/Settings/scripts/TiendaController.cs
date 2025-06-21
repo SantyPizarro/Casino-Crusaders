@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class TiendaController : MonoBehaviour
 {
-    public int monedas = 100;
-    public int vidaActual = 50;
-    public int vidaMaxima = 100;
-    public int armadura = 0;
-    public int dano = 0;
+    public int monedas;
+    public int vidaActual;
+    public int vidaMaxima;
+    public int armadura;
+    public int dano;
 
     public Text TextoMonedas;
     public Text TextoVida;
@@ -25,19 +25,15 @@ public class TiendaController : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(ObtenerDatosPersonaje());
+        vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
+        vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
+        dano = ControlJuego.Instance.personajeJugador.danoAtaque;
+        armadura = ControlJuego.Instance.personajeJugador.defensa;
+        monedas = ControlJuego.Instance.personajeJugador.monedas;
+
+        ActualizarUI();
     }
 
-    //IEnumerator ObtenerDatosPersonaje()
-    //{
-    //        vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
-    //        vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
-    //        dano = ControlJuego.Instance.personajeJugador.dañoAtaque;
-    //        armadura = ControlJuego.Instance.personajeJugador.defensa;
-    //        monedas = ControlJuego.Instance.personajeJugador.monedas;
-
-    //        ActualizarUI();
-    //}
 
     public void ComprarArmadura()
     {
@@ -65,7 +61,7 @@ public class TiendaController : MonoBehaviour
 
 
             }
-            
+
             ActualizarUI();
         }
     }
