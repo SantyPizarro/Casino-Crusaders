@@ -191,7 +191,7 @@ public class JuegoDeVasos : MonoBehaviour
         float intervalo = 0.2f;
 
         Color colorOriginal = imagenVaso.color;
-        Color colorDestacado = Color.yellow;
+        Color colorDestacado = Color.red;
 
         for (int i = 0; i < parpadeos; i++)
         {
