@@ -2995,7 +2995,7 @@ MonoBehaviour:
   botonLanzarDados: {fileID: 2156844}
   botonAtacar: {fileID: 973666792}
   jugadorGO: {fileID: 1545016413}
-  enemigoGO: {fileID: 0}
+  enemigoGO: {fileID: 2036113787}
   barraVidaJugador: {fileID: 196308323}
   barraVidaEnemigo: {fileID: 167216028}
   camaraCombate: {fileID: 519420031}

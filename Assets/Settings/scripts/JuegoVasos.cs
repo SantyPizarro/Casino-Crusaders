@@ -9,11 +9,11 @@ public class JuegoDeVasos : MonoBehaviour
     public Transform[] posiciones;
     public GameObject recompensa;
     public Text mensaje;
-    public Button botonComenzar;
+    public UnityEngine.UI.Button botonComenzar;
     public Sprite spriteVida;
     public Sprite spriteAtaque;
     public Sprite spriteDefensa;
-    public Image imagenRecompensa;
+    public UnityEngine.UI.Image imagenRecompensa;
 
     private int indiceCorrecto;
     private bool puedeElegir = false;
@@ -91,17 +91,17 @@ public class JuegoDeVasos : MonoBehaviour
             switch (statElegida)
             {
                 case 0:
-                    personaje.vidaMaxima += 5;
-                    personaje.vidaActual += 5;
-                    Debug.Log(personaje.vidaActual);
+                    ControlJuego.Instance.personajeJugador.vidaMaxima += 10;
+                    ControlJuego.Instance.personajeJugador.vidaActual += 10;
+                    ControlJuego.Instance.GuardarPersonaje(this);
                     break;
                 case 1:
-                    personaje.danoAtaque += 5;
-                    Debug.Log(personaje.danoAtaque);
+                    ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                    ControlJuego.Instance.GuardarPersonaje(this);
                     break;
                 case 2:
-                    personaje.defensa += 5;
-                    Debug.Log(personaje.defensa);
+                    ControlJuego.Instance.personajeJugador.defensa += 10;
+                    ControlJuego.Instance.GuardarPersonaje(this);
                     break;
             }
 
@@ -184,7 +184,7 @@ public class JuegoDeVasos : MonoBehaviour
     //esta para image
     IEnumerator DestacarVasoCorrecto()
     {
-        Image imagenVaso = vasos[indiceCorrecto].GetComponent<Image>();
+        UnityEngine.UI.Image imagenVaso = vasos[indiceCorrecto].GetComponent<UnityEngine.UI.Image>();
         if (imagenVaso == null) yield break;
 
         int parpadeos = 4;
