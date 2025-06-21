@@ -47,6 +47,7 @@ public class CombateTurnos : MonoBehaviour
         enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
         personajeJugador = ControlJuego.Instance.personajeJugador;
 
+
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
 
@@ -66,6 +67,12 @@ public class CombateTurnos : MonoBehaviour
 
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
         prefijoAnimacionEnemigo = info != null ? info.tipoEnemigo : "card";
+
+        if (SceneManager.GetActiveScene().name == "Combate4") //en el jefe, el jugador tiene un dado menos
+        {
+            controlDados.cantidadDadosActivos = 4; 
+            StartCoroutine(MostrarTextoAnimado("¡El dragón destruyó uno de tus dados!"));
+        }
 
         ReiniciarTurnoJugador();
     }

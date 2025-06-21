@@ -15,9 +15,21 @@ public class ControlJuego : MonoBehaviour
     public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
-   
+    private List<string> flujoEscenas = new List<string>()
+    {
+        
+        "Combate1",
+        "Combate3",
+        "Combate2",
+        "Combate4",
+        "Tienda",
+        "EventoDados",
+        "Evento1",
+        
 
-    public int indiceEscenaActual = 0;
+    };
+
+    private int indiceEscenaActual = 0;
 
 
     void Awake()
@@ -46,22 +58,33 @@ public class ControlJuego : MonoBehaviour
     {
         listaEnemigos = new List<Enemigo>()
         {
-            new Enemigo(1, "As 1", 60, 12, 3),
-            new Enemigo(2, "As 2", 70, 14, 4),
-            new Enemigo(3, "As 3", 80, 16, 5),
-            new Enemigo(4, "As 4", 90, 18, 6),
-            new Enemigo(5, "As 5", 100, 20, 7)
+            new Enemigo(1, "Carta", 60, 12, 3),
+            new Enemigo(2, "Ficha", 70, 14, 4),
+            new Enemigo(3, "Slot", 80, 16, 5),
+            new Enemigo(4, "Dragon", 90, 18, 6),
+
         };
     }
 
+    public void AvanzarASiguienteEscena()
+    {
+        indiceEscenaActual++;
+        if (indiceEscenaActual >= flujoEscenas.Count)
+        {
+            Debug.Log("no hay más escenas");
+            return;
+        }
+
+        string siguienteEscena = flujoEscenas[indiceEscenaActual];
+        Debug.Log("Cargando escena: " + siguienteEscena);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(siguienteEscena);
+    }
 
     public Enemigo ObtenerEnemigoActual()
     {
         int indiceEnemigo = indiceEscenaActual / 2;
-        if (indiceEnemigo < listaEnemigos.Count) { 
-            Debug.Log("Indice enemigo actual: " + indiceEnemigo);
-        return listaEnemigos[indiceEnemigo];
-    }
+        if (indiceEnemigo < listaEnemigos.Count)
+            return listaEnemigos[indiceEnemigo];
         else
             return null;
     }
@@ -70,7 +93,7 @@ public class ControlJuego : MonoBehaviour
     {
         indiceEscenaActual = 0;
         Inicializar();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Titulo");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(flujoEscenas[0]);
     }
 
     public void CargarPersonajeYEmpezarJuego(MonoBehaviour caller)
@@ -110,7 +133,7 @@ public class ControlJuego : MonoBehaviour
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);
 
             Inicializar(); // inicializa enemigos u otros datos del juego
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa"); // o escena inicial
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Combate1"); // o escena inicial
         }
         else
         {
