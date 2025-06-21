@@ -9,6 +9,7 @@ public class ControlJuego : MonoBehaviour
     public static ControlJuego Instance { get; private set; }
 
     private string apiUrlBase = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
+    private const string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
 
     public int indiceEnemigoActual = 0;
     public Usuario usuario;
@@ -16,10 +17,12 @@ public class ControlJuego : MonoBehaviour
     public List<Enemigo> listaEnemigos;
     private List<string> flujoEscenas = new List<string>()
     {
-        "Combate1", //pelea-evento-pelea-tienda-pelea-evento-pelea(jefe) //acá iria el mapa de por medio
-        "Tienda",
-        "Evento1",
+        "Combate1",
         "Combate2",
+        "Tienda",
+        "EventoDados",
+        "Evento1",
+        
 
     };
 
@@ -132,6 +135,42 @@ public class ControlJuego : MonoBehaviour
         else
         {
             Debug.LogError("Error al obtener personaje: " + request.error);
+        }
+    }
+
+    public void GuardarPersonaje(MonoBehaviour caller)
+    {
+        if (personajeJugador == null)
+        {
+            Debug.LogError("No hay personaje cargado para guardar.");
+            return;
+        }
+
+        caller.StartCoroutine(GuardarPersonajeCoroutine());
+    }
+
+
+    private IEnumerator GuardarPersonajeCoroutine()
+    {
+        string json = JsonUtility.ToJson(personajeJugador);
+        UnityWebRequest request = new UnityWebRequest(apiUrlPut, "PUT");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        Debug.Log("Enviando PUT con personaje: " + json);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Personaje actualizado correctamente.");
+        }
+        else
+        {
+            Debug.LogError("Error al actualizar personaje: " + request.error);
         }
     }
 }
