@@ -15,18 +15,9 @@ public class ControlJuego : MonoBehaviour
     public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
-    private List<string> flujoEscenas = new List<string>()
-    {
-        "Combate1",
-        "Combate2",
-        "Tienda",
-        "EventoDados",
-        "Evento1",
-        
+   
 
-    };
-
-    private int indiceEscenaActual = 0;
+    public int indiceEscenaActual = 0;
 
 
     void Awake()
@@ -63,25 +54,14 @@ public class ControlJuego : MonoBehaviour
         };
     }
 
-    public void AvanzarASiguienteEscena()
-    {
-        indiceEscenaActual++;
-        if (indiceEscenaActual >= flujoEscenas.Count)
-        {
-            Debug.Log("no hay más escenas");
-            return;
-        }
-
-        string siguienteEscena = flujoEscenas[indiceEscenaActual];
-        Debug.Log("Cargando escena: " + siguienteEscena);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(siguienteEscena);
-    }
 
     public Enemigo ObtenerEnemigoActual()
     {
         int indiceEnemigo = indiceEscenaActual / 2;
-        if (indiceEnemigo < listaEnemigos.Count)
-            return listaEnemigos[indiceEnemigo];
+        if (indiceEnemigo < listaEnemigos.Count) { 
+            Debug.Log("Indice enemigo actual: " + indiceEnemigo);
+        return listaEnemigos[indiceEnemigo];
+    }
         else
             return null;
     }
@@ -90,7 +70,7 @@ public class ControlJuego : MonoBehaviour
     {
         indiceEscenaActual = 0;
         Inicializar();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(flujoEscenas[0]);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Titulo");
     }
 
     public void CargarPersonajeYEmpezarJuego(MonoBehaviour caller)
@@ -130,7 +110,7 @@ public class ControlJuego : MonoBehaviour
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);
 
             Inicializar(); // inicializa enemigos u otros datos del juego
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Combate1"); // o escena inicial
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa"); // o escena inicial
         }
         else
         {

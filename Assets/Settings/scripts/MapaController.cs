@@ -115,7 +115,6 @@ public class MapaController : MonoBehaviour
             StartCoroutine("MoverPlayer", (int)h);
         }
 
-        //  AbrirCaminosPorPosicion(playerPos);
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
@@ -194,7 +193,6 @@ public class MapaController : MonoBehaviour
     IEnumerator MoverPlayer(int mov)
     {
         int destino = playerPos + mov;
-        // Limita el destino a los índices válidos
         if (destino < 0 || destino >= pos.Length)
         {
             puedoMover = true;

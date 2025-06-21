@@ -151,7 +151,7 @@ public class JuegoDeVasos : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        ControlJuego.Instance.AvanzarASiguienteEscena();
+        //ControlJuego.Instance.AvanzarASiguienteEscena();
     }
 
     IEnumerator IntercambiarPosiciones(GameObject vasoA, GameObject vasoB, float duracion)
