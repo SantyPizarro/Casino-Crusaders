@@ -5426,7 +5426,7 @@ Animator:
   m_GameObject: {fileID: 1585798135}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8d7c4284af1f064a8a904e4720beb3a, type: 2}
+  m_Controller: {fileID: 9100000, guid: ec41705a3f463ad4a8baaa313cd41883, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6733,7 +6733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199eca51f88275945b4df28e212463a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoEnemigo: Dragon
+  tipoEnemigo: dragon
   moverDuranteAtaque: 0
   efectoAtaque: {fileID: 1585798135}
 --- !u!1 &2087783432

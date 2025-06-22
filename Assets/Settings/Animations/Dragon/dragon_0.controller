@@ -45,7 +45,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: DragonDamage
+    m_ConditionEvent: dragonDamage
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1695256495924482883}
@@ -68,7 +68,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DragonDamage
+  m_Name: dragonDamage
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
@@ -97,19 +97,19 @@ AnimatorController:
   m_Name: Dragon_0
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: DragonAttack
+  - m_Name: dragonAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: DragonDeath
+  - m_Name: dragonDeath
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: DragonDamage
+  - m_Name: dragonDamage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -161,10 +161,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7380541558014049750}
-    m_Position: {x: 620, y: 100, z: 0}
+    m_Position: {x: 640, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6243856143639705881}
-    m_Position: {x: 330, y: 100, z: 0}
+    m_Position: {x: 330, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8891888470115632231}
     m_Position: {x: 330, y: 0, z: 0}
@@ -191,7 +191,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: DragonDeath
+    m_ConditionEvent: dragonDeath
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8891888470115632231}
@@ -243,7 +243,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DragonAttack
+  m_Name: dragonAttack
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -272,7 +272,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: DragonAttack
+    m_ConditionEvent: dragonAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7380541558014049750}
@@ -295,7 +295,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DragonDeath
+  m_Name: dragonDeath
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions: []

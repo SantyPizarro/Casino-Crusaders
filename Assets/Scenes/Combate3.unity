@@ -5306,7 +5306,7 @@ GameObject:
   - component: {fileID: 1585798137}
   - component: {fileID: 1585798138}
   m_Layer: 5
-  m_Name: magia
+  m_Name: moneda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5375,7 +5375,7 @@ SpriteRenderer:
   m_SortingLayerID: -1726989123
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4601640004871380922, guid: 849c51ba75196814a8fdf4723b8979e4, type: 3}
+  m_Sprite: {fileID: -6616864912741695241, guid: 7cb126e0da49acd468624919d49685ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5396,7 +5396,7 @@ Animator:
   m_GameObject: {fileID: 1585798135}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8d7c4284af1f064a8a904e4720beb3a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a283cce5aaa8ae4eb5472089873f133, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
