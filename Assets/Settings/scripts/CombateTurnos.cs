@@ -23,6 +23,8 @@ public class CombateTurnos : MonoBehaviour
     public Button botonLanzarDados;
     public Button botonAtacar;
     public Button botonVolverMapa;
+    public Button botonVolverAlTitulo;
+    public Button botonVolverAlTituloVictoria;
 
     public GameObject jugadorGO;
     public GameObject enemigoGO;
@@ -37,8 +39,13 @@ public class CombateTurnos : MonoBehaviour
 
     public Camera camaraCombate;
 
+    public GameObject pantallaFinalGO;
+    public Image imagenFinal;
+
     void Start()
     {
+        botonVolverAlTituloVictoria.gameObject.SetActive(false);
+        botonVolverAlTitulo.gameObject.SetActive(false);
         ControlJuego.Instance.ResetVolverAlMapa();
         botonVolverMapa.gameObject.SetActive(false);
 
@@ -47,6 +54,18 @@ public class CombateTurnos : MonoBehaviour
         {
             Debug.Log("Botón Volver al Mapa presionado");
             ControlJuego.Instance.VolverAlMapa();
+        });
+
+        botonVolverAlTitulo.onClick.RemoveAllListeners();
+        botonVolverAlTitulo.onClick.AddListener(() =>
+        {
+            ControlJuego.Instance.VolverAlTituloYReiniciarPersonaje();
+        });
+
+        botonVolverAlTituloVictoria.onClick.RemoveAllListeners();
+        botonVolverAlTituloVictoria.onClick.AddListener(() =>
+        {
+            ControlJuego.Instance.VolverAlTituloYReiniciarPersonaje();
         });
 
         personajeJugador = ControlJuego.Instance.personajeJugador;
@@ -171,9 +190,18 @@ public class CombateTurnos : MonoBehaviour
     IEnumerator MostrarVictoriaSecuencial()
     {
         yield return new WaitUntil(() => mensajeCombate.text.EndsWith($"Vida enemigo: {vidaEnemigo}"));
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
         yield return MostrarTextoAnimado("¡Ganaste!");
-        botonVolverMapa.gameObject.SetActive(true);
+
+        if (SceneManager.GetActiveScene().name == "Combate4")
+        {
+            yield return new WaitForSeconds(1f);
+            MostrarPantallaFinal();
+        }
+        else
+        {
+            botonVolverMapa.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator MoverJugadorDuranteAtaque()
@@ -228,7 +256,7 @@ public class CombateTurnos : MonoBehaviour
         {
             animatorJugador.SetTrigger("playerDeath");
             StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
-            botonVolverMapa.gameObject.SetActive(true);
+            botonVolverAlTitulo.gameObject.SetActive(true);
             return;
         }
 
@@ -332,5 +360,12 @@ public class CombateTurnos : MonoBehaviour
 
         barra.value = nuevaVida;
     }
- 
+    void MostrarPantallaFinal()
+    {
+        pantallaFinalGO.SetActive(true);
+        
+
+        botonVolverAlTituloVictoria.gameObject.SetActive(true); 
+        botonVolverAlTitulo.transform.SetAsLastSibling(); 
+    }
 }

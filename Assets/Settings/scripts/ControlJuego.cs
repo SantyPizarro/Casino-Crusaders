@@ -296,6 +296,30 @@ public class ControlJuego : MonoBehaviour
         // Paso 4: cambiar de escena
         SceneManager.LoadScene("Mapa");
     }
+
+    public void VolverAlTituloYReiniciarPersonaje()
+    {
+      
+        if (personajeJugador != null)
+        {
+            personajeJugador.vidaMaxima = 100; 
+            personajeJugador.vidaActual = 100;
+            personajeJugador.monedas = 10;
+            personajeJugador.danoAtaque = 10;
+            personajeJugador.defensa = 10;
+            
+            Debug.Log($"[Reinicio] vidaActual: {personajeJugador.vidaActual}, vidaMaxima: {personajeJugador.vidaMaxima}, monedas: {personajeJugador.monedas}, daño: {personajeJugador.danoAtaque}, defensa: {personajeJugador.defensa}");
+            GuardarPersonaje(this);
+        }
+      
+        VariablesMapa.nivel = 0;
+        VariablesMapa.maxNivel = 1;
+        Array.Clear(VariablesMapa.nivelesCompletados, 0, VariablesMapa.nivelesCompletados.Length);
+
+       
+
+        SceneManager.LoadScene("Titulo");
+    }
 }
 
 
