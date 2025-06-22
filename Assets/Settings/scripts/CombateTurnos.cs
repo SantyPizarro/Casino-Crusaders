@@ -9,6 +9,7 @@ public class CombateTurnos : MonoBehaviour
     public ControlDados controlDados;
     public Text mensajeCombate;
     public Text nombreEnemigoTexto;
+    public Button botonVolverAlTitulo;
 
     private Enemigo enemigoActual;
     private Personaje personajeJugador;
@@ -39,6 +40,7 @@ public class CombateTurnos : MonoBehaviour
 
     void Start()
     {
+        botonVolverAlTitulo.gameObject.SetActive(false);
         ControlJuego.Instance.ResetVolverAlMapa();
         botonVolverMapa.gameObject.SetActive(false);
 
@@ -48,6 +50,12 @@ public class CombateTurnos : MonoBehaviour
         {
             Debug.Log("Botón Volver al Mapa presionado");
             ControlJuego.Instance.VolverAlMapa();
+        });
+
+        botonVolverAlTitulo.onClick.RemoveAllListeners();
+        botonVolverAlTitulo.onClick.AddListener(() =>
+        {
+            ControlJuego.Instance.VolverAlTituloYReiniciarPersonaje();
         });
 
         if (ControlJuego.Instance.listaEnemigos == null || ControlJuego.Instance.listaEnemigos.Count == 0)
@@ -219,7 +227,7 @@ IEnumerator MostrarInicioCombate4()
         {
             animatorJugador.SetTrigger("playerDeath");
             StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
-            botonVolverMapa.gameObject.SetActive(true);
+            botonVolverAlTitulo.gameObject.SetActive(true);
             return;
         }
 

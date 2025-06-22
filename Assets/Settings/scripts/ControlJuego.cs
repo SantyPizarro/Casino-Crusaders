@@ -225,4 +225,29 @@ public class ControlJuego : MonoBehaviour
         VariablesMapa.nivelesCompletados[7] = true;
         SceneManager.LoadScene("Mapa");
     }
+
+    public void VolverAlTituloYReiniciarPersonaje()
+    {
+        // Reinicia las estadísticas del personaje
+        if (personajeJugador != null)
+        {
+            //personajeJugador.vidaActual = personajeJugador.vidaMaxima;
+            personajeJugador.vidaActual = 100;
+            personajeJugador.monedas = 10;
+            personajeJugador.danoAtaque = 50;
+            personajeJugador.defensa = 30;
+            // Si tienes más stats, reinícialos aquí
+            Debug.Log($"[Reinicio] vidaActual: {personajeJugador.vidaActual}, vidaMaxima: {personajeJugador.vidaMaxima}, monedas: {personajeJugador.monedas}, daño: {personajeJugador.danoAtaque}, defensa: {personajeJugador.defensa}");
+            GuardarPersonaje(this);
+        }
+
+        // Opcional: reinicia otros datos globales si es necesario
+        VariablesMapa.nivel = 0;
+        VariablesMapa.maxNivel = 1;
+        Array.Clear(VariablesMapa.nivelesCompletados, 0, VariablesMapa.nivelesCompletados.Length);
+
+        // etc.
+
+        SceneManager.LoadScene("Titulo");
+    }
 }
