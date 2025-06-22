@@ -38,6 +38,9 @@ public class CombateTurnos : MonoBehaviour
 
     public Camera camaraCombate;
 
+    public GameObject pantallaFinalGO;
+    public Image imagenFinal;
+
     void Start()
     {
         botonVolverAlTitulo.gameObject.SetActive(false);
@@ -168,11 +171,19 @@ IEnumerator MostrarInicioCombate4()
     }
     IEnumerator MostrarVictoriaSecuencial()
     {
-        // Espera a que termine la animación del mensaje anterior
         yield return new WaitUntil(() => mensajeCombate.text.EndsWith($"Vida enemigo: {vidaEnemigo}"));
-        yield return new WaitForSeconds(0.5f); // Pequeña pausa opcional
+        yield return new WaitForSeconds(0.5f);
         yield return MostrarTextoAnimado("¡Ganaste!");
-        botonVolverMapa.gameObject.SetActive(true);
+
+        if (SceneManager.GetActiveScene().name == "Combate4")
+        {
+            yield return new WaitForSeconds(1f);
+            MostrarPantallaFinal();
+        }
+        else
+        {
+            botonVolverMapa.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator MoverJugadorDuranteAtaque()
@@ -331,5 +342,12 @@ IEnumerator MostrarInicioCombate4()
 
         barra.value = nuevaVida;
     }
- 
+
+    void MostrarPantallaFinal()
+    {
+        pantallaFinalGO.SetActive(true);
+        botonVolverAlTitulo.gameObject.SetActive(true);
+        botonVolverAlTitulo.transform.SetAsLastSibling();
+    }
+
 }

@@ -3231,7 +3231,7 @@ MonoBehaviour:
   controlDados: {fileID: 1787275690}
   mensajeCombate: {fileID: 1954457941}
   nombreEnemigoTexto: {fileID: 1138161248}
-  botonVolverAlTitulo: {fileID: 0}
+  botonVolverAlTitulo: {fileID: 487835764}
   vidaJugador: 100
   vidaEnemigo: 100
   botonLanzarDados: {fileID: 2156844}
@@ -3242,6 +3242,8 @@ MonoBehaviour:
   barraVidaJugador: {fileID: 196308323}
   barraVidaEnemigo: {fileID: 167216028}
   camaraCombate: {fileID: 519420031}
+  pantallaFinalGO: {fileID: 0}
+  imagenFinal: {fileID: 0}
 --- !u!4 &894411284
 Transform:
   m_ObjectHideFlags: 0
