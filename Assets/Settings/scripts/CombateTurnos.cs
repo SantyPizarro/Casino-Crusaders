@@ -42,6 +42,9 @@ public class CombateTurnos : MonoBehaviour
     public GameObject pantallaFinalGO;
     public Image imagenFinal;
 
+    public GameObject pantallaDerrotaGO;
+    public Image imagenDerrota;
+
     void Start()
     {
         botonVolverAlTituloVictoria.gameObject.SetActive(false);
@@ -255,8 +258,7 @@ public class CombateTurnos : MonoBehaviour
         if (vidaJugador <= 0)
         {
             animatorJugador.SetTrigger("playerDeath");
-            StartCoroutine(MostrarTextoAnimado("¡Perdiste!"));
-            botonVolverAlTitulo.gameObject.SetActive(true);
+            StartCoroutine(MostrarPantallaDerrotaSecuencial());
             return;
         }
 
@@ -367,5 +369,21 @@ public class CombateTurnos : MonoBehaviour
 
         botonVolverAlTituloVictoria.gameObject.SetActive(true); 
         botonVolverAlTitulo.transform.SetAsLastSibling(); 
+    }
+
+    IEnumerator MostrarPantallaDerrotaSecuencial()
+    {
+        yield return new WaitForSeconds(1f);
+        yield return MostrarTextoAnimado("¡Perdiste!");
+        yield return new WaitForSeconds(1f);
+        MostrarPantallaDerrota();
+    }
+
+    void MostrarPantallaDerrota()
+    {
+        pantallaDerrotaGO.SetActive(true);
+
+        botonVolverAlTituloVictoria.gameObject.SetActive(true);
+        botonVolverAlTituloVictoria.transform.SetAsLastSibling();
     }
 }
