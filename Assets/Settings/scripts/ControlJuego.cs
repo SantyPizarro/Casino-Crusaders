@@ -13,6 +13,8 @@ public class ControlJuego : MonoBehaviour
     private string apiUrlBase = "https://localhost:7000/api/PersonajeApi?IdPersonaje=";
     private const string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
 
+    private string urlBaseProgreso = "https://localhost:7000/api/ProgresoApi?id=";
+
     public int indiceEnemigoActual = 0;
     public Usuario usuario;
     public Personaje personajeJugador;
@@ -59,17 +61,17 @@ public class ControlJuego : MonoBehaviour
         this.usuario = usuario;
     }
 
-    public void Inicializar()
-    {
-        listaEnemigos = new List<Enemigo>()
-        {
-            new Enemigo(1, "Carta", 60, 12, 3),
-            new Enemigo(2, "Ficha", 70, 14, 4),
-            new Enemigo(3, "Slot", 80, 16, 5),
-            new Enemigo(4, "Dragon", 90, 18, 6),
+    //public void Inicializar()
+    //{
+    //    listaEnemigos = new List<Enemigo>()
+    //    {
+    //        new Enemigo(1, "Carta", 60, 12, 3),
+    //        new Enemigo(2, "Ficha", 70, 14, 4),
+    //        new Enemigo(3, "Slot", 80, 16, 5),
+    //        new Enemigo(4, "Dragon", 90, 18, 6),
 
-        };
-    }
+    //    };
+    //}
 
     /*
     public void AvanzarASiguienteEscena()
@@ -87,19 +89,34 @@ public class ControlJuego : MonoBehaviour
     }
     */
 
-    public Enemigo ObtenerEnemigoActual()
+    public IEnumerator ObtenerEnemigoActualDesdeApi(Action<Enemigo> callback)
     {
-        int indiceEnemigo = VariablesMapa.nivel - 1; // Si tus niveles empiezan en 1
-        if (indiceEnemigo >= 0 && indiceEnemigo < listaEnemigos.Count)
-            return listaEnemigos[indiceEnemigo];
+        int idNivel = VariablesMapa.nivel; // nivel actual
+        string url = $"https://localhost:7000/api/EnemigoApi?id={idNivel}";
+
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = request.downloadHandler.text;
+            Enemigo enemigo = JsonUtility.FromJson<Enemigo>(json);
+            Debug.Log($"Enemigo recibido: {enemigo.nombre} con vida {enemigo.vida}");
+            callback?.Invoke(enemigo);
+        }
         else
-            return null;
+        {
+            Debug.LogError("Error al obtener enemigo desde API: " + request.error);
+            callback?.Invoke(null);
+        }
     }
 
     public void ReiniciarJuego()
     {
         indiceEscenaActual = 0;
-        Inicializar();
+        // Inicializar();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Titulo");
     }
 
@@ -139,7 +156,7 @@ public class ControlJuego : MonoBehaviour
 
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);
 
-            Inicializar(); // inicializa enemigos u otros datos del juego
+            // Inicializar(); // inicializa enemigos u otros datos del juego
             UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa"); // o escena inicial
         }
         else
@@ -193,7 +210,8 @@ public class ControlJuego : MonoBehaviour
         GuardarPersonaje(this); // Guarda desde sí mismo (MonoBehaviour)
         VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
 
-        SceneManager.LoadScene("Mapa");
+        StartCoroutine(ActualizarProgresoYVolver());
+
     }
 
     internal void ResetVolverAlMapa()
@@ -226,29 +244,66 @@ public class ControlJuego : MonoBehaviour
         SceneManager.LoadScene("Mapa");
     }
 
-    public void VolverAlTituloYReiniciarPersonaje()
+
+    IEnumerator ActualizarProgresoYVolver()
     {
-       
-        if (personajeJugador != null)
+        int idPersonaje = personajeJugador.idPersonaje;
+        string urlGet = urlBaseProgreso + idPersonaje;
+
+        // Paso 1: GET progreso actual
+        UnityWebRequest getRequest = UnityWebRequest.Get(urlGet);
+        getRequest.SetRequestHeader("Content-Type", "application/json");
+
+        yield return getRequest.SendWebRequest();
+
+        if (getRequest.result != UnityWebRequest.Result.Success)
         {
-            
-            personajeJugador.vidaMaxima = 100; 
-            personajeJugador.vidaActual = 100;
-            personajeJugador.monedas = 10;
-            personajeJugador.danoAtaque = 10;
-            personajeJugador.defensa = 10;
-           
-            Debug.Log($"[Reinicio] vidaActual: {personajeJugador.vidaActual}, vidaMaxima: {personajeJugador.vidaMaxima}, monedas: {personajeJugador.monedas}, daño: {personajeJugador.danoAtaque}, defensa: {personajeJugador.defensa}");
-            GuardarPersonaje(this);
+            Debug.LogError("Error al obtener el progreso actual: " + getRequest.error);
+            yield break;
         }
 
-       
-        VariablesMapa.nivel = 0;
-        VariablesMapa.maxNivel = 1;
-        Array.Clear(VariablesMapa.nivelesCompletados, 0, VariablesMapa.nivelesCompletados.Length);
+        // Deserializar progreso
+        Progreso progreso = JsonUtility.FromJson<Progreso>(getRequest.downloadHandler.text);
+        int nivelActual = progreso.idNivel;
 
-        
+        Debug.Log("Nivel actual del progreso: " + nivelActual);
 
-        SceneManager.LoadScene("Titulo");
+        // Paso 2: Verificar si ya es el último nivel
+        if (nivelActual >= 4)
+        {
+            Debug.Log("Ya se alcanzó el nivel máximo. No se actualiza progreso.");
+            SceneManager.LoadScene("Mapa");
+            yield break;
+        }
+
+        int nuevoNivel = nivelActual + 1;
+
+        // Paso 3: PUT con el nuevo nivel
+        string urlPut = $"{urlBaseProgreso}{idPersonaje}&nivel={nuevoNivel}";
+        UnityWebRequest putRequest = UnityWebRequest.Put(urlPut, new byte[0]);
+        putRequest.SetRequestHeader("Content-Type", "application/json");
+
+        yield return putRequest.SendWebRequest();
+
+        if (putRequest.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error al actualizar el progreso: " + putRequest.error);
+            yield break;
+        }
+
+        Debug.Log($"Progreso actualizado correctamente a nivel {nuevoNivel}.");
+
+        // Paso 4: cambiar de escena
+        SceneManager.LoadScene("Mapa");
     }
+}
+
+
+[Serializable]
+public class Progreso
+{
+    public int idProgreso;
+    public int idNivel;
+    public int idPersonaje;
+    public string fechaCreacion;
 }
