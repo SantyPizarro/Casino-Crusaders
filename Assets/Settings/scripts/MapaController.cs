@@ -326,18 +326,35 @@ public class MapaController : MonoBehaviour
                 case 5: bloqueado = VariablesMapa.estadoPos5 != 1; break;
                 case 6: bloqueado = VariablesMapa.estadoPos6 != 1; break;
                 case 7: bloqueado = VariablesMapa.estadoPos7 != 1; break;
+                default: bloqueado = false; break; // El ícono 0 (salida) u otros no se bloquean
             }
 
-            if (bloqueado)
+            posIconos[i].color = bloqueado ? Color.gray : Color.white;
+        }
+
+        // Agregamos la parte de caminos acá también
+        for (int i = 0; i < caminos.Length; i++)
+        {
+            SpriteRenderer sr = caminos[i].GetComponent<SpriteRenderer>();
+            if (sr == null) continue;
+
+            bool bloqueado = false;
+
+            switch (i)
             {
-                posIconos[i].color = Color.gray; // Bloqueado = gris
+                case 0: bloqueado = VariablesMapa.estadoPos1 != 1; break;
+                case 1: bloqueado = VariablesMapa.estadoPos2 != 1; break;
+                case 2: bloqueado = VariablesMapa.estadoPos3 != 1; break;
+                case 3: bloqueado = VariablesMapa.estadoPos4 != 1; break;
+                case 4: bloqueado = VariablesMapa.estadoPos5 != 1; break;
+                case 5: bloqueado = VariablesMapa.estadoPos6 != 1; break;
+                case 6: bloqueado = VariablesMapa.estadoPos7 != 1; break;
             }
-            else
-            {
-                posIconos[i].color = Color.white; // Desbloqueado = blanco
-            }
+
+            sr.color = bloqueado ? Color.gray : Color.white;
         }
     }
+
     bool EsCasillaDesbloqueada(int destino)
     {
         switch (playerPos)

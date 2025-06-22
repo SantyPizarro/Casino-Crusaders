@@ -79,11 +79,22 @@ public class CombateTurnos : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Combate4")
         {
             controlDados.cantidadDadosActivos = 4;
-            StartCoroutine(MostrarTextoAnimado("¡El dragón destruyó uno de tus dados!"));
+            StartCoroutine(MostrarInicioCombate4());
         }
+        else
+        {
 
-        ReiniciarTurnoJugador();
+            ReiniciarTurnoJugador();
+        }
     }
+    
+
+IEnumerator MostrarInicioCombate4()
+{
+    yield return MostrarTextoAnimado("¡El dragon destruyo uno de tus dados!");
+    yield return new WaitForSeconds(0.5f);
+    ReiniciarTurnoJugador();
+}
 
     void LanzarDados()
     {
@@ -139,12 +150,21 @@ public class CombateTurnos : MonoBehaviour
         if (vidaEnemigo <= 0)
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
-            StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
-            botonVolverMapa.gameObject.SetActive(true);
+            //StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
+            //botonVolverMapa.gameObject.SetActive(true);
+            StartCoroutine(MostrarVictoriaSecuencial());
             return;
         }
 
         Invoke(nameof(TurnoEnemigo), 2f);
+    }
+    IEnumerator MostrarVictoriaSecuencial()
+    {
+        // Espera a que termine la animación del mensaje anterior
+        yield return new WaitUntil(() => mensajeCombate.text.EndsWith($"Vida enemigo: {vidaEnemigo}"));
+        yield return new WaitForSeconds(0.5f); // Pequeña pausa opcional
+        yield return MostrarTextoAnimado("¡Ganaste!");
+        botonVolverMapa.gameObject.SetActive(true);
     }
 
     IEnumerator MoverJugadorDuranteAtaque()
@@ -303,5 +323,5 @@ public class CombateTurnos : MonoBehaviour
 
         barra.value = nuevaVida;
     }
-   
+ 
 }
