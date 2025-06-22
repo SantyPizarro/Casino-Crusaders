@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\GIT\\pw3\\Casino-Crusaders\\",
   "Documents": [
     {
@@ -21,6 +22,29 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlJuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Settings\\scripts\\ControlJuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+  "WorkspaceRootPath": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\mapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\mapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\variablesmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\variablesmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\controljuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\controljuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\juegovasos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\juegovasos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> main
     }
   ],
   "DocumentGroupContainers": [
@@ -30,14 +54,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 3,
+=======
+          "SelectedChildIndex": 4,
+>>>>>>> main
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "JuegoVasos.cs",
               "DocumentMoniker": "D:\\GIT\\pw3\\Casino-Crusaders\\Assets\\Settings\\scripts\\JuegoVasos.cs",
@@ -95,6 +120,64 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\CombateTurnos.cs",
               "ViewState": "AgIAABkBAAAAAAAAAAAqwCkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+=======
+              "DocumentIndex": 4,
+              "Title": "JuegoVasos.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\JuegoVasos.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\JuegoVasos.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\JuegoVasos.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\JuegoVasos.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAA3wGgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T17:18:18.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VariablesMapa.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\VariablesMapa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T23:42:39.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MapaController.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\MapaController.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\MapaController.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\MapaController.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\MapaController.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAIwJIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T22:18:04.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ControlJuego.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlJuego.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\ControlJuego.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\ControlJuego.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\ControlJuego.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T22:42:25.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CombateTurnos.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "RelativeDocumentMoniker": "Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "ToolTip": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "RelativeToolTip": "Assets\\Settings\\scripts\\CombateTurnos.cs",
+              "ViewState": "AgIAABkBAAAAAAAAAAAqwCkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+>>>>>>> main
               "WhenOpened": "2025-06-20T22:42:09.671Z",
               "EditorCaption": ""
             }

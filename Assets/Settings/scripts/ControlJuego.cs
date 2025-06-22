@@ -195,10 +195,14 @@ public class ControlJuego : MonoBehaviour
         GuardarPersonaje(this); // Guarda desde sí mismo (MonoBehaviour)
         VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
 
+<<<<<<< HEAD
 
 
 
         StartCoroutine(ActualizarProgresoYVolver());
+=======
+        SceneManager.LoadScene("Mapa");
+>>>>>>> main
     }
 
     internal void ResetVolverAlMapa()
@@ -230,6 +234,7 @@ public class ControlJuego : MonoBehaviour
         VariablesMapa.nivelesCompletados[7] = true;
         SceneManager.LoadScene("Mapa");
     }
+<<<<<<< HEAD
 
     IEnumerator ActualizarProgresoYVolver()
     {
@@ -292,4 +297,6 @@ public class Progreso
     public int idNivel;
     public int idPersonaje;
     public string fechaCreacion;
+=======
+>>>>>>> main
 }
