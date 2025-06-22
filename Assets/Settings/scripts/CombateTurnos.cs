@@ -42,7 +42,6 @@ public class CombateTurnos : MonoBehaviour
         ControlJuego.Instance.ResetVolverAlMapa();
         botonVolverMapa.gameObject.SetActive(false);
 
-        // Agregar listener manualmente para evitar conflictos desde el Inspector
         botonVolverMapa.onClick.RemoveAllListeners();
         botonVolverMapa.onClick.AddListener(() =>
         {
@@ -50,12 +49,25 @@ public class CombateTurnos : MonoBehaviour
             ControlJuego.Instance.VolverAlMapa();
         });
 
-        if (ControlJuego.Instance.listaEnemigos == null || ControlJuego.Instance.listaEnemigos.Count == 0)
-            ControlJuego.Instance.Inicializar();
-
-        enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
         personajeJugador = ControlJuego.Instance.personajeJugador;
 
+        StartCoroutine(ControlJuego.Instance.ObtenerEnemigoActualDesdeApi((enemigo) =>
+        {
+            if (enemigo == null)
+            {
+                Debug.LogError("No se pudo obtener el enemigo desde la API");
+                return;
+            }
+
+            enemigoActual = enemigo;
+
+            // Ahora que tenemos todo, inicializamos los valores del combate
+            InicializarCombate();
+        }));
+    }
+    
+    void InicializarCombate()
+    {
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
 
@@ -81,15 +93,14 @@ public class CombateTurnos : MonoBehaviour
             controlDados.cantidadDadosActivos = 4;
             StartCoroutine(MostrarInicioCombate4());
         }
-        else
-        {
-
+        else {
             ReiniciarTurnoJugador();
         }
-    }
-    
 
-IEnumerator MostrarInicioCombate4()
+    }
+
+
+    IEnumerator MostrarInicioCombate4()
 {
     yield return MostrarTextoAnimado("¡El dragon destruyo uno de tus dados!");
     yield return new WaitForSeconds(0.5f);
@@ -150,8 +161,7 @@ IEnumerator MostrarInicioCombate4()
         if (vidaEnemigo <= 0)
         {
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
-            //StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
-            //botonVolverMapa.gameObject.SetActive(true);
+            ControlJuego.Instance.personajeJugador.vidaActual = vidaJugador;
             StartCoroutine(MostrarVictoriaSecuencial());
             return;
         }
@@ -160,9 +170,8 @@ IEnumerator MostrarInicioCombate4()
     }
     IEnumerator MostrarVictoriaSecuencial()
     {
-        // Espera a que termine la animación del mensaje anterior
         yield return new WaitUntil(() => mensajeCombate.text.EndsWith($"Vida enemigo: {vidaEnemigo}"));
-        yield return new WaitForSeconds(0.5f); // Pequeña pausa opcional
+        yield return new WaitForSeconds(0.5f); 
         yield return MostrarTextoAnimado("¡Ganaste!");
         botonVolverMapa.gameObject.SetActive(true);
     }
