@@ -9,9 +9,14 @@ public class LoginManager : MonoBehaviour
     public InputField emailInput;
     public InputField passwordInput;
     public Text messageText;
+    public GameObject panelError;
 
     private string loginUrl = "https://localhost:7000/api/UsuarioApi/login";
 
+    void Start()
+    {
+        panelError.SetActive(false); // Asegura que arranque oculto
+    }
 
     public void OnLoginButtonClicked()
     {
@@ -20,7 +25,8 @@ public class LoginManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            messageText.text = "Ingrese todos los campos.";
+            panelError.SetActive(true);
+            MostrarError("Por favor, complete todos los campos.");
             return;
         }
 
@@ -47,29 +53,31 @@ public class LoginManager : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            messageText.text = "Error de conexión: " + request.error;
+            MostrarError("No se pudo conectar al servidor. Verifique su conexión a Internet o intente más tarde.");
         }
         else if (request.responseCode == 401)
         {
-            messageText.text = "Credenciales inválidas.";
+            MostrarError("Credenciales inválidas. Por favor, intente nuevamente.");
         }
         else if (request.responseCode == 200)
         {
             string response = request.downloadHandler.text;
             Usuario usuario = JsonUtility.FromJson<Usuario>(response);
 
-            Debug.Log("Usuario logueado: " + usuario.nombreUsuario + " | idPersonaje: " + usuario.idPersonaje);
-
             ControlJuego.Instance.SetUsuario(usuario);
-
-            messageText.text = "Login exitoso. Cargando personaje...";
 
             SceneManager.LoadScene("Titulo");
         }
         else
         {
-            messageText.text = "Error: " + request.responseCode;
+            MostrarError("Ocurrió un error inesperado. Por favor, intente nuevamente más tarde.");
         }
+    }
+
+    void MostrarError(string mensaje)
+    {
+        messageText.text = mensaje;
+        panelError.SetActive(true);
     }
 }
 
