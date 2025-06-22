@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\combateturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\controljuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|c:\\users\\nicol\\documents\\github\\casino-crusaders\\assets\\settings\\scripts\\juegovasos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|C:\\Users\\nicol\\Documents\\GitHub\\Casino-Crusaders\\assets\\settings\\scripts\\juegovasos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A123BE4F-D88D-2357-F3BE-1E08A6FFB18E}|Assembly-CSharp.csproj|solutionrelative:assets\\settings\\scripts\\juegovasos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -42,8 +42,7 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\JuegoVasos.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAA3wGgAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-21T17:18:18.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-21T17:18:18.958Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\VariablesMapa.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T23:42:39.515Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T23:42:39.515Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\MapaController.cs",
               "ViewState": "AgIAAHQAAAAAAAAAAAAIwJIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T22:18:04.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T22:18:04.66Z"
             },
             {
               "$type": "Document",
@@ -81,8 +78,7 @@
               "RelativeToolTip": "Assets\\Settings\\scripts\\ControlJuego.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAwwA8AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T22:42:25.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T22:42:25.241Z"
             },
             {
               "$type": "Document",
