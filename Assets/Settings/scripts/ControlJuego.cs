@@ -61,17 +61,17 @@ public class ControlJuego : MonoBehaviour
         this.usuario = usuario;
     }
 
-    public void Inicializar()
-    {
-        listaEnemigos = new List<Enemigo>()
-        {
-            new Enemigo(1, "Carta", 60, 12, 3),
-            new Enemigo(2, "Ficha", 70, 14, 4),
-            new Enemigo(3, "Slot", 80, 16, 5),
-            new Enemigo(4, "Dragon", 90, 18, 6),
+    //public void Inicializar()
+    //{
+    //    listaEnemigos = new List<Enemigo>()
+    //    {
+    //        new Enemigo(1, "Carta", 60, 12, 3),
+    //        new Enemigo(2, "Ficha", 70, 14, 4),
+    //        new Enemigo(3, "Slot", 80, 16, 5),
+    //        new Enemigo(4, "Dragon", 90, 18, 6),
 
-        };
-    }
+    //    };
+    //}
 
     /*
     public void AvanzarASiguienteEscena()
@@ -89,19 +89,34 @@ public class ControlJuego : MonoBehaviour
     }
     */
 
-    public Enemigo ObtenerEnemigoActual()
+    public IEnumerator ObtenerEnemigoActualDesdeApi(Action<Enemigo> callback)
     {
-        int indiceEnemigo = VariablesMapa.nivel - 1; // Si tus niveles empiezan en 1
-        if (indiceEnemigo >= 0 && indiceEnemigo < listaEnemigos.Count)
-            return listaEnemigos[indiceEnemigo];
+        int idNivel = VariablesMapa.nivel; // nivel actual
+        string url = $"https://localhost:7000/api/EnemigoApi?id={idNivel}";
+
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = request.downloadHandler.text;
+            Enemigo enemigo = JsonUtility.FromJson<Enemigo>(json);
+            Debug.Log($"Enemigo recibido: {enemigo.nombre} con vida {enemigo.vida}");
+            callback?.Invoke(enemigo);
+        }
         else
-            return null;
+        {
+            Debug.LogError("Error al obtener enemigo desde API: " + request.error);
+            callback?.Invoke(null);
+        }
     }
 
     public void ReiniciarJuego()
     {
         indiceEscenaActual = 0;
-        Inicializar();
+        // Inicializar();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Titulo");
     }
 
@@ -141,7 +156,7 @@ public class ControlJuego : MonoBehaviour
 
             Debug.Log("Personaje recibido: " + personaje.idPersonaje);
 
-            Inicializar(); // inicializa enemigos u otros datos del juego
+            // Inicializar(); // inicializa enemigos u otros datos del juego
             UnityEngine.SceneManagement.SceneManager.LoadScene("Mapa"); // o escena inicial
         }
         else
@@ -195,14 +210,8 @@ public class ControlJuego : MonoBehaviour
         GuardarPersonaje(this); // Guarda desde sí mismo (MonoBehaviour)
         VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
 
-<<<<<<< HEAD
-
-
-
         StartCoroutine(ActualizarProgresoYVolver());
-=======
-        SceneManager.LoadScene("Mapa");
->>>>>>> main
+
     }
 
     internal void ResetVolverAlMapa()
@@ -234,7 +243,7 @@ public class ControlJuego : MonoBehaviour
         VariablesMapa.nivelesCompletados[7] = true;
         SceneManager.LoadScene("Mapa");
     }
-<<<<<<< HEAD
+
 
     IEnumerator ActualizarProgresoYVolver()
     {
@@ -297,6 +306,4 @@ public class Progreso
     public int idNivel;
     public int idPersonaje;
     public string fechaCreacion;
-=======
->>>>>>> main
 }
