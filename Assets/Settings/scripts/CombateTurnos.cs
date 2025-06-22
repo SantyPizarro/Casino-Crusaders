@@ -368,14 +368,14 @@ public class CombateTurnos : MonoBehaviour
         
 
         botonVolverAlTituloVictoria.gameObject.SetActive(true); 
-        botonVolverAlTitulo.transform.SetAsLastSibling(); 
+        botonVolverAlTituloVictoria.transform.SetAsLastSibling(); 
     }
 
     IEnumerator MostrarPantallaDerrotaSecuencial()
     {
         yield return new WaitForSeconds(1f);
         yield return MostrarTextoAnimado("¡Perdiste!");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         MostrarPantallaDerrota();
     }
 
@@ -383,7 +383,7 @@ public class CombateTurnos : MonoBehaviour
     {
         pantallaDerrotaGO.SetActive(true);
 
-        botonVolverAlTituloVictoria.gameObject.SetActive(true);
-        botonVolverAlTituloVictoria.transform.SetAsLastSibling();
+        botonVolverAlTitulo.gameObject.SetActive(true);
+        botonVolverAlTitulo.transform.SetAsLastSibling();
     }
 }
