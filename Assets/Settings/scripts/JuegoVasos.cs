@@ -14,6 +14,8 @@ public class JuegoDeVasos : MonoBehaviour
     public Sprite spriteAtaque;
     public Sprite spriteDefensa;
     public UnityEngine.UI.Image imagenRecompensa;
+    public UnityEngine.UI.Button botonVolverMapa;
+
 
     private int indiceCorrecto;
     private bool puedeElegir = false;
@@ -25,6 +27,16 @@ public class JuegoDeVasos : MonoBehaviour
 
     void Start()
     {
+        ControlJuego.Instance.ResetVolverAlMapa();
+        botonVolverMapa.gameObject.SetActive(false);
+
+        // Agregar listener manualmente para evitar conflictos desde el Inspector
+        botonVolverMapa.onClick.RemoveAllListeners();
+        botonVolverMapa.onClick.AddListener(() =>
+        {
+            Debug.Log("Botón Volver al Mapa presionado");
+            ControlJuego.Instance.VolverDesdeEvento2();
+        });
         botonComenzar.onClick.AddListener(ComenzarJuego);
         mensaje.text = "Pulsa el botón sin vacilar,\n¡los vasos van a bailar!";
 
@@ -143,13 +155,14 @@ public class JuegoDeVasos : MonoBehaviour
 
     IEnumerator terminarJuego(bool acerto)
     {
+        botonVolverMapa.gameObject.SetActive(true);
         if (acerto)
         {
             yield return StartCoroutine(MoverRecompensaAlVaso(vasos[indiceCorrecto].transform.position));
         }
 
         yield return new WaitForSeconds(1.5f);
-        ControlJuego.Instance.AvanzarASiguienteEscena();
+        //ControlJuego.Instance.AvanzarASiguienteEscena();
     }
 
     IEnumerator IntercambiarPosiciones(GameObject vasoA, GameObject vasoB, float duracion)

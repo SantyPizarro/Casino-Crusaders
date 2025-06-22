@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b1ed780d6901b634d8cbdb805217c462
+guid: 01d9aa1ec68990949bc89caef4ec1e8e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4020169179068477868
-    second: 20250621_1954_Sala Pixelada de Adivinanzas_simple_compose_01jyab46gpen2t8a4tr3kkd97q_0
+      213: -8694423180941461633
+    second: 20250622_0157_Mazmorra Casino en Pixel Art_simple_compose_01jyazxbyxfgzvjsds19aarbrj_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 20250621_1954_Sala Pixelada de Adivinanzas_simple_compose_01jyab46gpen2t8a4tr3kkd97q_0
+      name: 20250622_0157_Mazmorra Casino en Pixel Art_simple_compose_01jyazxbyxfgzvjsds19aarbrj_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45e46a07e6d7538c0800000000000000
-      internalID: -4020169179068477868
+      spriteID: f77ff059e24375780800000000000000
+      internalID: -8694423180941461633
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      20250621_1954_Sala Pixelada de Adivinanzas_simple_compose_01jyab46gpen2t8a4tr3kkd97q_0: -4020169179068477868
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
