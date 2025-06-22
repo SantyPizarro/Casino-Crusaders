@@ -108,11 +108,11 @@ public class JuegoDeVasos : MonoBehaviour
                     ControlJuego.Instance.GuardarPersonaje(this);
                     break;
                 case 1:
-                    ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                    ControlJuego.Instance.personajeJugador.danoAtaque += 2;
                     ControlJuego.Instance.GuardarPersonaje(this);
                     break;
                 case 2:
-                    ControlJuego.Instance.personajeJugador.defensa += 10;
+                    ControlJuego.Instance.personajeJugador.defensa += 2;
                     ControlJuego.Instance.GuardarPersonaje(this);
                     break;
             }

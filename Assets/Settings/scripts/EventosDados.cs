@@ -70,7 +70,7 @@ public class EventoDados : MonoBehaviour
             case "par":
                 // personaje.armadura += 5;
                 mensajeEvento.text = "Con un par no estás tan mal,\nun poco de escudo... nada banal. (Defensa +10)";
-                ControlJuego.Instance.personajeJugador.defensa += 10;
+                ControlJuego.Instance.personajeJugador.defensa += 2;
                 ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "trio":
@@ -88,7 +88,7 @@ public class EventoDados : MonoBehaviour
             case "poker":
                 // personaje.armadura += 10;
                 mensajeEvento.text = "Un póker al fin apareció,\ntu ataque se fortaleció. (Ataque +10)";
-               ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+               ControlJuego.Instance.personajeJugador.danoAtaque += 2;
                 ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "generala":
@@ -96,16 +96,16 @@ public class EventoDados : MonoBehaviour
                 mensajeEvento.text = "Generala, jugada ideal,\ntu subida de estadisticas es total. (Todo +10)";
                 ControlJuego.Instance.personajeJugador.vidaMaxima += 10;
                 ControlJuego.Instance.personajeJugador.vidaActual += 10;
-                ControlJuego.Instance.personajeJugador.defensa += 10;
-                ControlJuego.Instance.personajeJugador.danoAtaque += 10;
+                ControlJuego.Instance.personajeJugador.defensa += 4;
+                ControlJuego.Instance.personajeJugador.danoAtaque += 4;
                 ControlJuego.Instance.personajeJugador.monedas += 10;
                 ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             case "escalera":
                 // personaje.dañoAtaque += 2;
                 mensajeEvento.text = "Escalera que no patinó,\ntu ataque se multiplicó. (Ataque y Defensa +10)";
-                ControlJuego.Instance.personajeJugador.danoAtaque += 10;
-                ControlJuego.Instance.personajeJugador.defensa += 10;
+                ControlJuego.Instance.personajeJugador.danoAtaque += 2;
+                ControlJuego.Instance.personajeJugador.defensa += 2;
                 ControlJuego.Instance.GuardarPersonaje(this);
                 break;
             default:
