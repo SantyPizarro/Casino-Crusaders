@@ -1441,6 +1441,7 @@ MonoBehaviour:
   emailInput: {fileID: 989954749}
   passwordInput: {fileID: 1601850195}
   messageText: {fileID: 946757895}
+  panelError: {fileID: 817645842}
 --- !u!4 &1411466021
 Transform:
   m_ObjectHideFlags: 0
