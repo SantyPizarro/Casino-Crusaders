@@ -8,6 +8,7 @@ public class MapaController : MonoBehaviour
 {
     [SerializeField] float velocidad = 5;
     [SerializeField] Transform[] pos;
+    [SerializeField] SpriteRenderer[] posIconos;
     //[SerializeField] SpriteRenderer[] posIconos;
     [SerializeField] Transform[] caminos;
     [SerializeField] Transform player;
@@ -19,6 +20,7 @@ public class MapaController : MonoBehaviour
 
     void Awake()
     {
+        StartCoroutine(ActualizarColoresConDelay());
         if (!VariablesMapa.juegoIniciado)
         {
             VariablesMapa.nivel = 0;
@@ -102,14 +104,15 @@ public class MapaController : MonoBehaviour
         if (puedoMover)
         {
             int destinoVertical = GetVerticalDestination(playerPos, (int)v);
-            if (destinoVertical != -1 && /* aquí tu condición de camino abierto */ v != 0)
+            if (destinoVertical != -1 && v != 0 && EsCasillaDesbloqueada(destinoVertical))
             {
                 puedoMover = false;
                 StartCoroutine("MoverPlayerVertical", destinoVertical);
             }
         }
 
-        if ((h == 1 && playerPos < maxNivel && puedoMover) || (h == -1 && playerPos > 0 && puedoMover))
+        int destino = playerPos + (int)h;
+        if ((h != 0 && puedoMover && destino >= 0 && destino < pos.Length && EsCasillaDesbloqueada(destino)))
         {
             puedoMover = false;
             StartCoroutine("MoverPlayer", (int)h);
@@ -302,5 +305,76 @@ public class MapaController : MonoBehaviour
         SceneManager.LoadScene(nombre);
     }
 
-   
+    IEnumerator ActualizarColoresConDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        ActualizarColoresCasillas();
+    }
+
+    void ActualizarColoresCasillas()
+    {
+        for (int i = 0; i < posIconos.Length; i++)
+        {
+            bool bloqueado = false;
+
+            switch (i)
+            {
+                case 1: bloqueado = VariablesMapa.estadoPos1 != 1; break;
+                case 2: bloqueado = VariablesMapa.estadoPos2 != 1; break;
+                case 3: bloqueado = VariablesMapa.estadoPos3 != 1; break;
+                case 4: bloqueado = VariablesMapa.estadoPos4 != 1; break;
+                case 5: bloqueado = VariablesMapa.estadoPos5 != 1; break;
+                case 6: bloqueado = VariablesMapa.estadoPos6 != 1; break;
+                case 7: bloqueado = VariablesMapa.estadoPos7 != 1; break;
+            }
+
+            if (bloqueado)
+            {
+                posIconos[i].color = Color.gray; // Bloqueado = gris
+            }
+            else
+            {
+                posIconos[i].color = Color.white; // Desbloqueado = blanco
+            }
+        }
+    }
+    bool EsCasillaDesbloqueada(int destino)
+    {
+        switch (playerPos)
+        {
+            case 0:
+                return destino == 1 && VariablesMapa.estadoPos1 == 1;
+
+            case 1:
+                if (destino == 2) return VariablesMapa.estadoPos2 == 1; // N1 ? N2
+                if (destino == 5) return VariablesMapa.estadoPos3 == 1; // N1 ? Evento1
+                break;
+
+            case 2:
+                if (destino == 1) return VariablesMapa.estadoPos2 == 1; // N2 ? N1
+                if (destino == 3) return VariablesMapa.estadoPos5 == 1; // N2 ? N3
+                if (destino == 6) return VariablesMapa.estadoPos4 == 1; // N2 ? Tienda
+                break;
+
+            case 3:
+                if (destino == 2) return VariablesMapa.estadoPos5 == 1; // N3 ? N2
+                if (destino == 4) return VariablesMapa.estadoPos7 == 1; // N3 ? Jefe
+                if (destino == 7) return VariablesMapa.estadoPos6 == 1; // N3 ? Evento2
+                break;
+
+            case 4:
+                return destino == 3 && VariablesMapa.estadoPos7 == 1; // Jefe ? N3
+
+            case 5:
+                return destino == 1 && VariablesMapa.estadoPos3 == 1; // Evento1 ?? N1
+
+            case 6:
+                return destino == 2 && VariablesMapa.estadoPos4 == 1; // Tienda ?? N2
+
+            case 7:
+                return destino == 3 && VariablesMapa.estadoPos6 == 1; // Evento2 ?? N3
+        }
+
+        return false;
+    }
 }

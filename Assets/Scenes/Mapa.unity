@@ -776,7 +776,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -8755364236731159095, guid: b69be5c8a8742894cb49cfaf0cf39657, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1750,6 +1750,15 @@ MonoBehaviour:
   - {fileID: 989028081}
   - {fileID: 1802573134}
   - {fileID: 480484843}
+  posIconos:
+  - {fileID: 323462713}
+  - {fileID: 880882746}
+  - {fileID: 567083806}
+  - {fileID: 989028082}
+  - {fileID: 1944685642}
+  - {fileID: 1802573135}
+  - {fileID: 480484844}
+  - {fileID: 157492551}
   caminos:
   - {fileID: 1917494635}
   - {fileID: 1674494696}
