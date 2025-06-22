@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Assets.Settings.scripts;
+using UnityEngine.SceneManagement;
 
 public class EventoDados : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EventoDados : MonoBehaviour
     public Text mensajeEvento;
     public Button botonLanzarDados;
     public Button botonAceptar;
+    public Button botonVolverMapa;
     public GameObject panelResultado;
 
     private bool dadoLanzado = false;
@@ -18,6 +20,16 @@ public class EventoDados : MonoBehaviour
 
     void Start()
     {
+        ControlJuego.Instance.ResetVolverAlMapa();
+        botonVolverMapa.gameObject.SetActive(false);
+
+        // Agregar listener manualmente para evitar conflictos desde el Inspector
+        botonVolverMapa.onClick.RemoveAllListeners();
+        botonVolverMapa.onClick.AddListener(() =>
+        {
+            Debug.Log("Botón Volver al Mapa presionado");
+            ControlJuego.Instance.VolverDesdeEvento1();
+        });
         personaje = ControlJuego.Instance.personajeJugador;
         botonLanzarDados.onClick.AddListener(LanzarDados);
         botonAceptar.onClick.AddListener(AceptarResultado);
@@ -52,7 +64,7 @@ public class EventoDados : MonoBehaviour
     void AceptarResultado()
     {
         dadoLanzado = true;
-
+        botonVolverMapa.gameObject.SetActive(true);
         switch (combinacionFinal.nombre)
         {
             case "par":
@@ -113,5 +125,6 @@ public class EventoDados : MonoBehaviour
             yield return new WaitForSeconds(0.015f);
         }
     }
+    
 }
 

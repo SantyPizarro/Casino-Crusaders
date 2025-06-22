@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Assets.Settings.scripts;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using System;
 
 public class ControlJuego : MonoBehaviour
 {
@@ -15,12 +17,13 @@ public class ControlJuego : MonoBehaviour
     public Usuario usuario;
     public Personaje personajeJugador;
     public List<Enemigo> listaEnemigos;
+    /*
     private List<string> flujoEscenas = new List<string>()
     {
         
         "Combate1",
-        "Combate3",
         "Combate2",
+        "Combate3",
         "Combate4",
         "Tienda",
         "EventoDados",
@@ -28,8 +31,10 @@ public class ControlJuego : MonoBehaviour
         
 
     };
+    */
 
     private int indiceEscenaActual = 0;
+    private bool yaVolvioAlMapa = false;
 
 
     void Awake()
@@ -66,6 +71,7 @@ public class ControlJuego : MonoBehaviour
         };
     }
 
+    /*
     public void AvanzarASiguienteEscena()
     {
         indiceEscenaActual++;
@@ -79,11 +85,12 @@ public class ControlJuego : MonoBehaviour
         Debug.Log("Cargando escena: " + siguienteEscena);
         UnityEngine.SceneManagement.SceneManager.LoadScene(siguienteEscena);
     }
+    */
 
     public Enemigo ObtenerEnemigoActual()
     {
-        int indiceEnemigo = 1;
-        if (indiceEnemigo < listaEnemigos.Count)
+        int indiceEnemigo = VariablesMapa.nivel - 1; // Si tus niveles empiezan en 1
+        if (indiceEnemigo >= 0 && indiceEnemigo < listaEnemigos.Count)
             return listaEnemigos[indiceEnemigo];
         else
             return null;
@@ -93,7 +100,7 @@ public class ControlJuego : MonoBehaviour
     {
         indiceEscenaActual = 0;
         Inicializar();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(flujoEscenas[0]);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Titulo");
     }
 
     public void CargarPersonajeYEmpezarJuego(MonoBehaviour caller)
@@ -175,5 +182,47 @@ public class ControlJuego : MonoBehaviour
         {
             Debug.LogError("Error al actualizar personaje: " + request.error);
         }
+    }
+
+    public void VolverAlMapa()
+    {
+        if (yaVolvioAlMapa) return;
+        yaVolvioAlMapa = true;
+
+        personajeJugador.monedas += 10;
+        GuardarPersonaje(this); // Guarda desde sí mismo (MonoBehaviour)
+        VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
+
+        SceneManager.LoadScene("Mapa");
+    }
+
+    internal void ResetVolverAlMapa()
+    {
+        yaVolvioAlMapa = false;
+    }
+    public void VolverDesdeEvento1()
+    {
+        VariablesMapa.estadoPos2 = 1; // Abre camino de N1 a N2
+        VariablesMapa.maxNivel = Mathf.Max(VariablesMapa.maxNivel, 2);
+        VariablesMapa.nivelesCompletados[5] = true;
+        SceneManager.LoadScene("Mapa");
+    }
+
+    // Llama a este método desde el botón "Volver al mapa" en Tienda
+    public void VolverDesdeTienda()
+    {
+        VariablesMapa.estadoPos5 = 1; // Abre camino de N2 a N3
+        VariablesMapa.maxNivel = Mathf.Max(VariablesMapa.maxNivel, 3);
+        VariablesMapa.nivelesCompletados[6] = true;
+        SceneManager.LoadScene("Mapa");
+    }
+
+    // Llama a este método desde el botón "Volver al mapa" en Evento2
+    public void VolverDesdeEvento2()
+    {
+        VariablesMapa.estadoPos7 = 1; // Abre camino de N3 a Jefe
+        VariablesMapa.maxNivel = Mathf.Max(VariablesMapa.maxNivel, 4);
+        VariablesMapa.nivelesCompletados[7] = true;
+        SceneManager.LoadScene("Mapa");
     }
 }

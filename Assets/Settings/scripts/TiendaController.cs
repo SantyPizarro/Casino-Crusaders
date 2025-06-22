@@ -11,6 +11,7 @@ public class TiendaController : MonoBehaviour
     public int vidaMaxima;
     public int armadura;
     public int dano;
+    public Button botonVolverMapa;
 
     public Text TextoMonedas;
     public Text TextoVida;
@@ -25,6 +26,17 @@ public class TiendaController : MonoBehaviour
 
     void Start()
     {
+        ControlJuego.Instance.ResetVolverAlMapa();
+        botonVolverMapa.gameObject.SetActive(true);
+
+        // Agregar listener manualmente para evitar conflictos desde el Inspector
+        botonVolverMapa.onClick.RemoveAllListeners();
+        botonVolverMapa.onClick.AddListener(() =>
+        {
+            Debug.Log("Botón Volver al Mapa presionado");
+            ControlJuego.Instance.VolverDesdeTienda();
+        });
+
         vidaActual = ControlJuego.Instance.personajeJugador.vidaActual;
         vidaMaxima = ControlJuego.Instance.personajeJugador.vidaMaxima;
         dano = ControlJuego.Instance.personajeJugador.danoAtaque;

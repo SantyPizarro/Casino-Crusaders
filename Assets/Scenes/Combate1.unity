@@ -971,10 +971,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 15b7506281488ca41a3cd4e1009b27b4, type: 3}
-    m_FontSize: 40
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3785,12 +3785,12 @@ MonoBehaviour:
   vidaEnemigo: 111
   botonLanzarDados: {fileID: 2156844}
   botonAtacar: {fileID: 973666792}
+  botonVolverMapa: {fileID: 2047186096}
   jugadorGO: {fileID: 1545016413}
   enemigoGO: {fileID: 453294265}
   barraVidaJugador: {fileID: 196308323}
   barraVidaEnemigo: {fileID: 167216028}
   camaraCombate: {fileID: 519420031}
-  botonVolverMapa: {fileID: 2047186096}
 --- !u!4 &894411284
 Transform:
   m_ObjectHideFlags: 0
@@ -5750,6 +5750,7 @@ MonoBehaviour:
   - {fileID: -2307884431035961996, guid: 4cb7859e2b1e57745bd5f0a77ffbb76f, type: 3}
   resultadoTexto: {fileID: 1124326282}
   caraVacia: {fileID: -6584121011126030642, guid: b5a71e414c123484dad8f4909f353659, type: 3}
+  cantidadDadosActivos: 5
 --- !u!4 &1787275691
 Transform:
   m_ObjectHideFlags: 0
@@ -6525,19 +6526,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2047186097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 894411283}
-        m_TargetAssemblyTypeName: CombateTurnos, Assembly-CSharp
-        m_MethodName: VolverAlMapa
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2047186097
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1571,6 +1571,7 @@ MonoBehaviour:
   vidaMaxima: 100
   armadura: 0
   dano: 0
+  botonVolverMapa: {fileID: 1984678157}
   TextoMonedas: {fileID: 778087573}
   TextoVida: {fileID: 1788915061}
   TextoVidaMax: {fileID: 1798494031}
@@ -3663,7 +3664,7 @@ GameObject:
   - component: {fileID: 1984678158}
   - component: {fileID: 1984678157}
   m_Layer: 5
-  m_Name: BotonSalir
+  m_Name: BotonVolverMapa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3687,7 +3688,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 851.83453, y: -493.19226}
-  m_SizeDelta: {x: 190.131, y: 52.649}
+  m_SizeDelta: {x: 150, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1984678157
 MonoBehaviour:

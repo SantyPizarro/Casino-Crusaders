@@ -22,6 +22,7 @@ public class CombateTurnos : MonoBehaviour
 
     public Button botonLanzarDados;
     public Button botonAtacar;
+    public Button botonVolverMapa;
 
     public GameObject jugadorGO;
     public GameObject enemigoGO;
@@ -35,18 +36,25 @@ public class CombateTurnos : MonoBehaviour
     private string prefijoAnimacionEnemigo;
 
     public Camera camaraCombate;
-    public Button botonVolverMapa;
 
     void Start()
     {
+        ControlJuego.Instance.ResetVolverAlMapa();
         botonVolverMapa.gameObject.SetActive(false);
+
+        // Agregar listener manualmente para evitar conflictos desde el Inspector
+        botonVolverMapa.onClick.RemoveAllListeners();
+        botonVolverMapa.onClick.AddListener(() =>
+        {
+            Debug.Log("Botón Volver al Mapa presionado");
+            ControlJuego.Instance.VolverAlMapa();
+        });
 
         if (ControlJuego.Instance.listaEnemigos == null || ControlJuego.Instance.listaEnemigos.Count == 0)
             ControlJuego.Instance.Inicializar();
 
         enemigoActual = ControlJuego.Instance.ObtenerEnemigoActual();
         personajeJugador = ControlJuego.Instance.personajeJugador;
-
 
         vidaJugador = personajeJugador.vidaActual;
         vidaEnemigo = enemigoActual.vida;
@@ -68,9 +76,9 @@ public class CombateTurnos : MonoBehaviour
         EnemigoInfo info = enemigoGO.GetComponent<EnemigoInfo>();
         prefijoAnimacionEnemigo = info != null ? info.tipoEnemigo : "card";
 
-        if (SceneManager.GetActiveScene().name == "Combate4") //en el jefe, el jugador tiene un dado menos
+        if (SceneManager.GetActiveScene().name == "Combate4")
         {
-            controlDados.cantidadDadosActivos = 4; 
+            controlDados.cantidadDadosActivos = 4;
             StartCoroutine(MostrarTextoAnimado("¡El dragón destruyó uno de tus dados!"));
         }
 
@@ -133,7 +141,6 @@ public class CombateTurnos : MonoBehaviour
             animatorEnemigo.SetTrigger(prefijoAnimacionEnemigo + "Death");
             StartCoroutine(MostrarTextoAnimado("¡Ganaste!"));
             botonVolverMapa.gameObject.SetActive(true);
-            VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
             return;
         }
 
@@ -271,16 +278,6 @@ public class CombateTurnos : MonoBehaviour
         obj.transform.position = original;
     }
 
-    void SiguienteEscena()
-    {
-
-        ControlJuego.Instance.personajeJugador.vidaActual = vidaJugador;
-        ControlJuego.Instance.personajeJugador.monedas += 10;
-        ControlJuego.Instance.GuardarPersonaje(this);
-        VariablesMapa.nivelesCompletados[VariablesMapa.nivel] = true;
-    
-    }
-
     IEnumerator MostrarTextoAnimado(string mensaje)
     {
         mensajeCombate.text = "";
@@ -306,9 +303,5 @@ public class CombateTurnos : MonoBehaviour
 
         barra.value = nuevaVida;
     }
-    public void VolverAlMapa()
-    {
-        SiguienteEscena();
-        SceneManager.LoadScene("Mapa");
-    }
+   
 }

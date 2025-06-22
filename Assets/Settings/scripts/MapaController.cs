@@ -42,7 +42,7 @@ public class MapaController : MonoBehaviour
 
         if (VariablesMapa.estadoPos1 == 1)
         {
-            caminos[0].localScale = new Vector3(1, 1, 1);
+            //caminos[0].localScale = new Vector3(1, 1, 1);
             //posIconos[0].enabled = true;
         }
         else if (VariablesMapa.estadoPos1 == 2)
@@ -57,7 +57,7 @@ public class MapaController : MonoBehaviour
 
     IEnumerator AbreCamino(int numCamino)
     {
-        caminos[numCamino].localScale = new Vector3(1, 0.5f, 1); // Escala final instantánea
+       // caminos[numCamino].localScale = new Vector3(1, 1, 1); // Escala final instantánea
         puedoMover = true;
         if (numCamino == 0) VariablesMapa.estadoPos1 = 1;
         if (numCamino == 1)
@@ -93,7 +93,7 @@ public class MapaController : MonoBehaviour
         if (current == 7 && direction == 1) return 3;  // Evento2 -> N3
         return -1;
     }
-    //a
+    
     void Update()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -118,71 +118,108 @@ public class MapaController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (playerPos == 1)
+            switch (playerPos)
             {
-                Debug.Log("Intentando entrar a Combate1. Completado: " + VariablesMapa.nivelesCompletados[1]);
+                case 1: // Nivel 1
+                    Debug.Log("Intentando entrar a Pelea2. Completado: " + VariablesMapa.nivelesCompletados[1]);
+                    if (!VariablesMapa.nivelesCompletados[1])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Combate1");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
 
-                if (!VariablesMapa.nivelesCompletados[1])
-                {
-                    VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Pelea2");
-                }
-                else
-                {
-                    Debug.Log("¡Este nivel ya fue completado!");
-                }
-            }
-            else if (playerPos == 2)
-            {
-                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
-                if (!VariablesMapa.nivelesCompletados[2])
-                {
-                    VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Combate5");
-                }
-                else
-                {
-                    Debug.Log("¡Este nivel ya fue completado!");
-                }
-            }
-            else if (playerPos == 3)
-            {
-                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
-                if (!VariablesMapa.nivelesCompletados[3])
-                {
-                    VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Combate3");
-                }
-                else
-                {
-                    Debug.Log("¡Este nivel ya fue completado!");
-                }
-            }
+                case 2: // Nivel 2
+                    Debug.Log("Intentando entrar a Combate5. Completado: " + VariablesMapa.nivelesCompletados[2]);
+                    if (!VariablesMapa.nivelesCompletados[2])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Combate2");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
 
-            else if (playerPos == 4)
-            {
-                Debug.Log("Intentando entrar a Combate2. playerPos: " + playerPos + " nivel completado: " + VariablesMapa.nivelesCompletados[2]);
-                if (!VariablesMapa.nivelesCompletados[3])
-                {
-                    VariablesMapa.nivel = playerPos;
-                    CambiarEscena("Combate1");
-                }
-                else
-                {
-                    Debug.Log("¡Este nivel ya fue completado!");
-                }
-            }
-            else if (playerPos == 5) // EventoDados
-            {
-                CambiarEscena("EventoDados");
-            }
-            else if (playerPos == 7) // Evento1
-            {
-                CambiarEscena("Evento1");
-            }
-            else if (playerPos == 6)
-            {
-                CambiarEscena("Tienda");
+                case 3: // Nivel 3
+                    Debug.Log("Intentando entrar a Combate3. Completado: " + VariablesMapa.nivelesCompletados[3]);
+                    if (!VariablesMapa.nivelesCompletados[3])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Combate3");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
+
+                case 4: // Jefe final 
+                    Debug.Log("Intentando entrar a Combate7. Completado: " + VariablesMapa.nivelesCompletados[4]);
+                    if (!VariablesMapa.nivelesCompletados[4])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Combate4");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
+
+                case 5: // Evento dados
+                    if (!VariablesMapa.nivelesCompletados[5])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("EventoDados");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
+                  //  VariablesMapa.nivel = playerPos;
+                   // CambiarEscena("EventoDados");
+                    //break;
+
+                case 6: // Tienda
+                    if (!VariablesMapa.nivelesCompletados[6])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Tienda");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
+                  //  VariablesMapa.nivel = playerPos;
+                   // CambiarEscena("Tienda");
+                    //break;
+
+                case 7: // Evento 1
+                    if (!VariablesMapa.nivelesCompletados[7])
+                    {
+                        VariablesMapa.nivel = playerPos;
+                        CambiarEscena("Evento1");
+                    }
+                    else
+                    {
+                        Debug.Log("¡Este nivel ya fue completado!");
+                    }
+                    break;
+                 //   VariablesMapa.nivel = playerPos;
+                    //CambiarEscena("Evento1");
+                    //break;
+
+                default:
+                    Debug.Log("Posición inválida o no asignada a una escena.");
+                    break;
             }
         }
 

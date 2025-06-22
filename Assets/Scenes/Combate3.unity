@@ -884,7 +884,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 15b7506281488ca41a3cd4e1009b27b4, type: 3}
-    m_FontSize: 40
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -3114,12 +3114,12 @@ MonoBehaviour:
   vidaEnemigo: 100
   botonLanzarDados: {fileID: 2156844}
   botonAtacar: {fileID: 973666792}
+  botonVolverMapa: {fileID: 1637439718}
   jugadorGO: {fileID: 1545016413}
   enemigoGO: {fileID: 453294265}
   barraVidaJugador: {fileID: 196308323}
   barraVidaEnemigo: {fileID: 167216028}
   camaraCombate: {fileID: 519420031}
-  botonVolverMapa: {fileID: 1637439718}
 --- !u!4 &894411284
 Transform:
   m_ObjectHideFlags: 0
