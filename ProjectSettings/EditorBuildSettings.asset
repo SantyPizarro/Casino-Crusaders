@@ -6,32 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: cdfee0fba5bdc734280157cf63253bb4
+  - enabled: 1
     path: Assets/Scenes/Titulo.unity
     guid: a46e1f95e8dac7a47909eb937df3ba70
-  - enabled: 1
-    path: Assets/Scenes/Combate1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Evento1.unity
-    guid: 93a73c4000c01834ca7d4ade9a8a4641
-  - enabled: 1
-    path: Assets/Scenes/Tienda.unity
-    guid: 4168bc1c9052f5044b86c80672927b6b
-  - enabled: 1
-    path: Assets/Scenes/EventoDados.unity
-    guid: c1c28f9dca8bf194f8f85fa610fd6c38
-  - enabled: 1
-    path: Assets/Scenes/Combate3.unity
-    guid: c9ef46bb4f35bd7448fe79a4016e06c3
-  - enabled: 1
-    path: Assets/Scenes/Combate4.unity
-    guid: 40fe29a2b2be08348b9c1dac5172baf3
   - enabled: 1
     path: Assets/Scenes/Mapa.unity
     guid: f9b55b4c0d12a8b4eacb5323ddb171a8
   - enabled: 1
+    path: Assets/Scenes/Combate1.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/EventoDados.unity
+    guid: c1c28f9dca8bf194f8f85fa610fd6c38
+  - enabled: 1
     path: Assets/Scenes/Combate2.unity
     guid: 97d4aa5dd2114074cad38915dade888c
+  - enabled: 1
+    path: Assets/Scenes/Evento1.unity
+    guid: 93a73c4000c01834ca7d4ade9a8a4641
+  - enabled: 1
+    path: Assets/Scenes/Combate3.unity
+    guid: c9ef46bb4f35bd7448fe79a4016e06c3
+  - enabled: 1
+    path: Assets/Scenes/Tienda.unity
+    guid: 4168bc1c9052f5044b86c80672927b6b
+  - enabled: 1
+    path: Assets/Scenes/Combate4.unity
+    guid: 40fe29a2b2be08348b9c1dac5172baf3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
