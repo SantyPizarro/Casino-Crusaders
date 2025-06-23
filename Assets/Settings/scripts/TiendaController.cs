@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using System.Collections.Generic;
+
 
 public class TiendaController : MonoBehaviour
 {
@@ -24,8 +27,13 @@ public class TiendaController : MonoBehaviour
     // URL de la API (puedes cambiar el ID si lo necesitas)
     public string apiUrlPut = "https://localhost:7000/api/PersonajeApi";
 
+
+    private Dictionary<string, Objeto> objetosDisponibles = new Dictionary<string, Objeto>();
+    public string apiUrlObjetos = "https://localhost:7000/api/ObjetoApi";
+
     void Start()
     {
+        StartCoroutine(CargarObjetosDesdeAPI());
         ControlJuego.Instance.ResetVolverAlMapa();
         botonVolverMapa.gameObject.SetActive(true);
 
@@ -47,55 +55,29 @@ public class TiendaController : MonoBehaviour
     }
 
 
+    public void ComprarVidaMax()
+    {
+        Comprar("VidaMax", () => vidaMaxima += objetosDisponibles["VidaMax"].estadistica);
+    }
+
     public void ComprarArmadura()
     {
-        if (monedas >= COSTO)
-        {
-            armadura += 5;
-            monedas -= COSTO;
-            ActualizarUI();
-        }
+        Comprar("Armadura", () => armadura += objetosDisponibles["Armadura"].estadistica);
     }
 
     public void ComprarVida()
     {
-        if (monedas >= COSTO)
+        Comprar("Pocion", () =>
         {
-            if (vidaActual < vidaMaxima)
-            {
-
-                vidaActual += 25;
-                if (vidaActual > vidaMaxima)
-                {
-                    vidaActual = vidaMaxima;
-                    monedas -= COSTO;
-                }
-
-
-            }
-
-            ActualizarUI();
-        }
-    }
-
-    public void ComprarVidaMax()
-    {
-        if (monedas >= COSTO)
-        {
-            vidaMaxima += 5;
-            monedas -= COSTO;
-            ActualizarUI();
-        }
+            vidaActual += objetosDisponibles["Pocion"].estadistica;
+            if (vidaActual > vidaMaxima)
+                vidaActual = vidaMaxima;
+        });
     }
 
     public void ComprarDano()
     {
-        if (monedas >= COSTO)
-        {
-            dano += 5;
-            monedas -= COSTO;
-            ActualizarUI();
-        }
+        Comprar("Espada", () => dano += objetosDisponibles["Espada"].estadistica);
     }
 
     void ActualizarUI()
@@ -107,6 +89,28 @@ public class TiendaController : MonoBehaviour
         TextoDano.text = "Daño: " + dano;
     }
 
+    private void Comprar(string nombreObjeto, System.Action aplicarEfecto)
+    {
+        if (!objetosDisponibles.ContainsKey(nombreObjeto))
+        {
+            Debug.LogError($"Objeto '{nombreObjeto}' no encontrado.");
+            return;
+        }
+
+        Objeto obj = objetosDisponibles[nombreObjeto];
+
+        if (monedas >= obj.precio)
+        {
+            aplicarEfecto.Invoke();
+            monedas -= obj.precio;
+            ActualizarUI();
+        }
+        else
+        {
+            Debug.Log("No tienes suficientes monedas.");
+        }
+    }
+
     public void GuardarPersonaje()
     {
         ControlJuego.Instance.personajeJugador.vidaActual = vidaActual;
@@ -115,6 +119,25 @@ public class TiendaController : MonoBehaviour
         ControlJuego.Instance.personajeJugador.defensa = armadura;
          ControlJuego.Instance.personajeJugador.monedas = monedas;
         ControlJuego.Instance.GuardarPersonaje(this);
+    }
+
+    IEnumerator CargarObjetosDesdeAPI()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(apiUrlObjetos);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = "{\"objetos\":" + request.downloadHandler.text + "}";
+            ObjetoWrapper wrapper = JsonUtility.FromJson<ObjetoWrapper>(json);
+
+            objetosDisponibles = wrapper.objetos.ToDictionary(o => o.nombre, o => o);
+            Debug.Log("Objetos cargados correctamente.");
+        }
+        else
+        {
+            Debug.LogError("Error al cargar objetos: " + request.error);
+        }
     }
 
     //public IEnumerator PutPersonaje()
@@ -151,5 +174,20 @@ public class TiendaController : MonoBehaviour
     //        SceneManager.LoadScene("Titulo");
     //    }
     //}
+}
+
+[System.Serializable]
+public class Objeto
+{
+    public int idObjeto;
+    public string nombre;
+    public int estadistica;
+    public int precio;
+}
+
+[System.Serializable]
+public class ObjetoWrapper
+{
+    public List<Objeto> objetos;
 }
 
